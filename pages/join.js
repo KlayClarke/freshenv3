@@ -1,6 +1,6 @@
 export default function Join() {
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center">
+    <div className="">
       <form className="bg-white shadow-sm border rounded-lg px-8 pt-6 pb-8 mb-4">
         <div className="form-section">
           <label
