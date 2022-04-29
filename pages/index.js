@@ -7,7 +7,8 @@ export default function Home() {
     <div className="flex flex-col justify-center items-center h-screen gap-10">
       <h1 className="text-4xl max-w-4xl text-center text-blue-500">
         Whether you are a customer searching for a new hairstylist or a
-        hairstylist searching for new customers, freshen is the answer
+        hairstylist searching for new customers,{" "}
+        <span className="font-bold">freshen</span> is the answer
       </h1>
       <div className="flex gap-5">
         <a
