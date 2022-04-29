@@ -27,7 +27,7 @@ export default function Navbar() {
       <div
         class={
           !isNavOpen
-            ? "sm:hidden lg:block"
+            ? "hidden lg:block"
             : "w-full block flex-grow lg:flex lg:items-center lg:w-auto"
         }
       >
