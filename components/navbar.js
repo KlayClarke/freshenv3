@@ -3,10 +3,10 @@ import { useState } from "react";
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <nav class="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 p-6 top-0 left-0 right-0 sticky">
+    <nav class="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 px-6 py-2 top-0 left-0 right-0 sticky">
       <div class="flex items-center flex-shrink-0 text-blue-500 mr-6">
-        <a class="font-semibold text-xl tracking-tight" href="/">
-          Freshen
+        <a class="font-semibold text-3xl tracking-tight" href="/">
+          freshen
         </a>
       </div>
       <div class="block lg:hidden">
@@ -27,7 +27,7 @@ export default function Navbar() {
       <div
         class={
           !isNavOpen
-            ? "hidden"
+            ? "sm:hidden lg:block"
             : "w-full block flex-grow lg:flex lg:items-center lg:w-auto"
         }
       >
@@ -46,7 +46,7 @@ export default function Navbar() {
           </a>
           <a
             href="/join"
-            class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500"
+            class="block mt-4 lg:inline-block lg:mt-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 border border-blue-500 rounded"
           >
             Join
           </a>
