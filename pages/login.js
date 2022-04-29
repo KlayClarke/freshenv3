@@ -29,7 +29,7 @@ export default function Login() {
           />
         </div>
         <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 border border-blue-500 rounded w-full">
-          Join
+          Login
         </button>
         <p className="mt-4">
           Don't have an account?{" "}
