@@ -2,6 +2,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@layer base {
+  .form-section {
+    @apply mb-4;
+  }
+}
+
 html,
 body {
   padding: 0;
