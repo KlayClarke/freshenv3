@@ -1,7 +1,7 @@
 export default function Login() {
   return (
     <div className="">
-      <form className="bg-white shadow-sm border rounded-lg px-8 pt-6 pb-8 mb-4">
+      <form className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4">
         <div className="form-section">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
