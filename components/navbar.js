@@ -1,6 +1,6 @@
 export default function Navbar() {
   return (
-    <nav class="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 p-6">
+    <nav class="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 p-6 top-0 left-0 right-0 sticky">
       <div class="flex items-center flex-shrink-0 text-blue-500 mr-6">
         <a class="font-semibold text-xl tracking-tight" href="/">
           Freshen
