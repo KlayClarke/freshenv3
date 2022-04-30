@@ -21,7 +21,7 @@ export default function Explore({
 
   return (
     <div className="mt-1 mb-1 flex flex-col justify-center items-center">
-      <div className=" max-w-[2200px]">
+      <div className="w-full">
         <div className="px-5 md:px-10 pt-10 flex flex-col justify-center items-center md:block">
           <div className="relative w-64">
             <select
