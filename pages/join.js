@@ -1,6 +1,20 @@
+import { signIn } from "next-auth/react";
+
 export default function Join() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
+      <div className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 py-2 mb-4">
+        <button
+          className=""
+          onClick={() => {
+            signIn("google", {
+              callbackUrl: process.env.NEXT_PUBLIC_SITE_URL,
+            });
+          }}
+        >
+          Join With Google
+        </button>
+      </div>
       <form className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4">
         <div className="form-section">
           <label
