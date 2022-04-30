@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
+import clientPromise from "../lib/mongodb";
 import Head from "next/head";
 import Script from "next/script";
 import mapboxgl from "mapbox-gl";
+import initializeMap from "../map/initializeMap";
+import addDataLayer from "../map/addDataLayer";
+
+// todo: render mapbox clusters on index cluster map
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-export default function Home(props) {
+export default function Home({ salons }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
+  const [Map, setMap] = useState();
 
   useEffect(() => {
     setPageIsMounted(true);
@@ -14,17 +20,21 @@ export default function Home(props) {
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/streets-v11",
+      center: [-75, 42],
+      zoom: 5,
     });
 
-    map.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true,
-        },
-        trackUserLocation: true,
-      })
-    );
+    initializeMap(mapboxgl, map);
+    setMap(map);
   }, []);
+
+  useEffect(() => {
+    if (pageIsMounted && salons) {
+      Map.on("load", () => {
+        addDataLayer(Map, salons);
+      });
+    }
+  }, [pageIsMounted, setMap, salons, Map]);
 
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-10">
@@ -53,4 +63,21 @@ export default function Home(props) {
       <div id="map" className="w-[1000px] h-[400px]"></div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const client = await clientPromise;
+
+  const db = client.db("FreshenDatabase");
+
+  let salons = await db
+    .collection("salons")
+    .find({})
+    .sort({ name: 1 })
+    .toArray();
+  salons = JSON.parse(JSON.stringify(salons));
+
+  return {
+    props: { salons },
+  };
 }
