@@ -5,9 +5,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen flex flex-col items-center justify-center">
-        <div className="max-w-[1800px]">{children}</div>
-      </main>
+      <main>{children}</main>
       <Footer />
     </>
   );
