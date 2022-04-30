@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
-import clientPromise from "../../lib/mongodb";
+import clientPromise from "../../../lib/mongodb";
+
+// todo: render mapbox map on explore detail page
 
 export default function Detail({ salon }) {
   return (
