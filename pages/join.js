@@ -14,7 +14,7 @@ export default function Join() {
         }}
       >
         <FontAwesomeIcon icon={faGoogle} className="mr-2 text-blue-500" />
-        <p className="text-blue-500">Join With Google</p>
+        <p className="text-blue-500 font-semibold">Join With Google</p>
       </button>
       <form className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4">
         <div className="form-section">
