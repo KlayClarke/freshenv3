@@ -6,10 +6,10 @@ export default function Join() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       <button
-        className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 py-2 mb-4 flex items-center hover:bg-gray-50"
+        className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 py-2 mb-4 flex items-center hover:bg-gray-50 border rounded"
         onClick={() => {
           signIn("google", {
-            callbackUrl: process.env.NEXT_PUBLIC_SITE_URL,
+            callbackUrl: process.env.NEXTAUTH_URL,
           });
         }}
       >
