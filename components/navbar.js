@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 px-6 py-2 top-0 left-0 right-0 sticky">
+    <nav className="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 px-6 py-2 top-0 left-0 right-0 sticky z-10">
       <div className="flex items-center flex-shrink-0 text-blue-500 mr-6">
         <a className="font-semibold text-3xl tracking-tight" href="/">
           freshen
@@ -25,7 +25,7 @@ export default function Navbar() {
         </button>
       </div>
       <div
-        class={
+        className={
           !isNavOpen
             ? "hidden lg:block"
             : "w-full block flex-grow lg:flex lg:items-center lg:w-auto"
