@@ -10,11 +10,20 @@ export default function Home(props) {
 
   useEffect(() => {
     setPageIsMounted(true);
-    console.log(process.env.NEXT_PUBLIC_MAPBOX_TOKEN);
+
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/streets-v11",
     });
+
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+      })
+    );
   }, []);
 
   return (
