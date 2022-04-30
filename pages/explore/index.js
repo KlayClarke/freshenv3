@@ -6,7 +6,7 @@ export default function Explore({ salons }) {
       <div className="w-[100%] grid lg:grid-cols-2 gap-5 p-10">
         {salons.map((salon, index) => {
           return (
-            <div class="bg-white rounded-lg shadow border border-gray-300 overflow-hidden">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-300 overflow-hidden">
               <div class="md:flex">
                 <div class="md:shrink-0">
                   <img
