@@ -62,7 +62,10 @@ export default function Home() {
           Log In Using Existing Account
         </a>
       </div>
-      <div id="map" className="w-[1000px] h-[400px]"></div>
+      <div
+        id="map"
+        className="w-[80%] lg:w-[800px] h-[400px] rounded border"
+      ></div>
     </div>
   );
 }
