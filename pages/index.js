@@ -39,7 +39,7 @@ export default function Home() {
   }, [pageIsMounted, data, Map]);
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen gap-10">
+    <div className="flex flex-col justify-center items-center min-h-screen gap-10">
       <Head>
         <Script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js" />
       </Head>
