@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
-import clientPromise from "../lib/mongodb";
 import Head from "next/head";
 import Script from "next/script";
 import mapboxgl from "mapbox-gl";
-import initializeMap from "../map/initializeMap";
-import addDataLayer from "../map/addDataLayer";
-
-// todo: render mapbox clusters on index cluster map
+import useSWR from "swr";
+import initializeClusterMap from "../map/initializeClusterMap";
+import { fetcher } from "../utils/fetcher";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-export default function Home({ salons }) {
+export default function Home() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
+
+  const { data, error } = useSWR(
+    "https://thawing-reaches-97496.herokuapp.com/api/salons",
+    fetcher
+  );
 
   useEffect(() => {
     setPageIsMounted(true);
@@ -24,17 +27,16 @@ export default function Home({ salons }) {
       zoom: 5,
     });
 
-    initializeMap(mapboxgl, map);
     setMap(map);
   }, []);
 
   useEffect(() => {
-    if (pageIsMounted && salons) {
+    if (pageIsMounted && data) {
       Map.on("load", () => {
-        addDataLayer(Map, salons);
+        initializeClusterMap(mapboxgl, Map, data);
       });
     }
-  }, [pageIsMounted, setMap, salons, Map]);
+  }, [pageIsMounted, data, Map]);
 
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-10">
@@ -65,19 +67,19 @@ export default function Home({ salons }) {
   );
 }
 
-export async function getServerSideProps() {
-  const client = await clientPromise;
+// export async function getServerSideProps() {
+//   const client = await clientPromise;
 
-  const db = client.db("FreshenDatabase");
+//   const db = client.db("FreshenDatabase");
 
-  let salons = await db
-    .collection("salons")
-    .find({})
-    .sort({ name: 1 })
-    .toArray();
-  salons = JSON.parse(JSON.stringify(salons));
+//   let salons = await db
+//     .collection("salons")
+//     .find({})
+//     .sort({ name: 1 })
+//     .toArray();
+//   salons = JSON.parse(JSON.stringify(salons));
 
-  return {
-    props: { salons },
-  };
-}
+//   return {
+//     props: { salons },
+//   };
+// }
