@@ -58,8 +58,11 @@ export default function Explore({
                   />
                 </div>
                 <div className="p-8 min-w-[50%]">
-                  <div className="uppercase tracking-wide text-sm text-blue-500 font-semibold">
-                    {salon.type}
+                  <div className="uppercase tracking-wide font-semibold">
+                    <p className="text-sm text-blue-500">{salon.type}</p>
+                    <p className="text-md text-green-600">
+                      ${salon.average_price}
+                    </p>
                   </div>
                   <a
                     href={`/explore/${salon._id}`}
@@ -96,7 +99,7 @@ export async function getServerSideProps() {
   let salonsByType = await db
     .collection("salons")
     .find({})
-    .sort({ type: 1 })
+    .sort({ type: 1, name: 1 })
     .toArray();
   salonsByType = JSON.parse(JSON.stringify(salonsByType));
 
