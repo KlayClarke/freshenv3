@@ -26,8 +26,8 @@ export default function Login({ csrfToken }) {
             });
           }}
         >
-          <FontAwesomeIcon icon={faGoogle} className="mr-2 text-blue-500" />
-          <p className="text-blue-500 font-semibold">Login With Google</p>
+          <FontAwesomeIcon icon={faGoogle} className="mr-2 text-black" />
+          <p className="text-black font-semibold">With Google</p>
         </button>
         <button
           className="bg-black sm:shadow-sm sm:border sm:rounded-lg px-8 py-2 mb-4 flex items-center hover:bg-gray-800 border rounded"
@@ -38,7 +38,7 @@ export default function Login({ csrfToken }) {
           }}
         >
           <FontAwesomeIcon icon={faGithub} className="mr-2 text-white" />
-          <p className="text-white font-semibold">Login With Github</p>
+          <p className="text-white font-semibold">With Github</p>
         </button>
         <p className="mt-4">
           Don't have an account?{" "}
