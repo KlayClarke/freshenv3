@@ -14,4 +14,9 @@ export default NextAuth({
   adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
   debug: true,
+  theme: {
+    colorScheme: "light",
+    brandColor: "",
+    logo: "",
+  },
 });
