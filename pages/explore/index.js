@@ -3,10 +3,23 @@ import { useSession } from "next-auth/react";
 import prisma from "../../lib/prisma";
 import * as sanitizeHtml from "sanitize-html";
 
-export default function Explore({ salons }) {
+export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
   const [sortBy, setSortBy] = useState("name");
+  const [salons, setSalons] = useState(salonsByName);
   const { data: session, status } = useSession();
   const loading = status === "loading";
+
+  useEffect(() => {
+    if (sortBy === "name") {
+      setSalons(salonsByName);
+    }
+    if (sortBy === "type") {
+      setSalons(salonsByType);
+    }
+    if (sortBy === "average_price") {
+      setSalons(salonsByPrice);
+    }
+  }, [sortBy]);
 
   return (
     <div className="mt-1 mb-1 flex flex-col justify-center items-center">
@@ -14,7 +27,7 @@ export default function Explore({ salons }) {
         <div className="px-5 md:px-10 pt-10 flex flex-col justify-center items-center gap-5 md:flex-row md:justify-between">
           <div className="relative w-64">
             <select
-              // onChange={(e) => setSortBy(e.target.value)}
+              onChange={(e) => setSortBy(e.target.value)}
               className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
             >
               <option value={"name"}>Sort by name</option>
@@ -94,7 +107,34 @@ export default function Explore({ salons }) {
 export async function getServerSideProps() {
   const salons = await prisma.salon.findMany();
 
+  const salonsByName = await prisma.salon.findMany({
+    orderBy: [
+      {
+        name: "asc",
+      },
+    ],
+  });
+
+  const salonsByType = await prisma.salon.findMany({
+    orderBy: [
+      {
+        type: "asc",
+      },
+      {
+        name: "asc",
+      },
+    ],
+  });
+
+  const salonsByPrice = await prisma.salon.findMany({
+    orderBy: [
+      {
+        average_price: "asc",
+      },
+    ],
+  });
+
   return {
-    props: { salons },
+    props: { salonsByName, salonsByType, salonsByPrice },
   };
 }
