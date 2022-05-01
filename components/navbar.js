@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const { data, status } = useSession();
+  const { data: session, status } = useSession();
+  const loading = status === "loading";
+
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 px-6 py-2 top-0 left-0 right-0 sticky z-10">
@@ -64,13 +69,13 @@ export default function Navbar() {
           ) : (
             <>
               <a
-                href="/login"
+                href="/auth/login"
                 className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4"
               >
                 Login
               </a>
               <a
-                href="/join"
+                href="/auth/join"
                 className="block mt-4 lg:inline-block lg:mt-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 border border-blue-500 rounded"
               >
                 Join
