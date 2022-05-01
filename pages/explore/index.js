@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import clientPromise from "../../lib/mongodb";
 
 export default function Explore({
@@ -8,6 +9,8 @@ export default function Explore({
 }) {
   const [sortBy, setSortBy] = useState("name");
   const [salons, setSalons] = useState(salonsByName);
+  const { data: session, status } = useSession();
+  const loading = status === "loading";
 
   useEffect(() => {
     if (sortBy === "name") {
@@ -42,12 +45,16 @@ export default function Explore({
               </svg>
             </div>
           </div>
-          <a
-            href="/explore/create"
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 border border-green-500 rounded min-w-fit w-[60%] text-center md:w-fit"
-          >
-            Create
-          </a>
+          {status === "authenticated" && (
+            <>
+              <a
+                href="/explore/create"
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 border border-green-500 rounded min-w-fit w-[60%] text-center md:w-fit"
+              >
+                Create
+              </a>
+            </>
+          )}
         </div>
         <div className="w-[100%] grid lg:grid-cols-2 gap-5 p-10">
           {salons.map((salon, index) => {
