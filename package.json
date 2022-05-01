@@ -23,6 +23,7 @@
     "node-jose-tools": "^1.6.28",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "sanitize-html": "^2.7.0",
     "swr": "^1.3.0"
   },
   "devDependencies": {
