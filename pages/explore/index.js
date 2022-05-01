@@ -52,7 +52,10 @@ export default function Explore({ salons }) {
                   <div className="md:shrink-0">
                     <img
                       className="h-48 w-full object-cover md:w-48"
-                      src={salon.image || ""}
+                      src={
+                        salon.image ||
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
+                      }
                       alt="shop"
                     />
                   </div>
