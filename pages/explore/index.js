@@ -22,7 +22,7 @@ export default function Explore({
   return (
     <div className="mt-1 mb-1 flex flex-col justify-center items-center">
       <div className="w-full xl:max-w-[1600px]">
-        <div className="px-5 md:px-10 pt-10 flex flex-col justify-center items-center md:block">
+        <div className="px-5 md:px-10 pt-10 flex flex-col justify-center items-center gap-5 md:flex-row md:justify-between">
           <div className="relative w-64">
             <select
               onChange={(e) => setSortBy(e.target.value)}
@@ -42,6 +42,12 @@ export default function Explore({
               </svg>
             </div>
           </div>
+          <a
+            href="/explore/create"
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 border border-green-500 rounded min-w-fit w-[60%] text-center md:w-fit"
+          >
+            Create
+          </a>
         </div>
         <div className="w-[100%] grid lg:grid-cols-2 gap-5 p-10">
           {salons.map((salon, index) => {
