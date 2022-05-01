@@ -39,7 +39,9 @@ export default function Join() {
       <button
         className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 py-2 mb-4 flex items-center hover:bg-gray-50 border rounded"
         onClick={() => {
-          signIn();
+          signIn("google", {
+            callbackUrl: "/",
+          });
         }}
       >
         <FontAwesomeIcon icon={faGoogle} className="mr-2 text-blue-500" />

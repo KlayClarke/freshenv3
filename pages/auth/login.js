@@ -19,7 +19,7 @@ export default function Login({ csrfToken }) {
         className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 py-2 mb-4 flex items-center hover:bg-gray-50 border rounded"
         onClick={() => {
           signIn("google", {
-            callbackUrl: process.env.NEXTAUTH_URL,
+            callbackUrl: "/",
           });
         }}
       >
