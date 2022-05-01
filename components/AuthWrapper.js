@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import ProtectedRoute from "./ProtectedRouteWrapper";
 
-const authRoutes = [];
+const authRoutes = ["/explore/create"];
 
 export default function AuthWrapper({ children }) {
   const { status } = useSession();
