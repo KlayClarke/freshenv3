@@ -68,7 +68,7 @@ model Salon {
   name           String
   type           String
   average_price  Int
-  image          String
+  image          String?
   street_address String
   city           String
   state          String
