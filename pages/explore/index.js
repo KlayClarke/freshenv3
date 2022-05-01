@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import prisma from "../../lib/prisma";
+import * as sanitizeHtml from "sanitize-html";
 
 export default function Explore({ salons }) {
   const [sortBy, setSortBy] = useState("name");
@@ -61,20 +62,23 @@ export default function Explore({ salons }) {
                   </div>
                   <div className="p-8 min-w-[50%]">
                     <div className="uppercase tracking-wide font-semibold">
-                      <p className="text-sm text-blue-500">{salon.type}</p>
+                      <p className="text-sm text-blue-500">
+                        {sanitizeHtml(salon.type)}
+                      </p>
                       <p className="text-md text-green-600">
-                        ${salon.average_price}
+                        ${sanitizeHtml(salon.average_price)}
                       </p>
                     </div>
                     <a
                       href={`/explore/detail/${salon.id}`}
                       className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
                     >
-                      {salon.name}
+                      {sanitizeHtml(salon.name)}
                     </a>
                     <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
-                      {salon.street_address} {salon.city}, {salon.state}{" "}
-                      {salon.zip_code}
+                      {sanitizeHtml(salon.street_address)}{" "}
+                      {sanitizeHtml(salon.city)}, {sanitizeHtml(salon.state)}{" "}
+                      {sanitizeHtml(salon.zip_code)}
                     </p>
                   </div>
                 </div>
