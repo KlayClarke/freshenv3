@@ -50,13 +50,13 @@ export default function Home() {
       </h1>
       <div className="flex gap-5">
         <a
-          href="/join"
+          href="/auth/join"
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 border border-blue-500 rounded"
         >
           Create New Account
         </a>
         <a
-          href="/login"
+          href="/auth/login"
           className="bg-white hover:bg-gray-50 text-blue-500 font-bold py-2 px-4 border border-blue-500 rounded"
         >
           Log In Using Existing Account
