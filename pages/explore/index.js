@@ -1,26 +1,11 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import clientPromise from "../../lib/mongodb";
+import prisma from "../../lib/prisma";
 
-export default function Explore({
-  salonsByName,
-  salonsByType,
-  salonsByAveragePrice,
-}) {
+export default function Explore({ salons }) {
   const [sortBy, setSortBy] = useState("name");
-  const [salons, setSalons] = useState(salonsByName);
   const { data: session, status } = useSession();
   const loading = status === "loading";
-
-  useEffect(() => {
-    if (sortBy === "name") {
-      setSalons(salonsByName);
-    } else if (sortBy === "type") {
-      setSalons(salonsByType);
-    } else if (sortBy === "average_price") {
-      setSalons(salonsByAveragePrice);
-    }
-  }, [sortBy]);
 
   return (
     <div className="mt-1 mb-1 flex flex-col justify-center items-center">
@@ -28,7 +13,7 @@ export default function Explore({
         <div className="px-5 md:px-10 pt-10 flex flex-col justify-center items-center gap-5 md:flex-row md:justify-between">
           <div className="relative w-64">
             <select
-              onChange={(e) => setSortBy(e.target.value)}
+              // onChange={(e) => setSortBy(e.target.value)}
               className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
             >
               <option value={"name"}>Sort by name</option>
@@ -67,7 +52,7 @@ export default function Explore({
                   <div className="md:shrink-0">
                     <img
                       className="h-48 w-full object-cover md:w-48"
-                      src={salon.image}
+                      src={salon.image || ""}
                       alt="shop"
                     />
                   </div>
@@ -100,32 +85,9 @@ export default function Explore({
 }
 
 export async function getServerSideProps() {
-  const client = await clientPromise;
-
-  const db = client.db("FreshenDatabase");
-
-  let salonsByName = await db
-    .collection("salons")
-    .find({})
-    .sort({ name: 1 })
-    .toArray();
-  salonsByName = JSON.parse(JSON.stringify(salonsByName));
-
-  let salonsByType = await db
-    .collection("salons")
-    .find({})
-    .sort({ type: 1, name: 1 })
-    .toArray();
-  salonsByType = JSON.parse(JSON.stringify(salonsByType));
-
-  let salonsByAveragePrice = await db
-    .collection("salons")
-    .find({})
-    .sort({ average_price: 1 })
-    .toArray();
-  salonsByAveragePrice = JSON.parse(JSON.stringify(salonsByAveragePrice));
+  const salons = await prisma.salon.findMany();
 
   return {
-    props: { salonsByName, salonsByType, salonsByAveragePrice },
+    props: { salons },
   };
 }
