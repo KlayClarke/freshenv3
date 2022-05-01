@@ -67,7 +67,7 @@ export default function Explore({ salons }) {
                       </p>
                     </div>
                     <a
-                      href={`/explore/detail/${salon._id}`}
+                      href={`/explore/detail/${salon.id}`}
                       className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
                     >
                       {salon.name}
