@@ -73,7 +73,7 @@ model Salon {
   city           String
   state          String
   zip_code       String
-  geometry       Int[]
+  coordinates    Float[]
   author         User    @relation(fields: [author_id], references: [id])
   author_id      String
 
