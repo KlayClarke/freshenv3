@@ -39,9 +39,7 @@ export default function Join() {
       <button
         className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 py-2 mb-4 flex items-center hover:bg-gray-50 border rounded"
         onClick={() => {
-          signIn("google", {
-            callbackUrl: process.env.NEXTAUTH_URL,
-          });
+          signIn();
         }}
       >
         <FontAwesomeIcon icon={faGoogle} className="mr-2 text-blue-500" />
@@ -49,7 +47,7 @@ export default function Join() {
       </button>
       <form
         onSubmit={(e) => {
-          // e.preventDefault();
+          e.preventDefault();
           handleSubmit(formData);
         }}
         className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4"
@@ -110,7 +108,7 @@ export default function Join() {
         </button>
         <p className="mt-4">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-500">
+          <a href="/auth/login" className="text-blue-500">
             Log In
           </a>{" "}
         </p>
