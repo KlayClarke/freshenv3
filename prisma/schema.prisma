@@ -64,7 +64,7 @@ model VerificationToken {
 }
 
 model Salon {
-  id             String @id @default(cuid())
+  id             String  @id @default(cuid())
   name           String
   type           String
   average_price  Int
@@ -73,8 +73,8 @@ model Salon {
   city           String
   state          String
   zip_code       String
-  geometry       Json
-  author         User   @relation(fields: [author_id], references: [id])
+  geometry       Int[]
+  author         User    @relation(fields: [author_id], references: [id])
   author_id      String
 
   @@map("salons")
