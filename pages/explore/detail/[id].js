@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import mapboxgl from "mapbox-gl";
 import initializeDetailMap from "../../../map/initializeDetailMap";
-import clientPromise from "../../../lib/mongodb";
+import prisma from "../../../lib/prisma";
 
 // todo: render mapbox map on explore detail page
 
@@ -19,7 +19,7 @@ export default function Detail({ salon }) {
       container: "map",
       style: "mapbox://styles/mapbox/streets-v11",
       zoom: 16,
-      center: salon.geometry.coordinates,
+      center: salon.coordinates,
     });
 
     setMap(map);
@@ -40,19 +40,11 @@ export default function Detail({ salon }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const client = await clientPromise;
-
-  const db = client.db("FreshenDatabase");
-
-  let salons = await db.collection("salons").find({}).toArray();
-
-  salons = JSON.parse(JSON.stringify(salons));
-
-  let salon;
-
-  for (let i = 0; i < salons.length; i++) {
-    salons[i]._id == query.id ? (salon = salons[i]) : "";
-  }
+  const salon = await prisma.salon.findUnique({
+    where: {
+      id: query.id,
+    },
+  });
 
   return {
     props: { salon },
