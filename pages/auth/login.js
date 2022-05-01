@@ -15,7 +15,7 @@ export default function Login({ csrfToken }) {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-      <h1 className="text-5xl text-blue-500">Login</h1>
+      <h1 className="text-5xl text-blue-500 font-semibold">Login</h1>
       <br />
       <div className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4 flex flex-col justify-center items-center">
         <button
