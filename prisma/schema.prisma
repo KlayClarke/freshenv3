@@ -76,18 +76,18 @@ model Salon {
   state          String
   zip_code       String
   geometry       Json
-  author         User   @relation(fields: [authorId], references: [id])
-  authorId       String
+  author         User   @relation(fields: [author_id], references: [id])
+  author_id      String
 
   @@map("salons")
 }
 
 model Review {
-  id       String @id @default(cuid())
-  body     String
-  rating   Int
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String
+  id        String @id @default(cuid())
+  body      String
+  rating    Int
+  author    User   @relation(fields: [author_id], references: [id])
+  author_id String
 
   @@map("reviews")
 }
