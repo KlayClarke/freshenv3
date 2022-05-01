@@ -24,4 +24,10 @@ export default NextAuth({
     brandColor: "",
     logo: "",
   },
+  callbacks: {
+    session: async ({ session, user }) => {
+      session.user_id = user.id;
+      return Promise.resolve(session);
+    },
+  },
 });
