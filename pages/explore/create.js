@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function SalonCreate() {
   const [formData, setFormData] = useState({
@@ -216,9 +218,9 @@ export default function SalonCreate() {
           Create
         </button>
         <p className="mt-4">
-          <a href="/explore" className="text-green-500">
-            Cancel
-          </a>{" "}
+          <Link href="/explore">
+            <a className="text-green-500">Cancel</a>
+          </Link>{" "}
         </p>
       </form>
     </div>

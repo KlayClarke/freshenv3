@@ -8,6 +8,7 @@ import initializeClusterMap from "../map/initializeClusterMap";
 import { fetcher } from "../utils/fetcher";
 import * as sanitizeHtml from "sanitize-html";
 import prisma from "../lib/prisma";
+import Link from "next/link";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
@@ -64,18 +65,16 @@ export default function Home({ salon }) {
                     an eager customer searching for a new look?
                   </p>
                   <div className="flex justify-center flex-wrap gap-6">
-                    <a
-                      href="/auth/join"
-                      className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600"
-                    >
-                      Get Started
-                    </a>
-                    <a
-                      href="/auth/login"
-                      className="btn bg-gray-50 text-blue-500 font-semibold hover:bg-gray-200"
-                    >
-                      Login with Existing Account
-                    </a>
+                    <Link href="/auth/join">
+                      <a className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600">
+                        Get Started
+                      </a>
+                    </Link>
+                    <Link href="/auth/login">
+                      <a className="btn bg-gray-50 text-blue-500 font-semibold hover:bg-gray-200">
+                        Login with Existing Account
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </>
@@ -138,12 +137,11 @@ export default function Home({ salon }) {
                   to accomodate users on a global scale.
                 </h1>
                 <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
-                <a
-                  href="/explore"
-                  className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600"
-                >
-                  Explore
-                </a>
+                <Link href="/explore">
+                  <a className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600">
+                    Explore
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -175,12 +173,11 @@ export default function Home({ salon }) {
                               ${sanitizeHtml(salon.average_price)}
                             </p>
                           </div>
-                          <a
-                            href={`/explore/detail/${salon.id}`}
-                            className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-                          >
-                            {sanitizeHtml(salon.name)}
-                          </a>
+                          <Link href={`/explore/detail/${salon.id}`}>
+                            <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+                              {sanitizeHtml(salon.name)}
+                            </a>
+                          </Link>
                           <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
                             {sanitizeHtml(salon.street_address)}{" "}
                             {sanitizeHtml(salon.city)},{" "}
@@ -198,12 +195,11 @@ export default function Home({ salon }) {
                       barbershop in the tri-state area.
                     </h1>
                     <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
-                    <a
-                      href={`/explore/detail/${salon.id}`}
-                      className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600"
-                    >
-                      Visit Page
-                    </a>
+                    <Link href={`/explore/detail/${salon.id}`}>
+                      <a className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600">
+                        Visit Page
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>

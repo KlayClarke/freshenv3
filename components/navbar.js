@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -13,9 +14,9 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 px-6 py-2 top-0 left-0 right-0 sticky z-10">
       <div className="flex items-center flex-shrink-0 text-blue-500 mr-6">
-        <a className="font-semibold text-3xl tracking-tight" href="/">
-          freshen
-        </a>
+        <Link href="/">
+          <a className="font-semibold text-3xl tracking-tight">freshen</a>
+        </Link>
       </div>
       <div className="block lg:hidden">
         <button
@@ -40,21 +41,19 @@ export default function Navbar() {
         }
       >
         <div className="text-sm lg:flex-grow">
-          <a
-            href="/explore"
-            className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4"
-          >
-            Explore
-          </a>
+          <Link href="/explore">
+            <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
+              Explore
+            </a>
+          </Link>
           {status == "authenticated" ? (
             <>
               {" "}
-              <a
-                href="/account"
-                className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4"
-              >
-                Account
-              </a>
+              <Link href="/account">
+                <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
+                  Account
+                </a>
+              </Link>
               <button
                 onClick={() => {
                   signOut({
@@ -68,18 +67,16 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <a
-                href="/auth/login"
-                className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4"
-              >
-                Login
-              </a>
-              <a
-                href="/auth/join"
-                className="block mt-4 lg:inline-block lg:mt-0 btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4"
-              >
-                Join
-              </a>
+              <Link href="/auth/login">
+                <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
+                  Login
+                </a>
+              </Link>
+              <Link href="/auth/join">
+                <a className="block mt-4 lg:inline-block lg:mt-0 btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4">
+                  Join
+                </a>
+              </Link>
             </>
           )}
         </div>

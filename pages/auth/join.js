@@ -1,6 +1,7 @@
 import { signIn } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
+import Link from "next/link";
 
 export default function Join() {
   return (
@@ -32,9 +33,9 @@ export default function Join() {
         </button>
         <p className="mt-4">
           Already have an account?{" "}
-          <a href="/auth/login" className="text-blue-500 font-semibold">
-            Log In
-          </a>{" "}
+          <Link href="/auth/login">
+            <a className="text-blue-500 font-semibold">Log In</a>
+          </Link>{" "}
         </p>
       </div>
     </div>

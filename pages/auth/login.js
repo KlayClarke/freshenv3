@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getCsrfToken, signIn } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
+import Link from "next/link";
 
 export default function Login({ csrfToken }) {
   const [formData, setFormData] = useState({
@@ -42,9 +43,9 @@ export default function Login({ csrfToken }) {
         </button>
         <p className="mt-4">
           Don't have an account?{" "}
-          <a href="/auth/join" className="text-blue-500 font-semibold">
-            Join
-          </a>{" "}
+          <Link href="/auth/join">
+            <a className="text-blue-500 font-semibold">Join</a>
+          </Link>{" "}
         </p>
       </div>
     </div>

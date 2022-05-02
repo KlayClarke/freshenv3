@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import prisma from "../../lib/prisma";
 import * as sanitizeHtml from "sanitize-html";
+import Link from "next/link";
 
 export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
   const [sortBy, setSortBy] = useState("name");
@@ -46,12 +47,11 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
           </div>
           {status === "authenticated" && (
             <>
-              <a
-                href="/explore/create"
-                className="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 border-green-500 min-w-fit w-[60%] text-center md:w-fit"
-              >
-                Create
-              </a>
+              <Link href="/explore/create">
+                <a className="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 border-green-500 min-w-fit w-[60%] text-center md:w-fit">
+                  Create
+                </a>
+              </Link>
             </>
           )}
         </div>
@@ -82,12 +82,11 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
                         ${sanitizeHtml(salon.average_price)}
                       </p>
                     </div>
-                    <a
-                      href={`/explore/detail/${salon.id}`}
-                      className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-                    >
-                      {sanitizeHtml(salon.name)}
-                    </a>
+                    <Link href={`/explore/detail/${salon.id}`}>
+                      <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+                        {sanitizeHtml(salon.name)}
+                      </a>
+                    </Link>
                     <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
                       {sanitizeHtml(salon.street_address)}{" "}
                       {sanitizeHtml(salon.city)}, {sanitizeHtml(salon.state)}{" "}
