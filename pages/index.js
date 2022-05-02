@@ -152,7 +152,7 @@ export default function Home({ salon }) {
                 <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
                   {/* image */}
                   <div className="flex flex-1 justify-center z-0 mb-10 lg:mb-0">
-                    <div className="bg-white rounded-lg shadow-sm border-2 overflow-hidden">
+                    <div className="bg-white rounded-lg shadow-md border-2 overflow-hidden">
                       <div className="md:flex">
                         <div className="md:shrink-0">
                           <img
