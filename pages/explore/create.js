@@ -190,7 +190,7 @@ export default function SalonCreate() {
             value={formData.zip_code}
           />
         </div>
-        <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 border border-green-500 rounded w-full">
+        <button className="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 border border-green-500 w-full">
           Create
         </button>
         <p className="mt-4">

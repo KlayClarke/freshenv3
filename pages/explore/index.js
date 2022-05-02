@@ -48,7 +48,7 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
             <>
               <a
                 href="/explore/create"
-                className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 border border-green-500 rounded min-w-fit w-[60%] text-center md:w-fit"
+                className="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 border-green-500 rounded min-w-fit w-[60%] text-center md:w-fit"
               >
                 Create
               </a>
