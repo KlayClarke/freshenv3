@@ -105,9 +105,10 @@ export default function Home({ salon }) {
             <p className="text-xl text-center text-gray-400 px-10">
               My father has witnessed his fair share of struggles, having owned
               a barbershop for over two decades. During the economic hardship of
-              2008 and the health crisis of 2020, never once did our reliance on
-              hairstylists waver. Today, they continue to be relied upon as
-              technicians to whom we grant the honor of altering our likeness.
+              2008 and the health crises that ruined 2020, never once did our
+              reliance on and respect for hairstylists waver. Today, they
+              continue to be relied upon as technicians to whom we grant the
+              honor of altering our likeness.
             </p>
             <br />
             <p className="text-xl text-center text-gray-400 px-10">
@@ -143,63 +144,68 @@ export default function Home({ salon }) {
               </div>
             </div>
           </div>
-          {/* feature 2 */}
-          <div className="relative mt-20 lg:mt-52 px-10">
-            <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
-              {/* image */}
-              <div className="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
-                <div className="bg-white rounded-lg shadow-sm border-2 overflow-hidden">
-                  <div className="md:flex">
-                    <div className="md:shrink-0">
-                      <img
-                        className="h-48 w-full object-cover md:w-48"
-                        src={
-                          salon.image ||
-                          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
-                        }
-                        alt="shop"
-                      />
-                    </div>
-                    <div className="p-8 min-w-[50%]">
-                      <div className="uppercase tracking-wide font-semibold">
-                        <p className="text-sm text-blue-500">
-                          {sanitizeHtml(salon.type)}
-                        </p>
-                        <p className="text-md text-green-600">
-                          ${sanitizeHtml(salon.average_price)}
-                        </p>
+          {salon.name && (
+            <>
+              {/* feature 2 */}
+              <div className="relative mt-20 lg:mt-52 px-10">
+                <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
+                  {/* image */}
+                  <div className="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
+                    <div className="bg-white rounded-lg shadow-sm border-2 overflow-hidden">
+                      <div className="md:flex">
+                        <div className="md:shrink-0">
+                          <img
+                            className="h-48 w-full object-cover md:w-48"
+                            src={
+                              salon.image ||
+                              "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
+                            }
+                            alt="shop"
+                          />
+                        </div>
+                        <div className="p-8 min-w-[50%]">
+                          <div className="uppercase tracking-wide font-semibold">
+                            <p className="text-sm text-blue-500">
+                              {sanitizeHtml(salon.type)}
+                            </p>
+                            <p className="text-md text-green-600">
+                              ${sanitizeHtml(salon.average_price)}
+                            </p>
+                          </div>
+                          <a
+                            href={`/explore/detail/${salon.id}`}
+                            className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+                          >
+                            {sanitizeHtml(salon.name)}
+                          </a>
+                          <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
+                            {sanitizeHtml(salon.street_address)}{" "}
+                            {sanitizeHtml(salon.city)},{" "}
+                            {sanitizeHtml(salon.state)}{" "}
+                            {sanitizeHtml(salon.zip_code)}
+                          </p>
+                        </div>
                       </div>
-                      <a
-                        href={`/explore/detail/${salon.id}`}
-                        className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-                      >
-                        {sanitizeHtml(salon.name)}
-                      </a>
-                      <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
-                        {sanitizeHtml(salon.street_address)}{" "}
-                        {sanitizeHtml(salon.city)}, {sanitizeHtml(salon.state)}{" "}
-                        {sanitizeHtml(salon.zip_code)}
-                      </p>
                     </div>
+                  </div>
+                  {/* content */}
+                  <div className="flex flex-1 flex-col items-center lg:items-start">
+                    <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center lg:text-left">
+                      If you ever find yourself in Connecticut, stop by the best
+                      barbershop in the tri-state area.
+                    </h1>
+                    <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
+                    <a
+                      href={`/explore/detail/${salon.id}`}
+                      className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600"
+                    >
+                      Visit Page
+                    </a>
                   </div>
                 </div>
               </div>
-              {/* content */}
-              <div className="flex flex-1 flex-col items-center lg:items-start">
-                <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center lg:text-left">
-                  If you ever find yourself in Connecticut, stop by the best
-                  barbershop in the tri-state area.
-                </h1>
-                <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
-                <a
-                  href={`/explore/detail/${salon.id}`}
-                  className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600"
-                >
-                  Visit Page
-                </a>
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </section>
       </div>
     </div>
@@ -213,9 +219,9 @@ export async function getServerSideProps() {
     },
   });
 
-  const salon = data[0];
-
   return {
-    props: { salon },
+    props: {
+      salon: data[0],
+    },
   };
 }
