@@ -59,7 +59,7 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
           {salons.map((salon, index) => {
             return (
               <div
-                className="bg-white rounded-lg shadow-sm border border-gray-300 overflow-hidden"
+                className="bg-white rounded-lg shadow-md border overflow-hidden"
                 key={index}
               >
                 <div className="md:flex">
