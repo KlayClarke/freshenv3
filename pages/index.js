@@ -51,11 +51,11 @@ export default function Home({ salon }) {
         {/* hero */}
         <section className="relative">
           <div id="map" className="min-h-[400px]"></div>
-          <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 lg:mt-30 px-10">
+          <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 mt-10 lg:mt-30 px-10">
             {/* Content */}
-            <div className="flex flex-1 flex-col items-center lg:items-start">
-              {status === "unauthenticated" ? (
-                <>
+            {status === "unauthenticated" ? (
+              <>
+                <div className="flex flex-1 flex-col items-center lg:items-start">
                   <h2 className="text-blue-500 text-3xl md:text-4xl lg:text-6xl text-center lg:text-left mb-6 font-semibold">
                     Welcome to freshen!
                   </h2>
@@ -77,15 +77,17 @@ export default function Home({ salon }) {
                       Login with Existing Account
                     </a>
                   </div>
-                </>
-              ) : (
-                <>
-                  <h2 className="text-blue-500 text-3xl md:text-4xl lg:text-6xl text-center lg:text-left mb-6 font-semibold">
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex flex-1 flex-col items-center">
+                  <h2 className="text-blue-500 text-3xl md:text-4xl lg:text-6xl text-center mb-6 font-semibold">
                     Welcome back, {session.user.name.split(" ")[0]}!
                   </h2>
-                </>
-              )}
-            </div>
+                </div>
+              </>
+            )}
           </div>
         </section>
         {/* features */}
