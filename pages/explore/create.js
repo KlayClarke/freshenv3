@@ -68,6 +68,7 @@ export default function SalonCreate() {
               setFormData({ ...formData, name: e.target.value });
             }}
             value={formData.name}
+            required
           />
         </div>
         <div className="form-section">
@@ -84,6 +85,7 @@ export default function SalonCreate() {
                 setFormData({ ...formData, type: e.target.value })
               }
               value={formData.type}
+              required
             >
               <option disabled></option>
               <option value={"barbershop"}>Barbershop</option>
@@ -117,6 +119,7 @@ export default function SalonCreate() {
               setFormData({ ...formData, average_price: e.target.value });
             }}
             value={formData.average_price}
+            required
           />
         </div>
         <div className="form-section">
@@ -134,6 +137,7 @@ export default function SalonCreate() {
               setFormData({ ...formData, image: e.target.value });
             }}
             value={formData.image}
+            required
           />
         </div>
         <div className="form-section">
@@ -151,6 +155,7 @@ export default function SalonCreate() {
               setFormData({ ...formData, street_address: e.target.value });
             }}
             value={formData.street_address}
+            required
           />
         </div>
         <div className="form-section">
@@ -168,6 +173,7 @@ export default function SalonCreate() {
               setFormData({ ...formData, city: e.target.value });
             }}
             value={formData.city}
+            required
           />
         </div>
         <div className="form-section">
@@ -185,6 +191,7 @@ export default function SalonCreate() {
               setFormData({ ...formData, state: e.target.value });
             }}
             value={formData.state}
+            required
           />
         </div>
         <div className="form-section">
@@ -202,6 +209,7 @@ export default function SalonCreate() {
               setFormData({ ...formData, zip_code: e.target.value });
             }}
             value={formData.zip_code}
+            required
           />
         </div>
         <button className="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 border border-green-500 w-full">
