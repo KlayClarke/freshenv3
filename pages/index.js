@@ -50,7 +50,7 @@ export default function Home({ salon }) {
         </Head>
         {/* hero */}
         <section className="relative">
-          <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 lg:mt-28 px-10">
+          <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 lg:mt-30 px-10">
             {/* Content */}
             <div className="flex flex-1 flex-col items-center lg:items-start">
               {status === "unauthenticated" ? (
@@ -88,7 +88,7 @@ export default function Home({ salon }) {
           </div>
         </section>
         {/* features */}
-        <section className="bg-gray-50 py-20 mt-10 lg:mt-60">
+        <section className="bg-gray-50 py-20 mt-10 lg:mt-30">
           {/* heading */}
           <div className="max-w-[1000px] mx-auto px-2">
             <h1 className="text-4xl text-center text-blue-500 font-semibold">
