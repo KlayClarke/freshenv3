@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       mapboxClusterHTML:
         "<h3 class='text-center'><a href=" +
         `/explore/detail/${salon.id}` +
-        " class='text-2xl text-blue-500'>" +
+        " class='text-2xl text-blue-500 underline'>" +
         salon.name +
         "</a></h3>",
     };
