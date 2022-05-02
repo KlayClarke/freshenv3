@@ -50,8 +50,8 @@ export default function Home({ salon }) {
         </Head>
         {/* hero */}
         <section className="relative">
-          <div id="map" className="min-h-[400px]"></div>
-          <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 mt-10 lg:mt-30 px-10">
+          <div id="map" className="h-[200px] lg:min-h-[300px]"></div>
+          <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10">
             {/* Content */}
             {status === "unauthenticated" ? (
               <>
@@ -82,7 +82,7 @@ export default function Home({ salon }) {
             ) : (
               <>
                 <div className="flex flex-1 flex-col items-center">
-                  <h2 className="text-blue-500 text-3xl md:text-4xl lg:text-6xl text-center mb-6 font-semibold">
+                  <h2 className="text-blue-500 text-3xl md:text-4xl lg:text-6xl text-center font-semibold">
                     Welcome back, {session.user.name.split(" ")[0]}!
                   </h2>
                 </div>
