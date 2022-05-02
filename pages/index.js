@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Script from "next/script";
 import mapboxgl from "mapbox-gl";
@@ -6,14 +7,16 @@ import useSWR from "swr";
 import initializeClusterMap from "../map/initializeClusterMap";
 import { fetcher } from "../utils/fetcher";
 import * as sanitizeHtml from "sanitize-html";
+import prisma from "../lib/prisma";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
 export default function Home({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
+  const { data: session, status } = useSession();
 
-  const { data, error } = useSWR(
+  const { data: salons, error } = useSWR(
     process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
     fetcher
   );
@@ -32,12 +35,12 @@ export default function Home({ salon }) {
   }, []);
 
   useEffect(() => {
-    if (pageIsMounted && data) {
+    if (pageIsMounted && salons) {
       Map.on("load", () => {
-        initializeClusterMap(mapboxgl, Map, data);
+        initializeClusterMap(mapboxgl, Map, salons);
       });
     }
-  }, [pageIsMounted, data, Map]);
+  }, [pageIsMounted, salons, Map]);
 
   return (
     <div className="flex items-center justify-center">
@@ -50,32 +53,42 @@ export default function Home({ salon }) {
           <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 lg:mt-28 px-10">
             {/* Content */}
             <div className="flex flex-1 flex-col items-center lg:items-start">
-              <h2 className="text-blue-500 text-3xl md:text-4xl lg:text-6xl text-center lg:text-left mb-6 font-semibold">
-                Welcome to freshen!
-              </h2>
-              <p className="text-gray-500 text-xl text-center lg:text-left mb-6">
-                Are you a hairstylist searching for new customers? Are you an
-                eager customer searching for a new look?
-              </p>
-              <div className="flex justify-center flex-wrap gap-6">
-                <a
-                  href="/auth/join"
-                  className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600"
-                >
-                  Get Started
-                </a>
-                <a
-                  href="/auth/login"
-                  className="btn bg-gray-50 text-black font-semibold hover:bg-gray-200"
-                >
-                  Login with Existing Account
-                </a>
-              </div>
+              {status === "unauthenticated" ? (
+                <>
+                  <h2 className="text-blue-500 text-3xl md:text-4xl lg:text-6xl text-center lg:text-left mb-6 font-semibold">
+                    Welcome to freshen!
+                  </h2>
+                  <p className="text-gray-500 text-xl text-center lg:text-left mb-6">
+                    Are you a hairstylist searching for new customers? Are you
+                    an eager customer searching for a new look?
+                  </p>
+                  <div className="flex justify-center flex-wrap gap-6">
+                    <a
+                      href="/auth/join"
+                      className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600"
+                    >
+                      Get Started
+                    </a>
+                    <a
+                      href="/auth/login"
+                      className="btn bg-gray-50 text-black font-semibold hover:bg-gray-200"
+                    >
+                      Login with Existing Account
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-blue-500 text-3xl md:text-4xl lg:text-6xl text-center lg:text-left mb-6 font-semibold">
+                    Welcome back, {session.user.name.split(" ")[0]}!
+                  </h2>
+                </>
+              )}
             </div>
           </div>
         </section>
         {/* features */}
-        <section className="bg-gray-50 py-20 mt-20 lg:mt-60">
+        <section className="bg-gray-50 py-20 mt-10 lg:mt-60">
           {/* heading */}
           <div className="max-w-[1000px] mx-auto px-2">
             <h1 className="text-4xl text-center text-blue-500 font-semibold">
