@@ -123,16 +123,9 @@ export default function Home({ salon }) {
           {/* feature 1 */}
           <div className="relative mt-20 lg:mt-24 px-10">
             <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
-              {/* image */}
-
-              <div
-                id="map"
-                className="flex flex-1 justify-center mb-10 lg:mb-0 min-h-[400px] rounded-md border-2"
-              ></div>
-
               {/* content */}
-              <div className="flex flex-1 flex-col items-center lg:items-start">
-                <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center lg:text-left">
+              <div className="flex flex-1 flex-col items-center">
+                <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center">
                   We currently serve the Northeast, but are working dilligently
                   to accomodate users on a global scale.
                 </h1>
