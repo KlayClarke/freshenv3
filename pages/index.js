@@ -125,7 +125,7 @@ export default function Home({ salon }) {
             <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
               {/* content */}
               <div className="flex flex-1 flex-col items-center">
-                <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center">
+                <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center max-w-2xl">
                   We currently serve the Northeast, but are working dilligently
                   to accomodate users on a global scale.
                 </h1>
@@ -141,7 +141,7 @@ export default function Home({ salon }) {
           {salon.name && (
             <>
               {/* feature 2 */}
-              <div className="relative mt-20 lg:mt-52 px-10">
+              <div className="relative mt-20 lg:mt-40 px-10">
                 <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
                   {/* image */}
                   <div className="flex flex-1 justify-center z-0 mb-10 lg:mb-0">
