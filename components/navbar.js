@@ -20,7 +20,7 @@ export default function Navbar() {
       <div className="block lg:hidden">
         <button
           onClick={() => setIsNavOpen(!isNavOpen)}
-          className="flex items-center px-3 py-2 border rounded bg-blue-500 text-white border-white  hover:border-blue-600"
+          className="flex items-center px-3 py-2 border rounded bg-blue-500 text-white border-white  hover:text-blue-500 hover:bg-white hover:border-blue-500"
         >
           <svg
             className="fill-current h-3 w-3"
