@@ -71,7 +71,7 @@ export default function Home({ salon }) {
                     </a>
                     <a
                       href="/auth/login"
-                      className="btn bg-gray-50 text-black font-semibold hover:bg-gray-200"
+                      className="btn bg-gray-50 text-blue-500 font-semibold hover:bg-gray-200"
                     >
                       Login with Existing Account
                     </a>
@@ -99,17 +99,15 @@ export default function Home({ salon }) {
               As the son of a barber, it is hard not to notice the difficulties
               of my father's occupation. As independent contractors, barbers and
               cosmetologists lack steady income. However, they've proven to be
-              some of the most respected individuals in communities such as my
-              own.
+              some of the most respected individuals in certain communities.
             </p>
             <br />
             <p className="text-xl text-center text-gray-400 px-10">
               My father has witnessed his fair share of struggles, having owned
               a barbershop for over two decades. During the economic hardship of
-              2008 and the health crisis of 2020, the importance of hairstyling
-              remained. Never once did our reliance on hairstylists waver.
-              Today, they continue to be relied upon as technicians to whom we
-              grant the honor of altering our hair.
+              2008 and the health crisis of 2020, never once did our reliance on
+              hairstylists waver. Today, they continue to be relied upon as
+              technicians to whom we grant the honor of altering our likeness.
             </p>
             <br />
             <p className="text-xl text-center text-gray-400 px-10">
