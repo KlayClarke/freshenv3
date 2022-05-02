@@ -5,10 +5,11 @@ import mapboxgl from "mapbox-gl";
 import useSWR from "swr";
 import initializeClusterMap from "../map/initializeClusterMap";
 import { fetcher } from "../utils/fetcher";
+import * as sanitizeHtml from "sanitize-html";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-export default function Home({ salons }) {
+export default function Home({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
 
@@ -116,8 +117,9 @@ export default function Home({ salons }) {
 
             {/* content */}
             <div className="flex flex-1 flex-col items-center lg:items-start">
-              <h1 className="text-3xl text-blue-500">
-                Sample Text for feature 1...
+              <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center lg:text-left">
+                We currently serve the Northeast, but are working dilligently to
+                accomodate users on a global scale.
               </h1>
               <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
               <a
@@ -133,18 +135,55 @@ export default function Home({ salons }) {
         <div className="relative mt-20 lg:mt-52 px-10">
           <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
             {/* image */}
-            <div className="flex flex-1 justify-center z-10 mb-10 lg:mb-0"></div>
+            <div className="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
+              <div className="bg-white rounded-lg shadow-sm border border-gray-300 overflow-hidden">
+                <div className="md:flex">
+                  <div className="md:shrink-0">
+                    <img
+                      className="h-48 w-full object-cover md:w-48"
+                      src={
+                        salon.image ||
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
+                      }
+                      alt="shop"
+                    />
+                  </div>
+                  <div className="p-8 min-w-[50%]">
+                    <div className="uppercase tracking-wide font-semibold">
+                      <p className="text-sm text-blue-500">
+                        {sanitizeHtml(salon.type)}
+                      </p>
+                      <p className="text-md text-green-600">
+                        ${sanitizeHtml(salon.average_price)}
+                      </p>
+                    </div>
+                    <a
+                      href={`/explore/detail/${salon.id}`}
+                      className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+                    >
+                      {sanitizeHtml(salon.name)}
+                    </a>
+                    <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
+                      {sanitizeHtml(salon.street_address)}{" "}
+                      {sanitizeHtml(salon.city)}, {sanitizeHtml(salon.state)}{" "}
+                      {sanitizeHtml(salon.zip_code)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
             {/* content */}
             <div className="flex flex-1 flex-col items-center lg:items-start">
-              <h1 className="text-3xl text-blue-500">
-                Sample Text for feature 2...
+              <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center lg:text-left">
+                If you ever find yourself in Connecticut, stop by my father's
+                barbershop.
               </h1>
               <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
               <a
-                href="/explore"
+                href={`/explore/detail/${salon.id}`}
                 className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600"
               >
-                Explore
+                Visit Page
               </a>
             </div>
           </div>
@@ -152,4 +191,18 @@ export default function Home({ salons }) {
       </section>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const data = await prisma.salon.findMany({
+    where: {
+      name: "Better Cut",
+    },
+  });
+
+  const salon = data[0];
+
+  return {
+    props: { salon },
+  };
 }
