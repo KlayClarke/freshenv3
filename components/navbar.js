@@ -61,7 +61,7 @@ export default function Navbar() {
                     callbackUrl: process.env.NEXT_PUBLIC_SITE_URL,
                   });
                 }}
-                className="block mt-4 lg:inline-block lg:mt-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 border border-blue-500 rounded"
+                className="block mt-4 lg:inline-block lg:mt-0 btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4"
               >
                 Logout
               </button>
@@ -76,7 +76,7 @@ export default function Navbar() {
               </a>
               <a
                 href="/auth/join"
-                className="block mt-4 lg:inline-block lg:mt-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 border border-blue-500 rounded"
+                className="block mt-4 lg:inline-block lg:mt-0 btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4"
               >
                 Join
               </a>
