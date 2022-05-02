@@ -50,6 +50,7 @@ export default function Home({ salon }) {
         </Head>
         {/* hero */}
         <section className="relative">
+          <div id="map" className="min-h-[400px]"></div>
           <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 lg:mt-30 px-10">
             {/* Content */}
             <div className="flex flex-1 flex-col items-center lg:items-start">
