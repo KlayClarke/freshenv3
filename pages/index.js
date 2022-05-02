@@ -24,7 +24,7 @@ export default function Home({ salons }) {
       container: "map",
       style: "mapbox://styles/mapbox/streets-v11",
       center: [-75, 42],
-      zoom: 5,
+      zoom: 4.75,
     });
 
     setMap(map);
@@ -76,19 +76,32 @@ export default function Home({ salons }) {
       <section className="bg-gray-50 py-20 mt-20 lg:mt-60">
         {/* heading */}
         <div className="max-w-[1000px] mx-auto px-2">
-          <h1 className="text-4xl text-center text-blue-500">Features</h1>
+          <h1 className="text-4xl text-center text-blue-500 font-semibold">
+            Why us?
+          </h1>
+          <br />
           <p className="text-xl text-center text-gray-400 px-10">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin purus
-            nulla, rhoncus eget eleifend vel, vestibulum sed arcu. Curabitur
-            eleifend tristique metus eget dapibus. Proin eu ipsum sit amet eros
-            gravida placerat vel quis nibh. Nullam id fringilla turpis.
-            Suspendisse ullamcorper ligula non ex fringilla pulvinar. Nunc
-            maximus mi sed cursus porta. Sed ut accumsan arcu. Maecenas libero
-            dolor, hendrerit ut sodales eget, suscipit nec lacus. Morbi faucibus
-            quam et diam sollicitudin, non iaculis quam condimentum. In a nibh
-            faucibus quam ullamcorper molestie. Etiam ac maximus justo, eu
-            suscipit nisl. Donec vitae tellus dui. Fusce eu orci sit amet tortor
-            convallis auctor.
+            As the son of a barber, it is hard not to notice the difficulties of
+            my father's occupation. As independent contractors, barbers and
+            cosmetologists lack steady income. However, they've proven to be
+            some of the most respected individuals in communities such as my
+            own.
+          </p>
+          <br />
+          <p className="text-xl text-center text-gray-400 px-10">
+            My father has witnessed his fair share of struggles, having owned a
+            barbershop for over two decades. During the economic hardship of
+            2008 and the health crisis of 2020, the importance of hairstyling
+            remained. Never once did our reliance on hairstylists waver. Today,
+            they continue to be relied upon as technicians to whom we grant the
+            honor of altering our hair.
+          </p>
+          <br />
+          <p className="text-xl text-center text-gray-400 px-10">
+            Here at
+            <span className="text-blue-500 font-semibold"> freshen</span>, we
+            hope to mediate and strengthen the connection between cosmetologist
+            and consumer.
           </p>
         </div>
         {/* feature 1 */}
