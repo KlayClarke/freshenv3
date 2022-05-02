@@ -85,6 +85,7 @@ export default function SalonCreate() {
               }
               value={formData.type}
             >
+              <option disabled></option>
               <option value={"barbershop"}>Barbershop</option>
               <option value={"hybrid"}>Hybrid</option>
               <option value={"salon"}>Salon</option>
