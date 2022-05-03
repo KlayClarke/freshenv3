@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import mapboxgl from "mapbox-gl";
-import initializeDetailMap from "../../../map/initializeDetailMap";
+import initializeClusterMap from "../../../map/initializeClusterMap";
+import useSWR from "swr";
+import { fetcher } from "../../../utils/fetcher";
 import prisma from "../../../lib/prisma";
 import Link from "next/link";
 
@@ -12,6 +13,10 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 export default function Detail({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
+  const { data: salons, error } = useSWR(
+    process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
+    fetcher
+  );
 
   useEffect(() => {
     setPageIsMounted(true);
@@ -19,18 +24,20 @@ export default function Detail({ salon }) {
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/streets-v11",
-      zoom: 13,
       center: salon.coordinates,
+      zoom: 12.5,
     });
 
     setMap(map);
   }, []);
 
   useEffect(() => {
-    if (pageIsMounted && salon) {
-      initializeDetailMap(mapboxgl, Map, salon);
+    if (pageIsMounted && salons) {
+      Map.on("load", () => {
+        initializeClusterMap(mapboxgl, Map, salons);
+      });
     }
-  }, [pageIsMounted, salon, Map]);
+  }, [pageIsMounted, salons, Map]);
 
   return (
     <div className="flex items-center justify-center">
