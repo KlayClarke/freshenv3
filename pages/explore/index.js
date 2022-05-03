@@ -51,9 +51,12 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
               onChange={(e) => setSortBy(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             >
-              {query.zip_code && (
+              {((query && query.zip_code) || (session && session.zip_code)) && (
                 <>
-                  <option value={"zip_code"}>Sort by proximity BETA</option>
+                  <option value={"zip_code"}>
+                    Sort by proximity BETA [from{" "}
+                    {query.zip_code || session.zip_code}]
+                  </option>
                 </>
               )}
               <option value={"name"}>Sort by name</option>
