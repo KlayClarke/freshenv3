@@ -120,27 +120,9 @@ export default function Home({ salon }) {
               cosmetologist and consumer.
             </p>
           </div>
-          {/* feature 1 */}
-          <div className="relative mt-20 lg:mt-24 px-10">
-            <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
-              {/* content */}
-              <div className="flex flex-1 flex-col items-center">
-                <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center max-w-2xl">
-                  We currently serve the Northeast, but are working dilligently
-                  to accomodate users on a global scale.
-                </h1>
-                <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
-                <Link href="/explore">
-                  <a className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600">
-                    Explore
-                  </a>
-                </Link>
-              </div>
-            </div>
-          </div>
           {salon.name && (
             <>
-              {/* feature 2 */}
+              {/* feature 1 */}
               <div className="relative mt-20 lg:mt-40 px-10">
                 <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
                   {/* image */}
