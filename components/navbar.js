@@ -14,9 +14,9 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 px-6 py-2 top-0 left-0 right-0 sticky z-10">
       <div className="flex items-center flex-shrink-0 text-blue-500 mr-6">
-        <Link href="/">
-          <a className="font-semibold text-3xl tracking-tight">freshen</a>
-        </Link>
+        <a href="/" className="font-semibold text-3xl tracking-tight">
+          freshen
+        </a>
       </div>
       <div className="block lg:hidden">
         <button
