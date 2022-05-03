@@ -1,11 +1,22 @@
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [currentRoute, setCurrentRoute] = useState();
   const { data: session, status } = useSession();
   const loading = status === "loading";
+  const router = useRouter();
+
+  useEffect(() => {
+    setCurrentRoute(router.pathname);
+  });
+
+  useEffect(() => {
+    setIsNavOpen(false);
+  }, [currentRoute]);
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 px-6 py-2 top-0 left-0 right-0 sticky z-10">
