@@ -7,16 +7,12 @@ export default function Navbar() {
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
-
   return (
     <nav className="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 px-6 py-2 top-0 left-0 right-0 sticky z-10">
       <div className="flex items-center flex-shrink-0 text-blue-500 mr-6">
-        <a href="/" className="font-semibold text-3xl tracking-tight">
-          freshen
-        </a>
+        <Link href="/">
+          <a className="font-semibold text-3xl tracking-tight">freshen</a>
+        </Link>
       </div>
       <div className="block lg:hidden">
         <button
@@ -41,24 +37,11 @@ export default function Navbar() {
         }
       >
         <div className="text-sm lg:flex-grow">
-          {status === "authenticated" && session && session.zip_code ? (
-            <>
-              <Link href={`/explore?zip_code=${session.zip_code}`}>
-                <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
-                  Explore
-                </a>
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link href="/explore">
-                <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
-                  Explore
-                </a>
-              </Link>
-            </>
-          )}
-
+          <Link href="/explore">
+            <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
+              Explore
+            </a>
+          </Link>
           {status == "authenticated" ? (
             <>
               {" "}
