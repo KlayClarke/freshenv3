@@ -3,10 +3,12 @@ import { useSession } from "next-auth/react";
 import prisma from "../../lib/prisma";
 import * as sanitizeHtml from "sanitize-html";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
   const [sortBy, setSortBy] = useState("name");
   const [salons, setSalons] = useState(salonsByName);
+  const { query } = useRouter();
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
@@ -43,6 +45,11 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
               <option value={"name"}>Sort by name</option>
               <option value={"type"}>Sort by type</option>
               <option value={"average_price"}>Sort by $</option>
+              {query.zip_code && (
+                <>
+                  <option value={"zip_code"}>Sort by proximity (beta)</option>
+                </>
+              )}
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
