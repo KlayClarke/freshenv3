@@ -10,6 +10,15 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
+  // unentity values before displaying them -- turn &amp; back to &, etc.
+
+  function unEntity(str) {
+    return str
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">");
+  }
+
   useEffect(() => {
     if (sortBy === "name") {
       setSalons(salonsByName);
@@ -76,21 +85,22 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
                   <div className="p-8 min-w-[50%]">
                     <div className="uppercase tracking-wide font-semibold">
                       <p className="text-sm text-blue-500">
-                        {sanitizeHtml(salon.type)}
+                        {unEntity(sanitizeHtml(salon.type))}
                       </p>
                       <p className="text-md text-green-600">
-                        ${sanitizeHtml(salon.average_price)}
+                        ${unEntity(sanitizeHtml(salon.average_price))}
                       </p>
                     </div>
                     <Link href={`/explore/detail/${salon.id}`}>
                       <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                        {sanitizeHtml(salon.name)}
+                        {unEntity(sanitizeHtml(salon.name))}
                       </a>
                     </Link>
                     <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
-                      {sanitizeHtml(salon.street_address)}{" "}
-                      {sanitizeHtml(salon.city)}, {sanitizeHtml(salon.state)}{" "}
-                      {sanitizeHtml(salon.zip_code)}
+                      {unEntity(sanitizeHtml(salon.street_address))}{" "}
+                      {unEntity(sanitizeHtml(salon.city))},{" "}
+                      {unEntity(sanitizeHtml(salon.state))}{" "}
+                      {unEntity(sanitizeHtml(salon.zip_code))}
                     </p>
                   </div>
                 </div>
