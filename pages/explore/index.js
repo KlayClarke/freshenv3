@@ -3,16 +3,9 @@ import { useSession } from "next-auth/react";
 import prisma from "../../lib/prisma";
 import * as sanitizeHtml from "sanitize-html";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
-  const { query } = useRouter();
-  const [sortBy, setSortBy] = useState(() => {
-    if (query.zip_code) {
-      return "zip code";
-    }
-    return "name";
-  });
+  const [sortBy, setSortBy] = useState("name");
   const [salons, setSalons] = useState(salonsByName);
   const { data: session, status } = useSession();
   const loading = status === "loading";
@@ -36,10 +29,6 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
     if (sortBy === "average_price") {
       setSalons(salonsByPrice);
     }
-    if (sortBy === "zip_code") {
-      return;
-    }
-    console.log(sortBy);
   }, [sortBy]);
 
   return (
@@ -51,14 +40,6 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
               onChange={(e) => setSortBy(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             >
-              {((query && query.zip_code) || (session && session.zip_code)) && (
-                <>
-                  <option value={"zip_code"}>
-                    Sort by proximity BETA [from{" "}
-                    {query.zip_code || session.zip_code}]
-                  </option>
-                </>
-              )}
               <option value={"name"}>Sort by name</option>
               <option value={"type"}>Sort by type</option>
               <option value={"average_price"}>Sort by $</option>
@@ -87,7 +68,7 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
           {salons.map((salon, index) => {
             return (
               <div
-                className="bg-white rounded-lg shadow-md border overflow-hidden"
+                className="bg-white rounded-lg shadow-sm border overflow-hidden"
                 key={index}
               >
                 <div className="md:flex">
@@ -133,8 +114,6 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
 }
 
 export async function getServerSideProps() {
-  const salons = await prisma.salon.findMany();
-
   const salonsByName = await prisma.salon.findMany({
     orderBy: [
       {
