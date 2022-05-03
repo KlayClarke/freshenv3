@@ -16,41 +16,12 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 export default function Home({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
-  const [zipCode, setZipCode] = useState("");
   const { data: session, status } = useSession();
   const router = useRouter();
   const { data: salons, error } = useSWR(
     process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
     fetcher
   );
-
-  async function handleSortByProx() {
-    var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode);
-    if (isValidZip) {
-      if (status === "authenticated" && zipCode.length) {
-        // save zipCode to user account
-        // fetch api and update zip on user
-        const res = await fetch(
-          process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/users/update",
-          {
-            body: JSON.stringify({
-              zipCode,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-            method: "PUT",
-          }
-        );
-        router.push(`/explore?zip_code=${zipCode}`);
-      } else if (status === "unauthenticated" && zipCode.length) {
-        router.push(`/explore?zip_code=${zipCode}`);
-      }
-    } else {
-      // do nothing if zip is not valid
-      return;
-    }
-  }
 
   useEffect(() => {
     setPageIsMounted(true);
@@ -66,13 +37,12 @@ export default function Home({ salon }) {
   }, []);
 
   useEffect(() => {
-    console.log(zipCode);
     if (pageIsMounted && salons) {
       Map.on("load", () => {
         initializeClusterMap(mapboxgl, Map, salons);
       });
     }
-  }, [pageIsMounted, salons, Map, zipCode]);
+  }, [pageIsMounted, salons, Map]);
 
   return (
     <div className="flex items-center justify-center">
@@ -82,7 +52,7 @@ export default function Home({ salon }) {
         </Head>
         {/* hero */}
         <section className="relative">
-          <div id="map" className="h-[200px] lg:min-h-[300px]"></div>
+          <div id="map" className="h-[200px] lg:min-h-[400px]"></div>
           <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10">
             {/* Content */}
             {status === "unauthenticated" ? (
@@ -151,47 +121,14 @@ export default function Home({ salon }) {
               cosmetologist and consumer.
             </p>
           </div>
-          {/* feature 1` */}
-          <div className="relative mt-20 lg:mt-40 px-10">
-            <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
-              {/* content */}
-              {/* input field */}
-              <div className="flex flex-1 justify-center lg:justify-start z-0 mb-10 lg:mb-0 gap-4 lg:gap-10">
-                <form>
-                  <input
-                    type={"text"}
-                    className="shadow appearance-none border rounded w-full py-3 pl-3 pr-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50 lg:text-lg"
-                    placeholder="Zip Code"
-                    onChange={(e) => {
-                      setZipCode(e.target.value);
-                    }}
-                    value={zipCode}
-                  />
-                </form>
-                <button
-                  className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600"
-                  onClick={handleSortByProx}
-                >
-                  Explore
-                </button>
-              </div>
-              <div className="flex flex-1 flex-col items-center lg:items-end">
-                <h1 className="sm:text-2xl md:text-3xl text-blue-500 text-center lg:text-right">
-                  Enter a zip code near you and click "Explore" to test our
-                  "Sort by proximity" feature.
-                </h1>
-                <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
-              </div>
-            </div>
-          </div>
           {salon.name && (
             <>
               {/* feature 2 */}
-              <div className="relative mt-20 lg:mt-40 px-10">
+              <div className="relative mt-20 lg:mt-20 px-10">
                 <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
                   {/* image */}
                   <div className="flex flex-1 justify-center z-0 mb-10 lg:mb-0">
-                    <div className="bg-white rounded-lg shadow-md border-2 overflow-hidden">
+                    <div className="bg-white rounded-lg shadow-sm border-2 overflow-hidden">
                       <div className="md:flex">
                         <div className="md:shrink-0">
                           <img
