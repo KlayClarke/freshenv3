@@ -17,7 +17,6 @@ export default function Home({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
   const { data: session, status } = useSession();
-  const router = useRouter();
   const { data: salons, error } = useSWR(
     process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
     fetcher
