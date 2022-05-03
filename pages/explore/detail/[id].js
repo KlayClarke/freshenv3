@@ -19,7 +19,7 @@ export default function Detail({ salon }) {
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/streets-v11",
-      zoom: 16,
+      zoom: 13,
       center: salon.coordinates,
     });
 
