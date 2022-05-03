@@ -15,6 +15,7 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 export default function Home({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
+  const [zipCode, setZipCode] = useState("");
   const { data: session, status } = useSession();
 
   const { data: salons, error } = useSWR(
@@ -36,12 +37,13 @@ export default function Home({ salon }) {
   }, []);
 
   useEffect(() => {
+    console.log(zipCode);
     if (pageIsMounted && salons) {
       Map.on("load", () => {
         initializeClusterMap(mapboxgl, Map, salons);
       });
     }
-  }, [pageIsMounted, salons, Map]);
+  }, [pageIsMounted, salons, Map, zipCode]);
 
   return (
     <div className="flex items-center justify-center">
@@ -120,9 +122,41 @@ export default function Home({ salon }) {
               cosmetologist and consumer.
             </p>
           </div>
+          {/* feature 1` */}
+          <div className="relative mt-20 lg:mt-40 px-10">
+            <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
+              {/* content */}
+              <div className="flex flex-1 flex-col items-center lg:items-end">
+                <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center lg:text-right">
+                  Enter a zip code near you and click "Explore" to test our
+                  "Sort by proximity" feature.
+                </h1>
+                <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
+              </div>
+              {/* image */}
+              <div className="flex flex-1 justify-center z-0 mb-10 lg:mb-0 gap-4">
+                <form>
+                  <input
+                    type={"text"}
+                    className="shadow appearance-none border rounded w-full py-3 pl-3 pr-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
+                    placeholder="Zip Code"
+                    onChange={(e) => {
+                      setZipCode(e.target.value);
+                    }}
+                    value={zipCode}
+                  />
+                </form>
+                <Link href={`/explore?zip_code=${zipCode}`}>
+                  <a className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600">
+                    Explore
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
           {salon.name && (
             <>
-              {/* feature 1 */}
+              {/* feature 2 */}
               <div className="relative mt-20 lg:mt-40 px-10">
                 <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
                   {/* image */}
