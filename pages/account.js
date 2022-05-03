@@ -5,14 +5,9 @@ export default function Account() {
         {/* features */}
         <section className="bg-gray-50 py-20 mt-10 lg:mt-30">
           {/* heading */}
-          <div className="max-w-[1000px] mx-auto px-2">
-            <h1 className="text-4xl text-center text-blue-500 font-semibold">
-              Text
-            </h1>
-            <br />
-
-            <h1 className="text-4xl text-center text-blue-500 font-semibold">
-              This page is under construction!
+          <div className="mx-auto px-2">
+            <h1 className="text-4xl text-left text-blue-500 font-semibold">
+              Account Details
             </h1>
           </div>
           {/* feature 1 */}
@@ -20,7 +15,7 @@ export default function Account() {
             <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
               {/* content */}
               <div className="flex flex-1 flex-col items-center">
-                <h1 className="text-4xl text-center text-blue-500 font-semibold">
+                <h1 className="text-4xl text-left text-blue-500 font-semibold">
                   Account details and ability to delete said account coming
                   soon!
                 </h1>
