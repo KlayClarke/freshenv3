@@ -14,6 +14,8 @@ export default function SalonCreate() {
     zip_code: "",
   });
 
+  const router = useRouter();
+
   async function handleCreate(e) {
     e.preventDefault();
     const {
@@ -45,6 +47,7 @@ export default function SalonCreate() {
         method: "POST",
       }
     );
+    router.push("/explore");
   }
 
   return (
@@ -90,9 +93,9 @@ export default function SalonCreate() {
               required
             >
               <option disabled></option>
-              <option value={"barbershop"}>Barbershop</option>
-              <option value={"hybrid"}>Hybrid</option>
-              <option value={"salon"}>Salon</option>
+              <option value={"Barbershop"}>Barbershop</option>
+              <option value={"Hybrid"}>Hybrid</option>
+              <option value={"Salon"}>Salon</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
