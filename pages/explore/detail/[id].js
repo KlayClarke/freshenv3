@@ -25,7 +25,7 @@ export default function Detail({ salon }) {
       container: "map",
       style: "mapbox://styles/mapbox/streets-v11",
       center: salon.coordinates,
-      zoom: 12.5,
+      zoom: 16,
     });
 
     setMap(map);
