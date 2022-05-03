@@ -37,7 +37,7 @@ export default function Detail({ salon }) {
       <div className="xl:min-w-[1400px] max-w-[1400px]">
         {/* hero */}
         <section className="relative">
-          <div id="map" className="h-[200px] lg:min-h-[300px]"></div>
+          <div id="map" className="h-[300px] lg:min-h-[400px]"></div>
           <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10"></div>
         </section>
         {/* features */}
