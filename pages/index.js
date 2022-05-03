@@ -153,21 +153,14 @@ export default function Home({ salon }) {
           </div>
           {/* feature 1` */}
           <div className="relative mt-20 lg:mt-40 px-10">
-            <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
+            <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
               {/* content */}
-              <div className="flex flex-1 flex-col items-center lg:items-end">
-                <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center lg:text-right">
-                  Enter a zip code near you and click "Explore" to test our
-                  "Sort by proximity" feature.
-                </h1>
-                <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
-              </div>
-              {/* image */}
-              <div className="flex flex-1 justify-center z-0 mb-10 lg:mb-0 gap-4">
+              {/* input field */}
+              <div className="flex flex-1 justify-center lg:justify-start z-0 mb-10 lg:mb-0 gap-4 lg:gap-10">
                 <form>
                   <input
                     type={"text"}
-                    className="shadow appearance-none border rounded w-full py-3 pl-3 pr-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
+                    className="shadow appearance-none border rounded w-full py-3 pl-3 pr-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50 lg:text-lg"
                     placeholder="Zip Code"
                     onChange={(e) => {
                       setZipCode(e.target.value);
@@ -181,6 +174,13 @@ export default function Home({ salon }) {
                 >
                   Explore
                 </button>
+              </div>
+              <div className="flex flex-1 flex-col items-center lg:items-end">
+                <h1 className="sm:text-2xl md:text-3xl text-blue-500 text-center lg:text-right">
+                  Enter a zip code near you and click "Explore" to test our
+                  "Sort by proximity" feature.
+                </h1>
+                <p className="text-gray-400 my-4 text-center lg:text-left sm:w-3/4 lg:w-full"></p>
               </div>
             </div>
           </div>
@@ -229,7 +229,7 @@ export default function Home({ salon }) {
                   </div>
                   {/* content */}
                   <div className="flex flex-1 flex-col items-center lg:items-start">
-                    <h1 className="sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 text-center lg:text-left">
+                    <h1 className="sm:text-2xl md:text-3xl text-blue-500 text-center lg:text-left">
                       If you ever find yourself in Connecticut, stop by the best
                       barbershop in the tri-state area.
                     </h1>
