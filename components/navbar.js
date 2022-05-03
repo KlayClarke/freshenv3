@@ -41,11 +41,24 @@ export default function Navbar() {
         }
       >
         <div className="text-sm lg:flex-grow">
-          <Link href="/explore">
-            <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
-              Explore
-            </a>
-          </Link>
+          {status === "authenticated" && session && session.zip_code ? (
+            <>
+              <Link href={`/explore?zip_code=${session.zip_code}`}>
+                <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
+                  Explore
+                </a>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/explore">
+                <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
+                  Explore
+                </a>
+              </Link>
+            </>
+          )}
+
           {status == "authenticated" ? (
             <>
               {" "}
