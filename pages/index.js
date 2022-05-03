@@ -9,6 +9,7 @@ import { fetcher } from "../utils/fetcher";
 import * as sanitizeHtml from "sanitize-html";
 import prisma from "../lib/prisma";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
@@ -17,11 +18,39 @@ export default function Home({ salon }) {
   const [Map, setMap] = useState();
   const [zipCode, setZipCode] = useState("");
   const { data: session, status } = useSession();
-
+  const router = useRouter();
   const { data: salons, error } = useSWR(
     process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
     fetcher
   );
+
+  async function handleSortByProx() {
+    var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode);
+    if (isValidZip) {
+      if (status === "authenticated" && zipCode.length) {
+        // save zipCode to user account
+        // fetch api and update zip on user
+        const res = await fetch(
+          process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/users/update",
+          {
+            body: JSON.stringify({
+              zipCode,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "PUT",
+          }
+        );
+        router.push(`/explore?zip_code=${zipCode}`);
+      } else if (status === "unauthenticated" && zipCode.length) {
+        router.push(`/explore?zip_code=${zipCode}`);
+      }
+    } else {
+      // do nothing if zip is not valid
+      return;
+    }
+  }
 
   useEffect(() => {
     setPageIsMounted(true);
@@ -146,11 +175,12 @@ export default function Home({ salon }) {
                     value={zipCode}
                   />
                 </form>
-                <Link href={`/explore?zip_code=${zipCode}`}>
-                  <a className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600">
-                    Explore
-                  </a>
-                </Link>
+                <button
+                  className="btn bg-blue-500 text-white font-semibold hover:bg-blue-600"
+                  onClick={handleSortByProx}
+                >
+                  Explore
+                </button>
               </div>
             </div>
           </div>
