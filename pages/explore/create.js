@@ -67,7 +67,6 @@ export default function SalonCreate() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            placeholder="Name"
             name="name"
             onChange={(e) => {
               setFormData({ ...formData, name: e.target.value });
@@ -136,7 +135,6 @@ export default function SalonCreate() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            placeholder="Image Url"
             name="image"
             onChange={(e) => {
               setFormData({ ...formData, image: e.target.value });
@@ -154,7 +152,6 @@ export default function SalonCreate() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            placeholder="Street Address"
             name="street_address"
             onChange={(e) => {
               setFormData({ ...formData, street_address: e.target.value });
@@ -172,7 +169,6 @@ export default function SalonCreate() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            placeholder="City"
             name="city"
             onChange={(e) => {
               setFormData({ ...formData, city: e.target.value });
@@ -190,7 +186,6 @@ export default function SalonCreate() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            placeholder="State"
             name="state"
             onChange={(e) => {
               setFormData({ ...formData, state: e.target.value });
@@ -208,7 +203,6 @@ export default function SalonCreate() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            placeholder="Zip Code"
             name="zip_code"
             onChange={(e) => {
               setFormData({ ...formData, zip_code: e.target.value });
