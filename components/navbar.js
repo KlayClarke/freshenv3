@@ -12,7 +12,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setCurrentRoute(router.pathname);
-  });
+  }, [router.pathname]);
 
   useEffect(() => {
     setIsNavOpen(false);

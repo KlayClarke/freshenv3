@@ -10,6 +10,7 @@ import * as sanitizeHtml from "sanitize-html";
 import prisma from "../lib/prisma";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
@@ -21,6 +22,10 @@ export default function Home({ salon }) {
     process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
     fetcher
   );
+
+  const salonImageSrc =
+    salon.image ||
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
 
   useEffect(() => {
     setPageIsMounted(true);
@@ -46,9 +51,8 @@ export default function Home({ salon }) {
   return (
     <div className="flex items-center justify-center">
       <div className="max-w-[1400px]">
-        <Head>
-          <Script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js" />
-        </Head>
+        <Head></Head>
+        <Script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js" />
         {/* hero */}
         <section className="relative">
           <div id="map" className="min-h-[200px] lg:min-h-[400px]"></div>
@@ -99,9 +103,10 @@ export default function Home({ salon }) {
             <br />
             <p className="hidden xl:flex text-lg lg:text-xl text-center text-gray-400 px-10">
               As the son of a barber, it is hard not to notice the difficulties
-              of my father's occupation. As independent contractors, barbers and
-              cosmetologists lack steady income. However, they've proven to be
-              some of the most respected individuals in certain communities.
+              of my father&apos;s occupation. As independent contractors,
+              barbers and cosmetologists lack steady income. However,
+              they&apos;ve proven to be some of the most respected individuals
+              in certain communities.
             </p>
             <br />
             <p className="text-lg lg:text-xl text-center text-gray-400 px-10">
@@ -129,15 +134,15 @@ export default function Home({ salon }) {
                   <div className="w-[100%] flex flex-1 justify-center z-0 mb-10 lg:mb-0">
                     <div className="w-fit bg-white rounded-lg shadow-sm border-2 overflow-hidden">
                       <div className="md:flex">
-                        <div className="md:shrink-0">
-                          <img
-                            className="h-48 w-full object-cover md:w-48"
-                            src={
-                              salon.image ||
-                              "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
-                            }
-                            alt="shop"
-                          />
+                        <div className="relative md:shrink-0 ">
+                          <div className="h-48 md:w-48 w-full object-cover">
+                            <Image
+                              loader={() => salonImageSrc}
+                              src={salonImageSrc}
+                              layout="fill"
+                              alt="best barbershop in tri state area"
+                            />
+                          </div>
                         </div>
                         <div className="p-4 md:p-8 min-w-[50%]">
                           <div className="uppercase tracking-wide font-semibold">

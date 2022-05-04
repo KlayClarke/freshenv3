@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import prisma from "../../lib/prisma";
 import * as sanitizeHtml from "sanitize-html";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
   const [sortBy, setSortBy] = useState("name");
@@ -29,7 +30,7 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
     if (sortBy === "average_price") {
       setSalons(salonsByPrice);
     }
-  }, [sortBy]);
+  }, [sortBy, salonsByName, salonsByType, salonsByPrice]);
 
   return (
     <div className="mt-1 mb-1 flex flex-col justify-center items-center">
@@ -80,6 +81,7 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
                         "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
                       }
                       alt="shop"
+                      layout="fill"
                     />
                   </div>
                   <div className="p-8 min-w-[50%]">
