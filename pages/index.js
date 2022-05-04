@@ -51,12 +51,12 @@ export default function Home({ salon }) {
         </Head>
         {/* hero */}
         <section className="relative">
-          <div id="map" className="h-[300px] lg:min-h-[400px]"></div>
-          <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10">
+          <div id="map" className="min-h-[200px] lg:min-h-[400px]"></div>
+          <div className="xs:w-[40%] sm:w-[80%] container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10">
             {/* Content */}
             {status === "unauthenticated" ? (
               <>
-                <div className="flex flex-1 flex-col items-center lg:items-start">
+                <div className="w-[80%] flex flex-1 flex-col items-center lg:items-start">
                   <h2 className="text-blue-500 text-3xl md:text-4xl lg:text-6xl text-center lg:text-left mb-6 font-semibold">
                     Welcome to freshen!
                   </h2>
@@ -72,7 +72,7 @@ export default function Home({ salon }) {
                     </Link>
                     <Link href="/auth/login">
                       <a className="btn bg-gray-50 text-blue-500 font-semibold hover:bg-gray-200">
-                        Login with Existing Account
+                        Login
                       </a>
                     </Link>
                   </div>
@@ -90,21 +90,21 @@ export default function Home({ salon }) {
           </div>
         </section>
         {/* features */}
-        <section className="bg-gray-50 py-20 mt-10 lg:mt-30">
+        <section className="relative bg-gray-50 py-20 mt-10 lg:mt-30 w-fit">
           {/* heading */}
-          <div className="max-w-[1000px] mx-auto px-2">
-            <h1 className="text-4xl text-center text-blue-500 font-semibold">
+          <div className="w-full md:w-[80%] max-w-[1000px] mx-auto px-2">
+            <h1 className="text-2xl lg:text-3xl text-center text-blue-500 font-semibold">
               Why us?
             </h1>
             <br />
-            <p className="text-xl text-center text-gray-400 px-10">
+            <p className="text-lg lg:text-xl text-center text-gray-400 px-10">
               As the son of a barber, it is hard not to notice the difficulties
               of my father's occupation. As independent contractors, barbers and
               cosmetologists lack steady income. However, they've proven to be
               some of the most respected individuals in certain communities.
             </p>
             <br />
-            <p className="text-xl text-center text-gray-400 px-10">
+            <p className="text-lg lg:text-xl text-center text-gray-400 px-10">
               My father has witnessed his fair share of struggles, having owned
               a barbershop for over two decades. During the economic hardship of
               2008 and the health crises that ruined 2020, never once did our
@@ -113,7 +113,7 @@ export default function Home({ salon }) {
               honor of altering our likeness.
             </p>
             <br />
-            <p className="text-xl text-center text-gray-400 px-10">
+            <p className="text-lg lg:text-xl text-center text-gray-400 px-10">
               Here at
               <span className="text-blue-500 font-semibold"> freshen</span>, we
               hope to mediate and strengthen the connection between
@@ -123,11 +123,11 @@ export default function Home({ salon }) {
           {salon.name && (
             <>
               {/* feature 2 */}
-              <div className="relative mt-20 lg:mt-20 px-10">
-                <div className="container mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
+              <div className="relative mt-20 lg:mt-20 md:px-10">
+                <div className="container w-[80%] mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
                   {/* image */}
-                  <div className="flex flex-1 justify-center z-0 mb-10 lg:mb-0">
-                    <div className="bg-white rounded-lg shadow-sm border-2 overflow-hidden">
+                  <div className="w-[100%] flex flex-1 justify-center z-0 mb-10 lg:mb-0">
+                    <div className="w-fit bg-white rounded-lg shadow-sm border-2 overflow-hidden">
                       <div className="md:flex">
                         <div className="md:shrink-0">
                           <img
@@ -139,7 +139,7 @@ export default function Home({ salon }) {
                             alt="shop"
                           />
                         </div>
-                        <div className="p-8 min-w-[50%]">
+                        <div className="p-4 md:p-8 min-w-[50%]">
                           <div className="uppercase tracking-wide font-semibold">
                             <p className="text-sm text-blue-500">
                               {sanitizeHtml(salon.type)}
