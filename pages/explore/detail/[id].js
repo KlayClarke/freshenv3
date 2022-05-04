@@ -29,7 +29,7 @@ export default function Detail({ salon }) {
     });
 
     setMap(map);
-  }, []);
+  }, [salon.coordinates]);
 
   useEffect(() => {
     if (pageIsMounted && salons) {
@@ -37,7 +37,7 @@ export default function Detail({ salon }) {
         initializeClusterMap(mapboxgl, Map, salons);
       });
     }
-  }, [pageIsMounted, salons, Map]);
+  }, [pageIsMounted, salons, Map, salon.coordinates]);
 
   return (
     <div className="flex items-center justify-center">

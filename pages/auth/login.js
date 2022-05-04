@@ -44,7 +44,7 @@ export default function Login({ csrfToken }) {
           <p className="text-white text-md lg:text-lg font-semibold">Github</p>
         </button>
         <p className="mt-4 text-center">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/auth/join">
             <a className="text-blue-500 font-semibold">Join</a>
           </Link>{" "}
