@@ -210,7 +210,7 @@ export default function SalonCreate() {
             required
           />
         </div>
-        <button className="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 border border-green-500 w-full">
+        <button className="btn bg-green-500 hover:bg-green-600 text-white font-semibold border border-green-500">
           Create
         </button>
         <p className="mt-4">

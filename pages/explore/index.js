@@ -57,7 +57,7 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
           {status === "authenticated" && (
             <>
               <Link href="/explore/create">
-                <a className="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 border-green-500 min-w-fit w-[60%] text-center md:w-fit">
+                <a className="btn bg-green-500 hover:bg-green-600 text-white font-semibold border-green-500 min-w-fit w-[60%] text-center md:w-fit">
                   Create
                 </a>
               </Link>
