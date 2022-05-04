@@ -66,7 +66,7 @@ export default function Detail({ salon }) {
               {/* content */}
               <div className="flex flex-1 flex-col items-center">
                 <h1 className="text-2xl md:text-3xl text-center text-blue-500 font-semibold">
-                  Comment section, private messaging, etc. coming soon.
+                  Ratings and review section coming soon.
                 </h1>
               </div>
             </div>
