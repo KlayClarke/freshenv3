@@ -58,7 +58,7 @@ export default function Navbar() {
               <button
                 onClick={() => {
                   signOut({
-                    callbackUrl: process.env.NEXT_PUBLIC_SITE_URL,
+                    callbackUrl: process.env.NEXT_PUBLIC_SITE_ENDPOINT,
                   });
                 }}
                 className="block mt-4 lg:inline-block lg:mt-0 btn bg-blue-500 hover:bg-blue-600 text-white font-semibold"
