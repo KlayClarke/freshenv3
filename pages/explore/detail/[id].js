@@ -41,22 +41,22 @@ export default function Detail({ salon }) {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="xl:min-w-[1400px] max-w-[1400px]">
+      <div className="max-w-[1400px]">
         {/* hero */}
         <section className="relative">
-          <div id="map" className="h-[300px] lg:min-h-[400px]"></div>
+          <div id="map" className="min-h-[200px] lg:min-h-[400px]"></div>
           <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10"></div>
         </section>
         {/* features */}
         <section className="bg-gray-50 py-20 mt-10 lg:mt-30">
           {/* heading */}
           <div className="max-w-[1000px] mx-auto px-2">
-            <h1 className="text-4xl text-center text-blue-500 font-semibold">
+            <h1 className="text-2xl md:text-3xl text-center text-blue-500 font-semibold">
               {salon.name}
             </h1>
             <br />
 
-            <h1 className="text-4xl text-center text-blue-500 font-semibold">
+            <h1 className="text-2xl md:text-3xl text-center text-blue-500 font-semibold">
               This page is under construction!
             </h1>
           </div>
@@ -65,7 +65,7 @@ export default function Detail({ salon }) {
             <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
               {/* content */}
               <div className="flex flex-1 flex-col items-center">
-                <h1 className="text-4xl text-center text-blue-500 font-semibold">
+                <h1 className="text-2xl md:text-3xl text-center text-blue-500 font-semibold">
                   Comment section, private messaging, etc. coming soon.
                 </h1>
               </div>
