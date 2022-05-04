@@ -140,7 +140,6 @@ export default function SalonCreate() {
               setFormData({ ...formData, image: e.target.value });
             }}
             value={formData.image}
-            required
           />
         </div>
         <div className="form-section">
