@@ -55,19 +55,13 @@ export default function Navbar() {
           </Link>
           {status == "authenticated" ? (
             <>
-              {" "}
-              <Link href="/account">
-                <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
-                  Account
-                </a>
-              </Link>
               <button
                 onClick={() => {
                   signOut({
                     callbackUrl: process.env.NEXT_PUBLIC_SITE_URL,
                   });
                 }}
-                className="block mt-4 lg:inline-block lg:mt-0 btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4"
+                className="block mt-4 lg:inline-block lg:mt-0 btn bg-blue-500 hover:bg-blue-600 text-white font-semibold"
               >
                 Logout
               </button>
@@ -80,7 +74,7 @@ export default function Navbar() {
                 </a>
               </Link>
               <Link href="/auth/join">
-                <a className="block mt-4 lg:inline-block lg:mt-0 btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4">
+                <a className="block mt-4 lg:inline-block lg:mt-0 btn bg-blue-500 hover:bg-blue-600 text-white font-semibold">
                   Join
                 </a>
               </Link>
