@@ -97,7 +97,7 @@ export default function Home({ salon }) {
               Why us?
             </h1>
             <br />
-            <p className="text-lg lg:text-xl text-center text-gray-400 px-10">
+            <p className="hidden xl:flex text-lg lg:text-xl text-center text-gray-400 px-10">
               As the son of a barber, it is hard not to notice the difficulties
               of my father's occupation. As independent contractors, barbers and
               cosmetologists lack steady income. However, they've proven to be
