@@ -5,6 +5,8 @@ import useSWR from "swr";
 import { fetcher } from "../../../utils/fetcher";
 import prisma from "../../../lib/prisma";
 import Link from "next/link";
+import sanitizeHtml from "sanitize-html";
+import unentity from "../../../utils/unentity";
 
 // todo: render mapbox map on explore detail page
 
@@ -44,30 +46,62 @@ export default function Detail({ salon }) {
       <div className="max-w-[1400px]">
         {/* hero */}
         <section className="relative">
-          <div id="map" className="h-[200px] lg:h-[300px] lg:w-[1000px]"></div>
+          <div
+            id="map"
+            className="h-[200px] lg:h-[300px] w-full lg:w-[1000px]"
+          ></div>
           <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10"></div>
         </section>
         {/* features */}
-        <section className="bg-gray-50 py-20 mt-10 lg:mt-30">
-          {/* heading */}
-          <div className="max-w-[1000px] mx-auto px-2">
-            <h1 className="text-2xl md:text-3xl text-center text-blue-500 font-semibold">
-              {salon.name}
-            </h1>
-            <br />
-
-            <h1 className="text-2xl md:text-3xl text-center text-blue-500 font-semibold">
-              This page is under construction!
-            </h1>
-          </div>
-          {/* feature 1 */}
-          <div className="relative mt-20 lg:mt-24 px-10">
-            <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
-              {/* content */}
-              <div className="flex flex-1 flex-col items-center">
-                <h1 className="text-2xl md:text-3xl text-center text-blue-500 font-semibold">
-                  Ratings and review section coming soon.
-                </h1>
+        <section className="flex flex-col items-center">
+          <div className="py-10 mt-10 lg:mt-30">
+            {/* feature 1 */}
+            <div className="px-4 sm:px-10">
+              <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+                <div className="flex flex-col">
+                  <div>
+                    <img
+                      className="h-24 sm:h-48 w-full object-cover"
+                      src={
+                        salon.image ||
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
+                      }
+                      alt="shop"
+                      layout="fill"
+                    />
+                  </div>
+                  <div className="p-4 sm:p-8 min-w-[50%]">
+                    <div className="uppercase tracking-wide font-semibold">
+                      <p className="text-sm text-blue-500">
+                        {unentity(sanitizeHtml(salon.type))}
+                      </p>
+                      <p className="text-md text-green-600">
+                        ${unentity(sanitizeHtml(salon.average_price))}
+                      </p>
+                    </div>
+                    <Link href={`/explore/detail/${salon.id}`}>
+                      <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+                        {unentity(sanitizeHtml(salon.name))}
+                      </a>
+                    </Link>
+                    <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
+                      {unentity(sanitizeHtml(salon.street_address))}{" "}
+                      {unentity(sanitizeHtml(salon.city))},{" "}
+                      {unentity(sanitizeHtml(salon.state))}{" "}
+                      {unentity(sanitizeHtml(salon.zip_code))}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative mt-20 lg:mt-24 px-10">
+                <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
+                  {/* content */}
+                  <div className="flex flex-1 flex-col items-center">
+                    <h1 className="text-2xl md:text-3xl text-center text-blue-500 font-semibold">
+                      Ratings and review section coming soon.
+                    </h1>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
