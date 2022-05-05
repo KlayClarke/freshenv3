@@ -4,7 +4,7 @@ import cors from "cors";
 const handler = nc()
   // use connect based middleware
   .use(cors())
-  .post(async (req, res) => {
+  .get(async (req, res) => {
     const response = await fetch(
       "https://freshenv3-4d1ymiaed-klayclarke.vercel.app/api/salons/get",
       {
@@ -12,7 +12,7 @@ const handler = nc()
         mode: "cors",
       }
     );
-    res.json(response);
+    res.status(200).json({ data: response });
   });
 
 export default handler;
