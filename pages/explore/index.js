@@ -4,6 +4,7 @@ import prisma from "../../lib/prisma";
 import * as sanitizeHtml from "sanitize-html";
 import Link from "next/link";
 import Image from "next/image";
+import unentity from "../../utils/unentity";
 
 export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
   const [sortBy, setSortBy] = useState("name");
@@ -12,13 +13,6 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
   const loading = status === "loading";
 
   // unentity values before displaying them -- turn &amp; back to &, etc.
-
-  function unEntity(str) {
-    return str
-      .replace(/&amp;/g, "&")
-      .replace(/&lt;/g, "<")
-      .replace(/&gt;/g, ">");
-  }
 
   useEffect(() => {
     if (sortBy === "name") {
@@ -87,22 +81,22 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
                   <div className="p-8 min-w-[50%]">
                     <div className="uppercase tracking-wide font-semibold">
                       <p className="text-sm text-blue-500">
-                        {unEntity(sanitizeHtml(salon.type))}
+                        {unentity(sanitizeHtml(salon.type))}
                       </p>
                       <p className="text-md text-green-600">
-                        ${unEntity(sanitizeHtml(salon.average_price))}
+                        ${unentity(sanitizeHtml(salon.average_price))}
                       </p>
                     </div>
                     <Link href={`/explore/detail/${salon.id}`}>
                       <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                        {unEntity(sanitizeHtml(salon.name))}
+                        {unentity(sanitizeHtml(salon.name))}
                       </a>
                     </Link>
                     <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
-                      {unEntity(sanitizeHtml(salon.street_address))}{" "}
-                      {unEntity(sanitizeHtml(salon.city))},{" "}
-                      {unEntity(sanitizeHtml(salon.state))}{" "}
-                      {unEntity(sanitizeHtml(salon.zip_code))}
+                      {unentity(sanitizeHtml(salon.street_address))}{" "}
+                      {unentity(sanitizeHtml(salon.city))},{" "}
+                      {unentity(sanitizeHtml(salon.state))}{" "}
+                      {unentity(sanitizeHtml(salon.zip_code))}
                     </p>
                   </div>
                 </div>
