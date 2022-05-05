@@ -7,6 +7,7 @@ import prisma from "../../../lib/prisma";
 import Link from "next/link";
 import sanitizeHtml from "sanitize-html";
 import unentity from "../../../utils/unentity";
+import { useSession } from "next-auth/react";
 
 // todo: render mapbox map on explore detail page
 
@@ -15,6 +16,7 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 export default function Detail({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
+  const { data: session, status } = useSession();
   const { data: salons, error } = useSWR(
     process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
     fetcher
@@ -85,20 +87,25 @@ export default function Detail({ salon }) {
                       {unentity(sanitizeHtml(salon.state))}{" "}
                       {unentity(sanitizeHtml(salon.zip_code))}
                     </p>
-                    <div className="py-2 flex gap-4">
-                      <a
-                        href="#"
-                        className="btn bg-[#ffc006] hover:bg-[#ffc106d9] text-white font-semibold text-center"
-                      >
-                        Edit
-                      </a>
-                      <a
-                        href="#"
-                        className="btn bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center"
-                      >
-                        Delete
-                      </a>
-                    </div>
+                    {status === "authenticated" &&
+                      session.user_id === salon.author_id && (
+                        <>
+                          <div className="py-2 flex gap-4">
+                            <a
+                              href="#"
+                              className="btn bg-[#ffc006] hover:bg-[#ffc106d9] text-white font-semibold text-center"
+                            >
+                              Edit
+                            </a>
+                            <a
+                              href="#"
+                              className="btn bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center"
+                            >
+                              Delete
+                            </a>
+                          </div>
+                        </>
+                      )}
                   </div>
                 </div>
               </div>
