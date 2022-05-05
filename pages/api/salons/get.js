@@ -4,7 +4,7 @@ import NextCors from "nextjs-cors";
 export default async function handler(req, res) {
   await NextCors(req, res, {
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-    origin: "*",
+    origin: "https://freshenv3.vercel.app/",
     optionsSuccessStatus: 200,
   });
 
