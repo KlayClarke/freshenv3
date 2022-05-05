@@ -1,6 +1,13 @@
 import prisma from "../../../lib/prisma";
+import NextCors from "nextjs-cors";
 
 export default async function handler(req, res) {
+  await NextCors(req, res, {
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200,
+  });
+
   const salons = await prisma.salon.findMany({});
 
   const formattedData = [];
