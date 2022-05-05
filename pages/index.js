@@ -55,11 +55,7 @@ export default function Home({ salon }) {
         <Script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js" />
         {/* hero */}
         <section className="relative">
-          {Map && (
-            <>
-              <div id="map" className="min-h-[200px] lg:min-h-[400px]"></div>
-            </>
-          )}
+          <div id="map" className="min-h-[200px] lg:min-h-[400px]"></div>
           <div className="xs:w-[40%] sm:w-[80%] container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10">
             {/* Content */}
             {status === "unauthenticated" ? (
