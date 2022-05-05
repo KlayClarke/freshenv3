@@ -58,7 +58,7 @@ export default function Detail({ salon }) {
                 <div className="flex flex-col">
                   <div>
                     <img
-                      className="h-24 sm:h-48 w-full object-cover"
+                      className="h-36 sm:h-48 w-full object-cover"
                       src={
                         salon.image ||
                         "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
@@ -67,7 +67,7 @@ export default function Detail({ salon }) {
                       layout="fill"
                     />
                   </div>
-                  <div className="px-2 py-4 sm:p-8">
+                  <div className="p-4 lg:p-6">
                     <div className="uppercase tracking-wide font-semibold w-[80%]">
                       <p className="text-xs sm:text-sm text-blue-500 w-[80%]">
                         {unentity(sanitizeHtml(salon.type))}
@@ -85,6 +85,20 @@ export default function Detail({ salon }) {
                       {unentity(sanitizeHtml(salon.state))}{" "}
                       {unentity(sanitizeHtml(salon.zip_code))}
                     </p>
+                    <div className="py-2 flex gap-4">
+                      <a
+                        href="#"
+                        className="btn bg-[#ffc006] hover:bg-[#ffc106d9] text-white font-semibold text-center"
+                      >
+                        Edit
+                      </a>
+                      <a
+                        href="#"
+                        className="btn bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center"
+                      >
+                        Delete
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
