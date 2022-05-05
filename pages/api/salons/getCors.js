@@ -6,7 +6,7 @@ const handler = nc()
   .use(cors())
   .get(async (req, res) => {
     const response = await fetch(
-      "https://freshenv3-4d1ymiaed-klayclarke.vercel.app/api/salons/get",
+      "https://freshenv3.vercel.app/api/salons/get",
       {
         method: "GET",
         mode: "cors",
