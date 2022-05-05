@@ -46,17 +46,14 @@ export default function Detail({ salon }) {
       <div className="max-w-[1400px]">
         {/* hero */}
         <section className="relative">
-          <div
-            id="map"
-            className="h-[200px] lg:h-[300px] w-full lg:w-[1000px]"
-          ></div>
+          <div id="map" className="h-[200px] lg:h-[300px] lg:w-[1000px]"></div>
           <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10"></div>
         </section>
         {/* features */}
         <section className="flex flex-col items-center">
-          <div className="py-10 mt-10 lg:mt-30">
+          <div className="sm:py-10 mt-10 lg:mt-30 flex flex-col justify-center items-center">
             {/* feature 1 */}
-            <div className="px-4 sm:px-10">
+            <div className="sm:px-10 w-[80%]">
               <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
                 <div className="flex flex-col">
                   <div>
@@ -70,21 +67,19 @@ export default function Detail({ salon }) {
                       layout="fill"
                     />
                   </div>
-                  <div className="p-4 sm:p-8 min-w-[50%]">
-                    <div className="uppercase tracking-wide font-semibold">
-                      <p className="text-sm text-blue-500">
+                  <div className="px-2 py-4 sm:p-8">
+                    <div className="uppercase tracking-wide font-semibold w-[80%]">
+                      <p className="text-xs sm:text-sm text-blue-500 w-[80%]">
                         {unentity(sanitizeHtml(salon.type))}
                       </p>
-                      <p className="text-md text-green-600">
+                      <p className="text-sm sm:text-md text-green-600 w-[80%]">
                         ${unentity(sanitizeHtml(salon.average_price))}
                       </p>
                     </div>
-                    <Link href={`/explore/detail/${salon.id}`}>
-                      <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                        {unentity(sanitizeHtml(salon.name))}
-                      </a>
-                    </Link>
-                    <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
+                    <p className="block mt-1 text-sm sm:text-md leading-tight font-medium text-black max-w-[80%] truncate">
+                      {unentity(sanitizeHtml(salon.name))}
+                    </p>
+                    <p className="text-sm sm:text-md mt-2 text-slate-500 h-fit max-w-[80%] truncate">
                       {unentity(sanitizeHtml(salon.street_address))}{" "}
                       {unentity(sanitizeHtml(salon.city))},{" "}
                       {unentity(sanitizeHtml(salon.state))}{" "}
