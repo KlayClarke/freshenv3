@@ -8,6 +8,8 @@ export default async function handler(req, res) {
     optionsSuccessStatus: 200,
   });
 
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
   const salons = await prisma.salon.findMany({});
 
   const formattedData = [];
