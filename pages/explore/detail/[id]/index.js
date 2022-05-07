@@ -91,7 +91,7 @@ export default function Detail({ salon }) {
                       session.user_id === salon.author_id && (
                         <>
                           <div className="py-2 flex gap-4">
-                            <Link href="#">
+                            <Link href={`/explore/detail/${salon.id}/edit`}>
                               <a className="btn bg-[#ffc006] hover:bg-[#ffc106d9] text-white font-semibold text-center">
                                 Edit
                               </a>
