@@ -24,9 +24,9 @@ export default function SalonDelete({ salon }) {
       <br />
       <div className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4 flex flex-col justify-center items-center">
         <p className="mt-4 text-center max-w-[400px]">
-          If you&apos;ve changed your mind and would like to keep "
+          If you&apos;ve changed your mind and would like to keep &quot;
           {unentity(salon.name)}
-          ",{" "}
+          &quot;,{" "}
           <Link href={`/explore/detail/${salon.id}`}>
             <a className="text-blue-500 font-semibold">
               return to the prior page
