@@ -6,9 +6,13 @@ export default async function handler(req, res) {
   const { user_id } = session;
   const { id } = req.query;
 
-  // only delete salon if user is logged in and user_id is same as salon id
+  let salon = await prisma.salon.findUnique({
+    where: {
+      id,
+    },
+  });
 
-  if (req.method === "POST" && session && user_id) {
+  if (req.method === "POST" && session && user_id === salon.author_id) {
     try {
       const salon = await prisma.salon.delete({
         where: {
