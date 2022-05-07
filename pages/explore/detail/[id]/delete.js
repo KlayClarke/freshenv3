@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import unentity from "../../../../utils/unentity";
 
-export default function Delete({ salon }) {
+export default function SalonDelete({ salon }) {
   const router = useRouter();
 
   async function handleDelete(e) {
