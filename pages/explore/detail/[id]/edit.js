@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import prisma from "../../../../lib/prisma";
 
 export default function SalonEdit({ salon }) {
   const [formData, setFormData] = useState({

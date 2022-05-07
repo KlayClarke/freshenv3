@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import prisma from "../../../../lib/prisma";
 import unentity from "../../../../utils/unentity";
 
 export default function SalonDelete({ salon }) {
