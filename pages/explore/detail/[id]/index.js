@@ -53,7 +53,7 @@ export default function Detail({ salon }) {
         </section>
         {/* features */}
         <section className="flex flex-col items-center">
-          <div className="lg:py-10 flex flex-col justify-center items-center w-full">
+          <div className="px-10 lg:py-10 flex flex-col justify-center items-center w-full">
             {/* feature 1 */}
             <div className="w-[100%]">
               <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
