@@ -8,7 +8,7 @@ import Link from "next/link";
 import sanitizeHtml from "sanitize-html";
 import unentity from "../../../../utils/unentity";
 import { useSession } from "next-auth/react";
-import ReactStars from "react-stars";
+import { useRouter } from "next/router";
 
 // todo: render mapbox map on explore detail page
 
@@ -17,21 +17,38 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 export default function Detail({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
-  const [rating, setRating] = useState(0);
-  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(3);
+  const [body, setBody] = useState("");
   const { data: session, status } = useSession();
   const { data: salons, error } = useSWR(
     process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
     fetcher
   );
+  const router = useRouter();
+  const { id: salon_id } = router.query;
 
-  function ratingChanged(newRating) {
-    setRating(newRating);
+  async function handleReviewCreation(e) {
+    e.preventDefault();
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/reviews/create",
+      {
+        body: JSON.stringify({
+          rating,
+          body,
+          salon_id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      }
+    );
+    router.push(`/explore/detail/${salon_id}`);
   }
 
   useEffect(() => {
-    console.log(rating);
-  }, [rating]);
+    console.log({ rating, body });
+  }, [rating, body]);
 
   useEffect(() => {
     setPageIsMounted(true);
@@ -122,21 +139,86 @@ export default function Detail({ salon }) {
               </div>
               <div className="relative mt-20 lg:mt-24 bg-white rounded-lg shadow-sm border p-5">
                 <div className="container mx-auto flex flex-col items-center justify-center gap-x-24 w-full ">
-                  <form className="flex flex-col justify-center items-center gap-6">
-                    <ReactStars
+                  <form
+                    className="flex flex-col justify-center items-center gap-6 lg:w-[80%]"
+                    onSubmit={handleReviewCreation}
+                  >
+                    {/* <ReactStars
                       count={5}
                       onChange={ratingChanged}
                       size={48}
                       color2={"#ffd700"}
+                    /> */}
+                    <fieldset
+                      className="starability-basic"
+                      onChange={(e) => setRating(e.target.value)}
+                    >
+                      <input
+                        type="radio"
+                        id="first-rate1"
+                        name="rating"
+                        value="1"
+                        required
+                      />
+                      <label htmlFor="first-rate1" title="Terrible">
+                        1 star
+                      </label>
+                      <input
+                        type="radio"
+                        id="first-rate2"
+                        name="rating"
+                        value="2"
+                        required
+                      />
+                      <label htmlFor="first-rate2" title="Not good">
+                        2 stars
+                      </label>
+                      <input
+                        type="radio"
+                        id="first-rate3"
+                        name="rating"
+                        value="3"
+                        required
+                        defaultChecked
+                      />
+                      <label htmlFor="first-rate3" title="Average">
+                        3 stars
+                      </label>
+                      <input
+                        type="radio"
+                        id="first-rate4"
+                        name="rating"
+                        value="4"
+                        required
+                      />
+                      <label htmlFor="first-rate4" title="Very good">
+                        4 stars
+                      </label>
+                      <input
+                        type="radio"
+                        id="first-rate5"
+                        name="rating"
+                        value="5"
+                        required
+                      />
+                      <label htmlFor="first-rate5" title="Amazing">
+                        5 stars
+                      </label>
+                    </fieldset>
+                    <textarea
+                      className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50  w-[100%] lg:h-44"
+                      required
+                      onChange={(e) => {
+                        setBody(e.target.value);
+                      }}
                     />
-                    <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"></textarea>
                     <button className="btn bg-green-500 hover:bg-green-600 text-white font-semibold border border-green-500">
                       Submit
                     </button>
                   </form>
                   {/* content */}
                   <div className="flex flex-1 flex-col items-center">
-                    <div className="p-5">
+                    <div className="review p-5">
                       <p className="font-bold">Author name - 5/5</p>
                       <p className="text-lg mb-5 mt-5">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -207,7 +289,7 @@ export default function Detail({ salon }) {
                       </Link>
                       <br />
                     </div>
-                    <div className="p-5">
+                    <div className="review p-5">
                       <p className="font-bold">Author name - 5/5</p>
                       <p className="text-lg mb-5 mt-5">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
