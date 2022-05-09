@@ -30,7 +30,7 @@ export default function Detail({ salon }) {
       container: "map",
       style: "mapbox://styles/mapbox/streets-v11",
       center: salon.coordinates,
-      zoom: 14,
+      zoom: 15,
     });
 
     setMap(map);
