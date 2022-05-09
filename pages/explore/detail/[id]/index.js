@@ -231,7 +231,7 @@ export default function Detail({ salon, reviews }) {
                       </h1>
                     )}
                     {/* content */}
-                    {/* <div className="flex flex-1 flex-col items-center w-[100%]">
+                    <div className="flex flex-1 flex-col items-center w-[100%]">
                       {reviews
                         .slice(0)
                         .reverse()
@@ -263,7 +263,7 @@ export default function Detail({ salon, reviews }) {
                             <br />
                           </div>
                         ))}
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </section>
