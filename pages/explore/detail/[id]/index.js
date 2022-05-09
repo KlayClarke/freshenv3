@@ -13,7 +13,7 @@ import Image from "next/image";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-export default function Detail({ salon }) {
+export default function Detail() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
   const [rating, setRating] = useState(3);
