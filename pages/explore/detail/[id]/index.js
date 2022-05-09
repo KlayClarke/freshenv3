@@ -29,11 +29,11 @@ export default function Detail({ salon }) {
       container: "map",
       style: "mapbox://styles/mapbox/streets-v11",
       center: salon.coordinates,
-      zoom: 16,
+      zoom: 14,
     });
 
     setMap(map);
-  }, [salon.coordinates]);
+  }, []);
 
   useEffect(() => {
     if (pageIsMounted && salons) {
@@ -41,7 +41,7 @@ export default function Detail({ salon }) {
         initializeClusterMap(mapboxgl, Map, salons);
       });
     }
-  }, [pageIsMounted, salons, Map, salon.coordinates]);
+  }, [pageIsMounted, salons, Map]);
 
   return (
     <div className="flex items-center justify-center">
