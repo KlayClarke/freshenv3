@@ -9,6 +9,7 @@ import sanitizeHtml from "sanitize-html";
 import unentity from "../../../../utils/unentity";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
@@ -273,21 +274,21 @@ export default function Detail({ salon }) {
   );
 }
 
-export async function getServerSideProps({ query }) {
-  const salon = await prisma.salon.findUnique({
-    where: {
-      id: query.id,
-    },
-    include: {
-      reviews: {
-        include: {
-          author: true,
-        },
-      },
-    },
-  });
+// export async function getServerSideProps({ query }) {
+//   const salon = await prisma.salon.findUnique({
+//     where: {
+//       id: query.id,
+//     },
+//     include: {
+//       reviews: {
+//         include: {
+//           author: true,
+//         },
+//       },
+//     },
+//   });
 
-  return {
-    props: { salon },
-  };
-}
+//   return {
+//     props: { salon },
+//   };
+// }
