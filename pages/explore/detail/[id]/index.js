@@ -72,7 +72,7 @@ export default function Detail() {
     });
 
     setMap(map);
-  }, [salon.coordinates]);
+  });
 
   useEffect(() => {
     if (pageIsMounted && salons) {
@@ -80,7 +80,7 @@ export default function Detail() {
         initializeClusterMap(mapboxgl, Map, salons);
       });
     }
-  }, [pageIsMounted, salons, Map, salon.coordinates]);
+  }, [pageIsMounted]);
 
   return (
     <div className="flex items-center justify-center">
