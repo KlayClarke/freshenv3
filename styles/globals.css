@@ -9,6 +9,9 @@
   .btn {
     @apply shadow-sm py-1 sm:py-2 px-4 rounded-md transition duration-300;
   }
+  .btn-small {
+    @apply shadow-sm py-1 px-2 rounded-md transition duration-300;
+  }
   .review:not(:last-child) {
     @apply border-b;
   }
