@@ -57,26 +57,26 @@ export default function Detail({ salon }) {
     router.push(`/explore/detail/${salon_id}`);
   }
 
-  // useEffect(() => {
-  //   setPageIsMounted(true);
+  useEffect(() => {
+    setPageIsMounted(true);
 
-  //   const map = new mapboxgl.Map({
-  //     container: "map",
-  //     style: "mapbox://styles/mapbox/streets-v11",
-  //     center: salon.coordinates,
-  //     zoom: 16,
-  //   });
+    const map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/mapbox/streets-v11",
+      center: salon.coordinates,
+      zoom: 16,
+    });
 
-  //   setMap(map);
-  // }, [salon.coordinates]);
+    setMap(map);
+  }, [salon.coordinates]);
 
-  // useEffect(() => {
-  //   if (pageIsMounted && salons) {
-  //     Map.on("load", () => {
-  //       initializeClusterMap(mapboxgl, Map, salons);
-  //     });
-  //   }
-  // }, [pageIsMounted, salons, Map, salon.coordinates]);
+  useEffect(() => {
+    if (pageIsMounted && salons) {
+      Map.on("load", () => {
+        initializeClusterMap(mapboxgl, Map, salons);
+      });
+    }
+  }, [pageIsMounted, salons, Map, salon.coordinates]);
 
   return (
     <div className="flex items-center justify-center">
