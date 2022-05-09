@@ -68,7 +68,7 @@ export default function Detail({ salon }) {
     });
 
     setMap(map);
-  });
+  }, [salon]);
 
   useEffect(() => {
     if (pageIsMounted && salons) {
