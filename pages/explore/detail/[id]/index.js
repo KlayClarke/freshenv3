@@ -13,7 +13,7 @@ import Image from "next/image";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-export default function Detail() {
+export default function Detail({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
   const [rating, setRating] = useState(3);
@@ -56,10 +56,6 @@ export default function Detail() {
     );
     router.push(`/explore/detail/${salon_id}`);
   }
-
-  let salon = {
-    coordinates: [-72.69, 41.7],
-  };
 
   useEffect(() => {
     setPageIsMounted(true);
@@ -279,21 +275,21 @@ export default function Detail() {
   );
 }
 
-// export async function getServerSideProps({ query }) {
-//   const salon = await prisma.salon.findUnique({
-//     where: {
-//       id: query.id,
-//     },
-//     include: {
-//       reviews: {
-//         include: {
-//           author: true,
-//         },
-//       },
-//     },
-//   });
+export async function getServerSideProps({ query }) {
+  const salon = await prisma.salon.findUnique({
+    where: {
+      id: query.id,
+    },
+    include: {
+      reviews: {
+        include: {
+          author: true,
+        },
+      },
+    },
+  });
 
-//   return {
-//     props: { salon },
-//   };
-// }
+  return {
+    props: { salon },
+  };
+}
