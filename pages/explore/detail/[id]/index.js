@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-export default function Detail({ salon, reviews }) {
+export default function Detail({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
   const [rating, setRating] = useState(3);
@@ -57,6 +57,10 @@ export default function Detail({ salon, reviews }) {
     );
     router.push(`/explore/detail/${salon_id}`);
   }
+
+  useEffect(() => {
+    console.log(salon);
+  });
 
   useEffect(() => {
     setPageIsMounted(true);
@@ -232,7 +236,7 @@ export default function Detail({ salon, reviews }) {
                     )}
                     {/* content */}
                     <div className="flex flex-1 flex-col items-center w-[100%]">
-                      {reviews
+                      {salon.reviews
                         .slice(0)
                         .reverse()
                         .map((review, id) => (
@@ -280,18 +284,16 @@ export async function getServerSideProps({ query }) {
     where: {
       id: query.id,
     },
-  });
-
-  const reviews = await prisma.review.findMany({
-    where: {
-      salon_id: salon.id,
-    },
     include: {
-      author: true,
+      reviews: {
+        include: {
+          author: true,
+        },
+      },
     },
   });
 
   return {
-    props: { salon, reviews },
+    props: { salon },
   };
 }
