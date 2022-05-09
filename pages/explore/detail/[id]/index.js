@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl";
 import initializeClusterMap from "../../../../map/initializeClusterMap";
 import useSWR from "swr";
 import { fetcher } from "../../../../utils/fetcher";
-// import prisma from "../../../../lib/prisma";
+import prisma from "../../../../lib/prisma";
 import Link from "next/link";
 import sanitizeHtml from "sanitize-html";
 import unentity from "../../../../utils/unentity";
