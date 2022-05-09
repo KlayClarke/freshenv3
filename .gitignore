@@ -34,3 +34,6 @@ yarn-error.log*
 
 # ignore todo file
 todo
+
+# ignore json with test data
+salons.json
