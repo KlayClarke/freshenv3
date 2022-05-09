@@ -148,78 +148,89 @@ export default function Detail({ salon, reviews }) {
               <section>
                 <div className="relative mt-20 lg:mt-24 bg-white rounded-lg shadow-sm border p-5">
                   <div className="container mx-auto flex flex-col items-center justify-center gap-x-24 w-full ">
-                    <form
-                      className="flex flex-col justify-center items-center gap-6 lg:w-[80%]"
-                      onSubmit={handleReviewCreation}
-                    >
-                      <fieldset
-                        className="starability-basic"
-                        onChange={(e) => setRating(parseInt(e.target.value))}
-                      >
-                        <input
-                          type="radio"
-                          id="first-rate1"
-                          name="rating"
-                          value="1"
-                          required
-                        />
-                        <label htmlFor="first-rate1" title="Terrible">
-                          1 star
-                        </label>
-                        <input
-                          type="radio"
-                          id="first-rate2"
-                          name="rating"
-                          value="2"
-                          required
-                        />
-                        <label htmlFor="first-rate2" title="Not good">
-                          2 stars
-                        </label>
-                        <input
-                          type="radio"
-                          id="first-rate3"
-                          name="rating"
-                          value="3"
-                          required
-                          defaultChecked
-                        />
-                        <label htmlFor="first-rate3" title="Average">
-                          3 stars
-                        </label>
-                        <input
-                          type="radio"
-                          id="first-rate4"
-                          name="rating"
-                          value="4"
-                          required
-                        />
-                        <label htmlFor="first-rate4" title="Very good">
-                          4 stars
-                        </label>
-                        <input
-                          type="radio"
-                          id="first-rate5"
-                          name="rating"
-                          value="5"
-                          required
-                        />
-                        <label htmlFor="first-rate5" title="Amazing">
-                          5 stars
-                        </label>
-                      </fieldset>
-                      <textarea
-                        className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50  w-[100%] lg:h-44"
-                        required
-                        onChange={(e) => {
-                          setBody(e.target.value);
-                        }}
-                        value={body}
-                      />
-                      <button className="btn bg-green-500 hover:bg-green-600 text-white font-semibold border border-green-500">
-                        Submit
-                      </button>
-                    </form>
+                    {session && session.user ? (
+                      <>
+                        <form
+                          className="flex flex-col justify-center items-center gap-6 lg:w-[80%]"
+                          onSubmit={handleReviewCreation}
+                        >
+                          <fieldset
+                            className="starability-basic"
+                            onChange={(e) =>
+                              setRating(parseInt(e.target.value))
+                            }
+                          >
+                            <input
+                              type="radio"
+                              id="first-rate1"
+                              name="rating"
+                              value="1"
+                              required
+                            />
+                            <label htmlFor="first-rate1" title="Terrible">
+                              1 star
+                            </label>
+                            <input
+                              type="radio"
+                              id="first-rate2"
+                              name="rating"
+                              value="2"
+                              required
+                            />
+                            <label htmlFor="first-rate2" title="Not good">
+                              2 stars
+                            </label>
+                            <input
+                              type="radio"
+                              id="first-rate3"
+                              name="rating"
+                              value="3"
+                              required
+                              defaultChecked
+                            />
+                            <label htmlFor="first-rate3" title="Average">
+                              3 stars
+                            </label>
+                            <input
+                              type="radio"
+                              id="first-rate4"
+                              name="rating"
+                              value="4"
+                              required
+                            />
+                            <label htmlFor="first-rate4" title="Very good">
+                              4 stars
+                            </label>
+                            <input
+                              type="radio"
+                              id="first-rate5"
+                              name="rating"
+                              value="5"
+                              required
+                            />
+                            <label htmlFor="first-rate5" title="Amazing">
+                              5 stars
+                            </label>
+                          </fieldset>
+                          <textarea
+                            className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50  w-[100%] lg:h-44"
+                            required
+                            onChange={(e) => {
+                              setBody(e.target.value);
+                            }}
+                            value={body}
+                          />
+                          <button className="btn bg-green-500 hover:bg-green-600 text-white font-semibold border border-green-500">
+                            Submit
+                          </button>
+                        </form>
+                      </>
+                    ) : (
+                      <h1 className="text-gray-500 underline text-xl text-center border-b">
+                        You must log in to leave a review
+                      </h1>
+                    )}
+
                     {/* content */}
                     <div className="flex flex-1 flex-col items-center w-[100%]">
                       {reviews
