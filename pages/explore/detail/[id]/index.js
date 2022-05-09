@@ -230,40 +230,36 @@ export default function Detail({ salon, reviews }) {
                         You must log in to leave a review
                       </h1>
                     )}
-
                     {/* content */}
                     <div className="flex flex-1 flex-col items-center w-[100%]">
-                      {reviews
-                        .slice(0)
-                        .reverse()
-                        .map((review, id) => (
-                          <div key={id} className="review px-5 pt-5 w-full">
-                            <p className="font-bold">
-                              {unentity(
-                                sanitizeHtml(review.author.name.split(" ")[0])
-                              )}{" "}
-                              - {unentity(sanitizeHtml(review.rating))}/5
-                            </p>
-                            <p className="text-lg mb-5 mt-5">
-                              {unentity(sanitizeHtml(review.body))}
-                            </p>
-                            {session && session.user_id === review.author_id && (
-                              <>
-                                <form
-                                  className="flex justify-end"
-                                  onSubmit={(e) => {
-                                    handleReviewDeletion(e, review.id);
-                                  }}
-                                >
-                                  <button className="btn-small bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center">
-                                    X
-                                  </button>
-                                </form>
-                              </>
-                            )}
-                            <br />
-                          </div>
-                        ))}
+                      {reviews.map((review, id) => (
+                        <div key={id} className="review px-5 pt-5 w-full">
+                          <p className="font-bold">
+                            {unentity(
+                              sanitizeHtml(review.author.name.split(" ")[0])
+                            )}{" "}
+                            - {unentity(sanitizeHtml(review.rating))}/5
+                          </p>
+                          <p className="text-lg mb-5 mt-5">
+                            {unentity(sanitizeHtml(review.body))}
+                          </p>
+                          {session && session.user_id === review.author_id && (
+                            <>
+                              <form
+                                className="flex justify-end"
+                                onSubmit={(e) => {
+                                  handleReviewDeletion(e, review.id);
+                                }}
+                              >
+                                <button className="btn-small bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center">
+                                  X
+                                </button>
+                              </form>
+                            </>
+                          )}
+                          <br />
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
