@@ -59,10 +59,6 @@ export default function Detail({ salon, reviews }) {
   }
 
   useEffect(() => {
-    console.log(rating);
-  }, [rating]);
-
-  useEffect(() => {
     setPageIsMounted(true);
 
     const map = new mapboxgl.Map({
@@ -240,16 +236,20 @@ export default function Detail({ salon, reviews }) {
                             <p className="text-lg mb-5 mt-5">
                               {unentity(sanitizeHtml(review.body))}
                             </p>
-                            <form
-                              className="flex justify-end"
-                              onSubmit={(e) => {
-                                handleReviewDeletion(e, review.id);
-                              }}
-                            >
-                              <button className="btn-small bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center">
-                                X
-                              </button>
-                            </form>
+                            {session && session.user_id === review.author_id && (
+                              <>
+                                <form
+                                  className="flex justify-end"
+                                  onSubmit={(e) => {
+                                    handleReviewDeletion(e, review.id);
+                                  }}
+                                >
+                                  <button className="btn-small bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center">
+                                    X
+                                  </button>
+                                </form>
+                              </>
+                            )}
                             <br />
                           </div>
                         ))}
