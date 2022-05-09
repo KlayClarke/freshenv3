@@ -47,6 +47,17 @@ export default function Detail({ salon, reviews }) {
     router.push(`/explore/detail/${salon_id}`);
   }
 
+  async function handleReviewDeletion(e, id) {
+    e.preventDefault();
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_SITE_ENDPOINT + `/api/reviews/delete/${id}`,
+      {
+        method: "POST",
+      }
+    );
+    router.push(`/explore/detail/${salon_id}`);
+  }
+
   useEffect(() => {
     console.log(rating);
   }, [rating]);
@@ -216,7 +227,7 @@ export default function Detail({ salon, reviews }) {
                     {/* content */}
                     <div className="flex flex-1 flex-col items-center w-[100%]">
                       {reviews.map((review, id) => (
-                        <div key={id} className="review p-5 w-full">
+                        <div key={id} className="review px-5 pt-5 w-full">
                           <p className="font-bold">
                             {unentity(sanitizeHtml(review.author.name))} -{" "}
                             {unentity(sanitizeHtml(review.rating))}/5
@@ -224,11 +235,16 @@ export default function Detail({ salon, reviews }) {
                           <p className="text-lg mb-5 mt-5">
                             {unentity(sanitizeHtml(review.body))}
                           </p>
-                          <Link href={`#`}>
-                            <a className="btn bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center">
-                              Delete
-                            </a>
-                          </Link>
+                          <form
+                            className="flex justify-end"
+                            onSubmit={(e) => {
+                              handleReviewDeletion(e, review.id);
+                            }}
+                          >
+                            <button className="btn-small bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center">
+                              X
+                            </button>
+                          </form>
                           <br />
                         </div>
                       ))}
