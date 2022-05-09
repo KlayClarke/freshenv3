@@ -152,7 +152,9 @@ export default function Detail({ salon }) {
               <section>
                 <div className="relative mt-20 lg:mt-24 bg-white rounded-lg shadow-sm border p-5">
                   <div className="container mx-auto flex flex-col items-center justify-center gap-x-24 w-full ">
-                    {session && session.user ? (
+                    {status === "authenticated" &&
+                    session.user &&
+                    session.user_id ? (
                       <>
                         <form
                           className="flex flex-col justify-center items-center gap-6 lg:w-[80%]"
