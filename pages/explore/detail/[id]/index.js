@@ -88,7 +88,7 @@ export default function Detail({ salon }) {
         </section>
         {/* features */}
         <section className="flex flex-col items-center">
-          <div className="px-1 md:px-10 lg:py-10 flex flex-col justify-center items-center w-full">
+          <div className="px-10 lg:py-10 flex flex-col justify-center items-center w-full">
             {/* feature 1 */}
             <div className="w-[100%]">
               <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
@@ -105,22 +105,22 @@ export default function Detail({ salon }) {
                     />
                   </div>
                   <div className="p-1.5 sm:p-4 lg:p-6">
-                    <div className="uppercase tracking-wide font-semibold">
-                      <p className="text-xs sm:text-sm text-blue-500 md:w-[80%]">
-                        {/* {unentity(sanitizeHtml(salon.type))} */}
+                    <div className="uppercase tracking-wide font-semibold w-[80%]">
+                      <p className="text-xs sm:text-sm text-blue-500 w-[80%]">
+                        {unentity(sanitizeHtml(salon.type))}
                       </p>
-                      <p className="text-sm sm:text-md text-green-600 md:w-[80%]">
-                        {/* ${unentity(sanitizeHtml(salon.average_price))} */}
+                      <p className="text-sm sm:text-md text-green-600 w-[80%]">
+                        ${unentity(sanitizeHtml(salon.average_price))}
                       </p>
                     </div>
-                    <p className="block mt-1 text-sm sm:text-md leading-tight font-medium text-black md:max-w-[80%] truncate">
-                      {/* {unentity(sanitizeHtml(salon.name))} */}
+                    <p className="block mt-1 text-sm sm:text-md leading-tight font-medium text-black max-w-[80%] truncate">
+                      {unentity(sanitizeHtml(salon.name))}
                     </p>
-                    <p className="text-sm sm:text-md mt-2 text-slate-500 h-fit md:max-w-[80%] truncate">
-                      {/* {unentity(sanitizeHtml(salon.street_address))}{" "}
+                    <p className="text-sm sm:text-md mt-2 text-slate-500 h-fit max-w-[80%] truncate">
+                      {unentity(sanitizeHtml(salon.street_address))}{" "}
                       {unentity(sanitizeHtml(salon.city))},{" "}
                       {unentity(sanitizeHtml(salon.state))}{" "}
-                      {unentity(sanitizeHtml(salon.zip_code))} */}
+                      {unentity(sanitizeHtml(salon.zip_code))}
                     </p>
                     {status === "authenticated" &&
                       session.user_id === salon.author_id && (
@@ -144,129 +144,17 @@ export default function Detail({ salon }) {
                   </div>
                 </div>
               </div>
-              <section>
-                <div className="relative mt-20 lg:mt-24 bg-white rounded-lg shadow-sm border p-5">
-                  <div className="container mx-auto flex flex-col items-center justify-center gap-x-24 w-full ">
-                    {session && session.user ? (
-                      <>
-                        <form
-                          className="flex flex-col justify-center items-center gap-6 lg:w-[80%]"
-                          onSubmit={handleReviewCreation}
-                        >
-                          <fieldset
-                            className="starability-basic"
-                            onChange={(e) =>
-                              setRating(parseInt(e.target.value))
-                            }
-                          >
-                            <input
-                              type="radio"
-                              id="first-rate1"
-                              name="rating"
-                              value="1"
-                              required
-                            />
-                            <label htmlFor="first-rate1" title="Terrible">
-                              1 star
-                            </label>
-                            <input
-                              type="radio"
-                              id="first-rate2"
-                              name="rating"
-                              value="2"
-                              required
-                            />
-                            <label htmlFor="first-rate2" title="Not good">
-                              2 stars
-                            </label>
-                            <input
-                              type="radio"
-                              id="first-rate3"
-                              name="rating"
-                              value="3"
-                              required
-                              defaultChecked
-                            />
-                            <label htmlFor="first-rate3" title="Average">
-                              3 stars
-                            </label>
-                            <input
-                              type="radio"
-                              id="first-rate4"
-                              name="rating"
-                              value="4"
-                              required
-                            />
-                            <label htmlFor="first-rate4" title="Very good">
-                              4 stars
-                            </label>
-                            <input
-                              type="radio"
-                              id="first-rate5"
-                              name="rating"
-                              value="5"
-                              required
-                            />
-                            <label htmlFor="first-rate5" title="Amazing">
-                              5 stars
-                            </label>
-                          </fieldset>
-                          <textarea
-                            className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50  w-[100%] lg:h-44"
-                            required
-                            onChange={(e) => {
-                              setBody(e.target.value);
-                            }}
-                            value={body}
-                          />
-                          <button className="btn bg-green-500 hover:bg-green-600 text-white font-semibold border border-green-500">
-                            Submit
-                          </button>
-                        </form>
-                      </>
-                    ) : (
-                      <h1 className="text-gray-500 underline text-xl text-center border-b">
-                        You must log in to leave a review
-                      </h1>
-                    )}
-
-                    {/* content */}
-                    <div className="flex flex-1 flex-col items-center w-[100%]">
-                      {/* {reviews
-                        .slice(0)
-                        .reverse()
-                        .map((review, id) => (
-                          <div key={id} className="review px-5 pt-5 w-full">
-                            <p className="font-bold">
-                              {unentity(
-                                sanitizeHtml(review.author.name.split(" ")[0])
-                              )}{" "}
-                              - {unentity(sanitizeHtml(review.rating))}/5
-                            </p>
-                            <p className="text-lg mb-5 mt-5">
-                              {unentity(sanitizeHtml(review.body))}
-                            </p>
-                            {session && session.user_id === review.author_id && (
-                              <>
-                                <form
-                                  className="flex justify-end"
-                                  onSubmit={(e) => {
-                                    handleReviewDeletion(e, review.id);
-                                  }}
-                                >
-                                  <button className="btn-small bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center">
-                                    X
-                                  </button>
-                                </form>
-                              </>
-                            )}
-                            <br />
-                          </div>
-                        ))} */}
-                    </div>
+              <div className="relative mt-20 lg:mt-24 px-5">
+                <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
+                  {/* content */}
+                  <div className="flex flex-1 flex-col items-center">
+                    <h1 className="text-2xl md:text-3xl text-center text-gray-200 font-semibold">
+                      Ratings system &amp; review section currently in
+                      development.
+                    </h1>
                   </div>
                 </div>
-              </section>
+              </div>
             </div>
           </div>
         </section>
@@ -274,21 +162,12 @@ export default function Detail({ salon }) {
     </div>
   );
 }
-
-export async function getStaticProps({ query }) {
+export async function getServerSideProps({ query }) {
   const salon = await prisma.salon.findUnique({
     where: {
       id: query.id,
     },
-    include: {
-      reviews: {
-        include: {
-          author: true,
-        },
-      },
-    },
   });
-
   return {
     props: { salon },
   };
