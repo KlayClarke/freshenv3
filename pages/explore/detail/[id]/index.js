@@ -275,7 +275,7 @@ export default function Detail({ salon }) {
   );
 }
 
-export async function getServerSideProps({ query }) {
+export async function getStaticProps({ query }) {
   const salon = await prisma.salon.findUnique({
     where: {
       id: query.id,
