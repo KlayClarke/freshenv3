@@ -91,6 +91,66 @@ export default function Detail() {
           <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10"></div>
         </section>
         {/* features */}
+        <section className="flex flex-col items-center">
+          <div className="px-1 md:px-10 lg:py-10 flex flex-col justify-center items-center w-full">
+            {/* feature 1 */}
+            <div className="w-[100%]">
+              <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+                <div className="flex flex-col">
+                  <div>
+                    <img
+                      className="h-36 sm:h-60 xl:h-80 w-full object-cover"
+                      src={
+                        salon.image ||
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
+                      }
+                      alt="shop"
+                      layout="fill"
+                    />
+                  </div>
+                  <div className="p-1.5 sm:p-4 lg:p-6">
+                    <div className="uppercase tracking-wide font-semibold">
+                      <p className="text-xs sm:text-sm text-blue-500 md:w-[80%]">
+                        {/* {unentity(sanitizeHtml(salon.type))} */}
+                      </p>
+                      <p className="text-sm sm:text-md text-green-600 md:w-[80%]">
+                        {/* ${unentity(sanitizeHtml(salon.average_price))} */}
+                      </p>
+                    </div>
+                    <p className="block mt-1 text-sm sm:text-md leading-tight font-medium text-black md:max-w-[80%] truncate">
+                      {/* {unentity(sanitizeHtml(salon.name))} */}
+                    </p>
+                    <p className="text-sm sm:text-md mt-2 text-slate-500 h-fit md:max-w-[80%] truncate">
+                      {/* {unentity(sanitizeHtml(salon.street_address))}{" "}
+                      {unentity(sanitizeHtml(salon.city))},{" "}
+                      {unentity(sanitizeHtml(salon.state))}{" "}
+                      {unentity(sanitizeHtml(salon.zip_code))} */}
+                    </p>
+                    {status === "authenticated" &&
+                      session.user_id === salon.author_id && (
+                        <>
+                          <div className="py-2 flex gap-4">
+                            <Link href={`/explore/detail/${salon.id}/edit`}>
+                              <a className="btn bg-[#ffc006] hover:bg-[#ffc106d9] text-white font-semibold text-center">
+                                Edit
+                              </a>
+                            </Link>
+                            <Link
+                              href={`/explore/detail/${salon.id}/delete_confirm`}
+                            >
+                              <a className="btn bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center">
+                                Delete
+                              </a>
+                            </Link>
+                          </div>
+                        </>
+                      )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
