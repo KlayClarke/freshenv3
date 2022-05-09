@@ -276,7 +276,7 @@ export default function Detail({ salon, reviews }) {
   );
 }
 
-export async function getInitialProps({ query }) {
+export async function getServerSideProps({ query }) {
   const salon = await prisma.salon.findUnique({
     where: {
       id: query.id,
