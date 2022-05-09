@@ -57,6 +57,10 @@ export default function Detail({ salon }) {
     router.push(`/explore/detail/${salon_id}`);
   }
 
+  let salon = {
+    coordinates: [-72.69, 41.7],
+  };
+
   useEffect(() => {
     setPageIsMounted(true);
 
