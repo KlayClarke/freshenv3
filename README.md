@@ -4,7 +4,7 @@ freshenv2 was created using regular CSS styles. Not only did the front-end take 
 
 freshenv2 was also an Express app that used Pug for html templating. In this project, I not only decided to use React for templating, but the NextJS framework for server-side rendering and routing.
 
-This project differs from freshen v2 because it uses (1) TailwindCSS, (2) NextJS, (3) Prisma for DB management, (4) NextAuth for OAuth, and (5) Vercel for deployment.
+This project differs from freshenv2 because it uses (1) TailwindCSS, (2) NextJS, (3) Prisma for DB management, (4) NextAuth for OAuth, and (5) Vercel for deployment.
 
 ## What I Learned
 
