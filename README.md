@@ -10,4 +10,6 @@ This project differs from freshenv2 because it uses (1) TailwindCSS, (2) NextJS,
 
 Among other things, I learned that when deploying an application, many problems can arise that were not present while locally hosting. One must be willing to waste time finding and solving the issue, or find a way to compromise. 
 
-As a self-taught developer, it is difficult to see a feature cause problems on deployment (in this case, the review section of individual salon pages). However, after wasting 5 hours attempting to solve the problem. I'd realize that these fixes would cost more than it would benefit my project. For that reason, salon pages on freshenv3 are without review sections.
+As a self-taught developer, it is difficult to see a feature cause problems on deployment (in this case, the review section of individual salon pages). However, after wasting 5 hours attempting to solve the problem, I realized that these fixes would cost more than it would benefit my project. For that reason, salon pages on freshenv3 are without review sections.
+
+P.S. I will try again soon!
