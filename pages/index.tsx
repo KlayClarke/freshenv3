@@ -23,10 +23,12 @@ export default function Home({ salon }) {
     fetcher
   );
 
-  const salonImageSrc =
-    salon.image ||
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
-
+  const imageLoader = () => {
+    return (
+      salon.image ||
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
+    );
+  };
   useEffect(() => {
     setPageIsMounted(true);
 
@@ -134,12 +136,13 @@ export default function Home({ salon }) {
                     <div className="w-fit bg-white rounded-lg shadow-sm border-2 overflow-hidden">
                       <div className="md:flex">
                         <div className="relative md:shrink-0 ">
-                          <div className="h-48 md:w-48 w-full object-cover">
+                          <div className="relative h-48 md:w-48 w-full object-cover">
                             <Image
-                              loader={() => salonImageSrc}
-                              src={salonImageSrc}
+                              src={salon.image}
                               layout="fill"
                               alt="best barbershop in tri state area"
+                              quality={100}
+                              unoptimized={true}
                             />
                           </div>
                         </div>
