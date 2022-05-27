@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [currentRoute, setCurrentRoute] = useState();
+  const [currentRoute, setCurrentRoute] = useState("");
   const { data: session, status } = useSession();
   const loading = status === "loading";
   const router = useRouter();
@@ -27,6 +27,7 @@ export default function Navbar() {
       </div>
       <div className="block lg:hidden">
         <button
+          aria-label="menu"
           onClick={() => setIsNavOpen(!isNavOpen)}
           className="flex items-center px-3 py-2 border rounded bg-blue-500 text-white border-white  hover:text-blue-500 hover:bg-white hover:border-blue-500"
         >

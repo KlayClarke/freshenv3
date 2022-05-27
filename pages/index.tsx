@@ -16,7 +16,7 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
 export default function Home({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
-  const [Map, setMap] = useState();
+  const [Map, setMap] = useState<any>();
   const { data: session, status } = useSession();
   const { data: salons, error } = useSWR(
     process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
@@ -41,7 +41,7 @@ export default function Home({ salon }) {
   }, []);
 
   useEffect(() => {
-    if (pageIsMounted && salons) {
+    if (pageIsMounted && salons && Map) {
       Map.on("load", () => {
         initializeClusterMap(mapboxgl, Map, salons);
       });
@@ -51,7 +51,6 @@ export default function Home({ salon }) {
   return (
     <div className="flex items-center justify-center">
       <div className="max-w-[1400px]">
-        <Head></Head>
         <Script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js" />
         {/* hero */}
         <section className="relative">
