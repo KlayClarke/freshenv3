@@ -27,6 +27,7 @@ export default function Navbar() {
       </div>
       <div className="block lg:hidden">
         <button
+          type="button"
           aria-label="menu"
           onClick={() => setIsNavOpen(!isNavOpen)}
           className="flex items-center px-3 py-2 border rounded bg-blue-500 text-white border-white  hover:text-blue-500 hover:bg-white hover:border-blue-500"
@@ -57,6 +58,7 @@ export default function Navbar() {
           {status == "authenticated" ? (
             <>
               <button
+                type="button"
                 onClick={() => {
                   signOut({
                     callbackUrl: process.env.NEXT_PUBLIC_SITE_ENDPOINT,

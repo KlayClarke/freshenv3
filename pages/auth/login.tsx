@@ -22,6 +22,7 @@ export default function Login({ csrfToken }) {
       <br />
       <div className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4 flex flex-col justify-center items-center">
         <button
+          type="button"
           className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-4 py-2 md:px-8 md:py-2 mb-4 flex items-center hover:bg-gray-50 border rounded"
           onClick={() => {
             signIn("google", {
@@ -33,6 +34,7 @@ export default function Login({ csrfToken }) {
           <p className="text-black text-md lg:text-lg font-semibold">Google</p>
         </button>
         <button
+          type="button"
           className="bg-black sm:shadow-sm sm:border sm:rounded-lg px-4 py-2 md:px-8 md:py-2 mb-4 flex items-center hover:bg-gray-800 border rounded"
           onClick={() => {
             signIn("github", {
