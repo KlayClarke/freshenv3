@@ -130,9 +130,9 @@ export default function Home({ salon }) {
             <>
               {/* feature 2 */}
               <div className="relative mt-20 lg:mt-20 md:px-10">
-                <div className="container w-[80%] mx-auto flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
+                <div className="container w-[80%] mx-auto flex flex-col items-center justify-center gap-x-24">
                   {/* image */}
-                  <div className="w-[100%] flex flex-1 justify-center z-0 mb-10 lg:mb-0">
+                  <div className="w-[100%] flex flex-1 justify-center z-0 mb-10 ">
                     <div className="w-fit bg-white rounded-lg shadow-sm border-2 overflow-hidden">
                       <div className="md:flex">
                         <div className="relative md:shrink-0 ">
@@ -171,8 +171,8 @@ export default function Home({ salon }) {
                     </div>
                   </div>
                   {/* content */}
-                  <div className="flex flex-1 flex-col items-center lg:items-start">
-                    <h1 className="sm:text-2xl md:text-3xl text-blue-500 text-center lg:text-left">
+                  <div className="flex flex-1 flex-col items-center">
+                    <h1 className="sm:text-2xl md:text-3xl text-blue-500 text-center">
                       If you ever find yourself in Connecticut, stop by the best
                       barbershop in the tri-state area.
                     </h1>
