@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Salon } from "../../atoms/salonsAtom";
 
 type SalonFormProps = {
@@ -9,20 +9,20 @@ type SalonFormProps = {
 
 const SalonForm: React.FC<SalonFormProps> = ({ salon }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    type: "",
-    average_price: 0,
-    image: "",
-    street_address: "",
-    city: "",
-    state: "",
-    zip_code: "",
+    name: salon ? salon.name : "",
+    type: salon ? salon.type : "",
+    average_price: salon ? salon.average_price : 0,
+    image: salon ? salon.image : "",
+    street_address: salon ? salon.street_address : "",
+    city: salon ? salon.city : "",
+    state: salon ? salon.state : "",
+    zip_code: salon ? salon.zip_code : "",
   });
 
   const router = useRouter();
 
-  async function handleCreate(e) {
-    e.preventDefault();
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     const {
       name,
       type,
@@ -33,8 +33,9 @@ const SalonForm: React.FC<SalonFormProps> = ({ salon }) => {
       state,
       zip_code,
     } = formData;
-    const res = await fetch(
-      process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/create",
+    await fetch(
+      process.env.NEXT_PUBLIC_SITE_ENDPOINT +
+        (salon ? `/api/salons/edit/${salon.id}` : "/api/salons/create"),
       {
         body: JSON.stringify({
           name,
@@ -52,14 +53,17 @@ const SalonForm: React.FC<SalonFormProps> = ({ salon }) => {
         method: "POST",
       }
     );
-    router.push("/explore");
+    router.push(salon ? `/explore/detail/${salon.id}` : "/explore");
   }
+
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-      <h1 className="text-5xl text-green-500 font-semibold">Create</h1>
+      <h1 className="text-5xl text-green-500 font-semibold">
+        {salon ? "Edit" : "Create"}
+      </h1>
       <br />
       <form
-        onSubmit={handleCreate}
+        onSubmit={(event) => handleSubmit(event)}
         className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4 flex flex-col justify-center items-center"
       >
         <div className="form-section">
@@ -226,8 +230,11 @@ const SalonForm: React.FC<SalonFormProps> = ({ salon }) => {
             required
           />
         </div>
-        <button className="btn bg-green-500 hover:bg-green-600 text-white font-semibold border border-green-500">
-          Create
+        <button
+          type="submit"
+          className="btn bg-green-500 hover:bg-green-600 text-white font-semibold border border-green-500"
+        >
+          {salon ? "Edit" : "Create"}
         </button>
         <p className="mt-4">
           <Link href="/explore">
