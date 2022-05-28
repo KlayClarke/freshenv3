@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import prisma from "../../lib/prisma";
-import * as sanitizeHtml from "sanitize-html";
+import sanitize from "sanitize-html";
 import Link from "next/link";
 import Image from "next/image";
 import unentity from "../../utils/unentity";
@@ -82,22 +82,22 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
                   <div className="p-8 min-w-[50%]">
                     <div className="uppercase tracking-wide font-semibold">
                       <p className="text-sm text-blue-500">
-                        {unentity(sanitizeHtml(salon.type))}
+                        {unentity(sanitize(salon.type))}
                       </p>
                       <p className="text-md text-green-600">
-                        ${unentity(sanitizeHtml(salon.average_price))}
+                        ${unentity(sanitize(salon.average_price))}
                       </p>
                     </div>
                     <Link href={`/explore/detail/${salon.id}`}>
                       <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                        {unentity(sanitizeHtml(salon.name))}
+                        {unentity(sanitize(salon.name))}
                       </a>
                     </Link>
                     <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
-                      {unentity(sanitizeHtml(salon.street_address))}{" "}
-                      {unentity(sanitizeHtml(salon.city))},{" "}
-                      {unentity(sanitizeHtml(salon.state))}{" "}
-                      {unentity(sanitizeHtml(salon.zip_code))}
+                      {unentity(sanitize(salon.street_address))}{" "}
+                      {unentity(sanitize(salon.city))},{" "}
+                      {unentity(sanitize(salon.state))}{" "}
+                      {unentity(sanitize(salon.zip_code))}
                     </p>
                   </div>
                 </div>

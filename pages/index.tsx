@@ -6,7 +6,7 @@ import mapboxgl from "mapbox-gl";
 import useSWR from "swr";
 import initializeClusterMap from "../map/initializeClusterMap";
 import { fetcher } from "../utils/fetcher";
-import * as sanitizeHtml from "sanitize-html";
+import sanitize from "sanitize-html";
 import prisma from "../lib/prisma";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -149,22 +149,21 @@ export default function Home({ salon }) {
                         <div className="p-4 md:p-8 min-w-[50%]">
                           <div className="uppercase tracking-wide font-semibold">
                             <p className="text-sm text-blue-500">
-                              {sanitizeHtml(salon.type)}
+                              {sanitize(salon.type)}
                             </p>
                             <p className="text-md text-green-600">
-                              ${sanitizeHtml(salon.average_price)}
+                              ${sanitize(salon.average_price)}
                             </p>
                           </div>
                           <Link href={`/explore/detail/${salon.id}`}>
                             <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                              {sanitizeHtml(salon.name)}
+                              {sanitize(salon.name)}
                             </a>
                           </Link>
                           <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
-                            {sanitizeHtml(salon.street_address)}{" "}
-                            {sanitizeHtml(salon.city)},{" "}
-                            {sanitizeHtml(salon.state)}{" "}
-                            {sanitizeHtml(salon.zip_code)}
+                            {sanitize(salon.street_address)}{" "}
+                            {sanitize(salon.city)}, {sanitize(salon.state)}{" "}
+                            {sanitize(salon.zip_code)}
                           </p>
                         </div>
                       </div>

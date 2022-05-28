@@ -4,10 +4,10 @@ const mbxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mbxToken });
 
 export default async function findLocation(
-  streetAddress,
-  city,
-  state,
-  zipCode
+  streetAddress: string,
+  city: string,
+  state: string,
+  zipCode: string
 ) {
   const fullAddress = `${streetAddress} ${city}, ${state} ${zipCode}`;
   const geoData = await geocoder
@@ -16,7 +16,7 @@ export default async function findLocation(
       limit: 1,
     })
     .send()
-    .then((res) => {
+    .then((res: any) => {
       return res;
     });
 

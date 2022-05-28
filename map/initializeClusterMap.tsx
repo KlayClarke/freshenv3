@@ -1,4 +1,8 @@
-export default function initializeClusterMap(mapboxgl, map, data) {
+export default function initializeClusterMap(
+  mapboxgl: any,
+  map: any,
+  data: any
+) {
   map.addSource("salons", {
     type: "geojson",
     data: data,

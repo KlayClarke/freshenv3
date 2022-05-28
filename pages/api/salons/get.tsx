@@ -47,5 +47,5 @@ export default async function handler(
     formattedData.push(formattedSalon);
   });
 
-  res.status(200).json({ features: formattedData });
+  res.json({ features: formattedData });
 }
