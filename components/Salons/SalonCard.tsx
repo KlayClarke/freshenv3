@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { Salon } from "../atoms/salonsAtom";
+import { Salon } from "../../atoms/salonsAtom";
 import sanitize from "sanitize-html";
-import unentity from "../utils/unentity";
+import unentity from "../../utils/unentity";
 
 type SalonCardProps = {
   salon: Salon;

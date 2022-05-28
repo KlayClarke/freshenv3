@@ -4,9 +4,9 @@ import prisma from "../../lib/prisma";
 import sanitize from "sanitize-html";
 import Link from "next/link";
 import unentity from "../../utils/unentity";
-import SalonCard from "../../components/SalonCard";
+import SalonCard from "../../components/Salons/SalonCard";
 import { Salon } from "../../atoms/salonsAtom";
-import SortBy from "../../components/SortBy";
+import SortBy from "../../components/Explore/SortBy";
 
 type ExploreProps = {
   salonsByName: Salon[];
@@ -14,7 +14,11 @@ type ExploreProps = {
   salonsByPrice: Salon[];
 };
 
-export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
+export default function Explore({
+  salonsByName,
+  salonsByType,
+  salonsByPrice,
+}: ExploreProps) {
   const [sortBy, setSortBy] = useState("name");
   const [salons, setSalons] = useState(salonsByName);
   const { data: session, status } = useSession();

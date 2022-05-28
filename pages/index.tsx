@@ -11,7 +11,7 @@ import prisma from "../lib/prisma";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import SalonCard from "../components/SalonCard";
+import SalonCard from "../components/Salons/SalonCard";
 import WhyUsWriteup from "../components/Home/WhyUsWriteup";
 import VisitWriteup from "../components/Home/VisitWriteup";
 import WelcomeWriteUp from "../components/Home/WelcomeWriteUp";
@@ -39,10 +39,6 @@ export default function Home({ salon }) {
     });
 
     setMap(map);
-  }, []);
-
-  useEffect(() => {
-    console.log(session.user);
   }, []);
 
   useEffect(() => {

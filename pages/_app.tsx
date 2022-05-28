@@ -12,8 +12,8 @@ import {
   useRecoilValue,
 } from "recoil";
 
-import Layout from "../components/layout";
-import AuthWrapper from "../components/AuthWrapper";
+import Layout from "../components/Layout/Layout";
+import AuthWrapper from "../components/Auth/AuthWrapper";
 
 function MyApp({ Component, pageProps }) {
   return (

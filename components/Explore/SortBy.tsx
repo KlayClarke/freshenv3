@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Salon } from "../atoms/salonsAtom";
+import { Salon } from "../../atoms/salonsAtom";
 
 type SortByProps = {
   setSortBy: (value: string) => void;
