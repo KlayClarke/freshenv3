@@ -18,4 +18,5 @@ export type Salon = {
   properties: {
     mapboxClusterHTML: string;
   };
+  author_id: string;
 };
