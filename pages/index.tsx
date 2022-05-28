@@ -15,6 +15,7 @@ import SalonCard from "../components/SalonCard";
 import WhyUsWriteup from "../components/Home/WhyUsWriteup";
 import VisitWriteup from "../components/Home/VisitWriteup";
 import WelcomeWriteUp from "../components/Home/WelcomeWriteUp";
+import WelcomeBack from "../components/Home/WelcomeBack";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
@@ -27,12 +28,6 @@ export default function Home({ salon }) {
     fetcher
   );
 
-  const imageLoader = () => {
-    return (
-      salon.image ||
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
-    );
-  };
   useEffect(() => {
     setPageIsMounted(true);
 
@@ -44,6 +39,10 @@ export default function Home({ salon }) {
     });
 
     setMap(map);
+  }, []);
+
+  useEffect(() => {
+    console.log(session.user);
   }, []);
 
   useEffect(() => {
@@ -68,13 +67,7 @@ export default function Home({ salon }) {
                 <WelcomeWriteUp />
               </>
             ) : (
-              <>
-                <div className="flex flex-1 flex-col items-center">
-                  <h2 className="text-blue-500 text-3xl md:text-4xl lg:text-6xl text-center font-semibold">
-                    Welcome back, {session.user.name.split(" ")[0]}!
-                  </h2>
-                </div>
-              </>
+              <>{session.user.name && <WelcomeBack user={session.user} />}</>
             )}
           </div>
         </section>
