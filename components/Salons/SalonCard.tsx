@@ -3,12 +3,17 @@ import Link from "next/link";
 import { Salon } from "../../atoms/salonsAtom";
 import sanitize from "sanitize-html";
 import unentity from "../../utils/unentity";
+import { User } from "../../atoms/usersAtom";
+import { useSession } from "next-auth/react";
 
 type SalonCardProps = {
   salon: Salon;
+  salonPage?: boolean;
 };
 
-const SalonCard: React.FC<SalonCardProps> = ({ salon }) => {
+const SalonCard: React.FC<SalonCardProps> = ({ salon, salonPage }) => {
+  const { data: session, status } = useSession();
+
   return (
     <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
       <div className="md:flex">
@@ -39,6 +44,24 @@ const SalonCard: React.FC<SalonCardProps> = ({ salon }) => {
             {unentity(sanitize(salon.city))}, {unentity(sanitize(salon.state))}{" "}
             {unentity(sanitize(salon.zip_code))}
           </p>
+          {status === "authenticated" &&
+            session.user_id === salon.author_id &&
+            salonPage && (
+              <>
+                <div className="py-2 flex gap-4">
+                  <Link href={`/explore/detail/${salon.id}/edit`}>
+                    <a className="btn bg-[#ffc006] hover:bg-[#ffc106d9] text-white font-semibold text-center">
+                      Edit
+                    </a>
+                  </Link>
+                  <Link href={`/explore/detail/${salon.id}/delete_confirm`}>
+                    <a className="btn bg-[#dd3444] hover:bg-[#ca2e3e] text-white font-semibold text-center">
+                      Delete
+                    </a>
+                  </Link>
+                </div>
+              </>
+            )}
         </div>
       </div>
     </div>
