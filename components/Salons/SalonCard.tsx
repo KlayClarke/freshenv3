@@ -16,10 +16,14 @@ const SalonCard: React.FC<SalonCardProps> = ({ salon, salonPage }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-      <div className="md:flex">
+      <div className={salonPage ? "flex flex-col" : "md:flex"}>
         <div className="md:shrink-0">
           <img
-            className="h-48 w-full object-cover md:w-48"
+            className={
+              salonPage
+                ? "h-36 sm:h-60 xl:h-80 w-full object-cover"
+                : "h-48 w-full object-cover md:w-48"
+            }
             src={
               salon.image ||
               "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
