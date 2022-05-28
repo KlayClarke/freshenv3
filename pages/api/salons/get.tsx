@@ -17,7 +17,7 @@ export default async function handler(
 
   const salons = (await prisma.salon.findMany({})) as Salon[];
 
-  const formattedData = [];
+  const formattedData: Salon[] = [];
 
   salons.map((salon) => {
     const formattedSalon = {} as Salon;
