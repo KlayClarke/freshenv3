@@ -14,7 +14,7 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
 export default function Detail({ salon }) {
   const [pageIsMounted, setPageIsMounted] = useState(false);
-  const [Map, setMap] = useState();
+  const [Map, setMap] = useState<any>();
   const { data: session, status } = useSession();
   const { data: salons, error } = useSWR(
     process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
@@ -37,7 +37,7 @@ export default function Detail({ salon }) {
   }, []);
 
   useEffect(() => {
-    if (pageIsMounted && salons) {
+    if (pageIsMounted && salons && Map) {
       Map.on("load", () => {
         initializeClusterMap(mapboxgl, Map, salons);
       });
@@ -67,7 +67,6 @@ export default function Detail({ salon }) {
                         "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
                       }
                       alt="shop"
-                      layout="fill"
                     />
                   </div>
                   <div className="p-1.5 sm:p-4 lg:p-6">

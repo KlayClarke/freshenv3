@@ -68,6 +68,7 @@ export default function SalonCreate() {
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="name"
+            title="name"
             onChange={(e) => {
               setFormData({ ...formData, name: e.target.value });
             }}
@@ -84,6 +85,8 @@ export default function SalonCreate() {
           </label>
           <div className="relative w-[203px]">
             <select
+              title="type"
+              name="type"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
               onChange={(e) =>
                 setFormData({ ...formData, type: e.target.value })
@@ -115,12 +118,16 @@ export default function SalonCreate() {
             Average Price ($)
           </label>
           <input
+            title="average price"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             type="number"
             name="average_price"
             min={0}
             onChange={(e) => {
-              setFormData({ ...formData, average_price: e.target.value });
+              setFormData({
+                ...formData,
+                average_price: parseInt(e.target.value),
+              });
             }}
             value={formData.average_price}
             required
@@ -134,6 +141,7 @@ export default function SalonCreate() {
             Image
           </label>
           <input
+            title="image"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="image"
             onChange={(e) => {
@@ -150,6 +158,7 @@ export default function SalonCreate() {
             Street Address
           </label>
           <input
+            title="street address"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="street_address"
             onChange={(e) => {
@@ -167,6 +176,7 @@ export default function SalonCreate() {
             City
           </label>
           <input
+            title="city"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="city"
             onChange={(e) => {
@@ -184,6 +194,7 @@ export default function SalonCreate() {
             State
           </label>
           <input
+            title="state"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="state"
             onChange={(e) => {
@@ -201,6 +212,7 @@ export default function SalonCreate() {
             Zip Code
           </label>
           <input
+            title="zip code"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="zip_code"
             onChange={(e) => {

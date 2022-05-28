@@ -1,7 +1,12 @@
 import prisma from "../../../lib/prisma";
 import NextCors from "nextjs-cors";
+import { Salon } from "../../../atoms/salonsAtom";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<any>
+) {
   await NextCors(req, res, {
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     origin: "*",
@@ -10,12 +15,12 @@ export default async function handler(req, res) {
 
   res.setHeader("Access-Control-Allow-Origin", "*");
 
-  const salons = await prisma.salon.findMany({});
+  const salons = (await prisma.salon.findMany({})) as Salon[];
 
   const formattedData = [];
 
   salons.map((salon) => {
-    const formattedSalon = {};
+    const formattedSalon = {} as Salon;
 
     formattedSalon.geometry = {
       type: "Point",

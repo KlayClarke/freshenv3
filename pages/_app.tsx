@@ -4,19 +4,28 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 import "../styles/rating_stars.css";
 import "../styles/globals.css";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 
 import Layout from "../components/layout";
 import AuthWrapper from "../components/AuthWrapper";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <SessionProvider session={pageProps.session}>
-      <AuthWrapper>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </AuthWrapper>
-    </SessionProvider>
+    <RecoilRoot>
+      <SessionProvider session={pageProps.session}>
+        <AuthWrapper>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AuthWrapper>
+      </SessionProvider>
+    </RecoilRoot>
   );
 }
 

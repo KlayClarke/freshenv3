@@ -32,6 +32,8 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
         <div className="px-5 md:px-10 pt-10 flex flex-col justify-center items-center gap-5 md:flex-row md:justify-between">
           <div className="relative w-64">
             <select
+              name="sort_by"
+              title="sort by"
               onChange={(e) => setSortBy(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             >
@@ -75,7 +77,6 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
                         "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
                       }
                       alt="shop"
-                      layout="fill"
                     />
                   </div>
                   <div className="p-8 min-w-[50%]">

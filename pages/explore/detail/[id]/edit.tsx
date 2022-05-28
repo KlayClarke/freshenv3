@@ -67,6 +67,8 @@ export default function SalonEdit({ salon }) {
             Name
           </label>
           <input
+            title="name"
+            placeholder="Name"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="name"
             onChange={(e) => {
@@ -85,6 +87,8 @@ export default function SalonEdit({ salon }) {
           </label>
           <div className="relative w-[203px]">
             <select
+              name="type"
+              title="type"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
               onChange={(e) =>
                 setFormData({ ...formData, type: e.target.value })
@@ -116,6 +120,7 @@ export default function SalonEdit({ salon }) {
             Average Price ($)
           </label>
           <input
+            title="average price"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             type="number"
             name="average_price"
@@ -135,6 +140,7 @@ export default function SalonEdit({ salon }) {
             Image
           </label>
           <input
+            title="image"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="image"
             onChange={(e) => {
@@ -151,6 +157,7 @@ export default function SalonEdit({ salon }) {
             Street Address
           </label>
           <input
+            title="street address"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="street_address"
             onChange={(e) => {
@@ -168,6 +175,7 @@ export default function SalonEdit({ salon }) {
             City
           </label>
           <input
+            title="city"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="city"
             onChange={(e) => {
@@ -185,6 +193,7 @@ export default function SalonEdit({ salon }) {
             State
           </label>
           <input
+            title="state"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="state"
             onChange={(e) => {
@@ -202,6 +211,7 @@ export default function SalonEdit({ salon }) {
             Zip Code
           </label>
           <input
+            title="zip code"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="zip_code"
             onChange={(e) => {
