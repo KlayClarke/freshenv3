@@ -10,6 +10,7 @@ import unentity from "../../../../utils/unentity";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import SalonCard from "../../../../components/Salons/SalonCard";
+import ReviewSection from "../../../../components/Reviews/ReviewSection";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
@@ -58,17 +59,7 @@ export default function Detail({ salon }) {
             {/* feature 1 */}
             <div className="w-[100%] lg:max-w-[800px]">
               <SalonCard salon={salon} salonPage />
-              <div className="relative mt-20 lg:mt-24 px-5">
-                <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
-                  {/* content */}
-                  <div className="flex flex-1 flex-col items-center">
-                    <h1 className="text-2xl md:text-3xl text-center text-gray-200 font-semibold">
-                      Ratings system &amp; review section currently in
-                      development.
-                    </h1>
-                  </div>
-                </div>
-              </div>
+              <ReviewSection />
             </div>
           </div>
         </section>
