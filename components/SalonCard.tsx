@@ -5,16 +5,12 @@ import sanitize from "sanitize-html";
 import unentity from "../utils/unentity";
 
 type SalonCardProps = {
-  index: number;
   salon: Salon;
 };
 
-const SalonCard: React.FC<SalonCardProps> = ({ index, salon }) => {
+const SalonCard: React.FC<SalonCardProps> = ({ salon }) => {
   return (
-    <div
-      className="bg-white rounded-lg shadow-sm border overflow-hidden"
-      key={index}
-    >
+    <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
       <div className="md:flex">
         <div className="md:shrink-0">
           <img

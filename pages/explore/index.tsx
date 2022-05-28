@@ -51,7 +51,7 @@ export default function Explore({ salonsByName, salonsByType, salonsByPrice }) {
         </div>
         <div className="w-[100%] grid lg:grid-cols-2 gap-5 p-10">
           {salons.map((salon: Salon, index: number) => {
-            return <SalonCard index={index} salon={salon} />;
+            return <SalonCard key={index} salon={salon} />;
           })}
         </div>
       </div>
