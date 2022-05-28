@@ -38,11 +38,22 @@ const SalonCard: React.FC<SalonCardProps> = ({ salon, salonPage }) => {
             </p>
             <p className="text-md text-green-600">${salon.average_price}</p>
           </div>
-          <Link href={`/explore/detail/${salon.id}`}>
-            <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+          {salonPage ? (
+            <p className="block mt-1 text-lg leading-tight font-medium text-black">
               {unentity(sanitize(salon.name))}
-            </a>
-          </Link>
+            </p>
+          ) : (
+            <Link href={`/explore/detail/${salon.id}`}>
+              <a
+                className={
+                  "block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+                }
+              >
+                {unentity(sanitize(salon.name))}
+              </a>
+            </Link>
+          )}
+
           <p className="mt-2 text-slate-500 h-fit min-w-[80%] truncate">
             {unentity(sanitize(salon.street_address))}{" "}
             {unentity(sanitize(salon.city))}, {unentity(sanitize(salon.state))}{" "}
