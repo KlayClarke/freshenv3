@@ -5,7 +5,7 @@ export type Geometry = {
 
 export type Salon = {
   geometry: Geometry;
-  coordinates: [];
+  coordinates: [number, number];
   id: string;
   name: string;
   type: string;

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { Salon } from "../../atoms/salonsAtom";
 import sanitize from "sanitize-html";
 import unentity from "../../utils/unentity";
 import { User } from "../../atoms/usersAtom";
 import { useSession } from "next-auth/react";
+import { Session } from "@prisma/client";
 
 type SalonCardProps = {
   salon: Salon;
@@ -13,7 +14,6 @@ type SalonCardProps = {
 
 const SalonCard: React.FC<SalonCardProps> = ({ salon, salonPage }) => {
   const { data: session, status } = useSession();
-
   return (
     <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
       <div className={salonPage ? "flex flex-col" : "md:flex"}>
@@ -60,7 +60,8 @@ const SalonCard: React.FC<SalonCardProps> = ({ salon, salonPage }) => {
             {unentity(sanitize(salon.zip_code))}
           </p>
           {status === "authenticated" &&
-            session.user_id === salon.author_id &&
+            session &&
+            session.userId === salon.author_id &&
             salonPage && (
               <>
                 <div className="py-2 flex gap-4">

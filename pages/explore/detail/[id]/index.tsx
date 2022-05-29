@@ -6,8 +6,17 @@ import { useRouter } from "next/router";
 import SalonCard from "../../../../components/Salons/SalonCard";
 import ReviewSection from "../../../../components/Reviews/ReviewSection";
 import MapboxMap from "../../../../components/Map/MapboxMap";
+import { useSession } from "next-auth/react";
+import { Review } from "@prisma/client";
+import { Salon } from "../../../../atoms/salonsAtom";
 
-export default function Detail({ salon }) {
+type DetailProps = {
+  salon: Salon;
+  reviews: Review[];
+};
+
+export default function Detail({ salon, reviews }: DetailProps) {
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   return (
@@ -24,7 +33,7 @@ export default function Detail({ salon }) {
             {/* feature 1 */}
             <div className="w-[100%] lg:max-w-[800px]">
               <SalonCard salon={salon} salonPage />
-              <ReviewSection />
+              <ReviewSection salon={salon} reviews={reviews} />
             </div>
           </div>
         </section>
@@ -38,7 +47,15 @@ export async function getServerSideProps({ query }) {
       id: query.id,
     },
   });
+  const reviews = await prisma.review.findMany({
+    where: {
+      salon_id: salon.id,
+    },
+    include: {
+      author: true,
+    },
+  });
   return {
-    props: { salon },
+    props: { salon, reviews },
   };
 }
