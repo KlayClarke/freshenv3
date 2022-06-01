@@ -33,7 +33,6 @@ export default function Detail({ salon, reviews }: DetailProps) {
             {/* feature 1 */}
             <div className="w-[100%] lg:max-w-[800px]">
               <SalonCard salon={salon} salonPage />
-              <ReviewSection salon={salon} reviews={reviews} />
             </div>
           </div>
         </section>

@@ -147,39 +147,6 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ salon, reviews }) => {
                 </h1>
               )}
               {/* content */}
-              <div className="flex flex-1 flex-col items-center w-[100%]">
-                {reviews
-                  .slice(0)
-                  .reverse()
-                  .map((review, id) => (
-                    <div key={id} className="review px-5 pt-5 w-full">
-                      <p className="font-bold">
-                        {unEntity(sanitize(review.author.name.split(" ")[0]))} -{" "}
-                        {unEntity(sanitize(review.rating))}
-                      </p>
-                      <p className="text-lg mb-5 mt-5">
-                        {unEntity(sanitize(review.body))}
-                      </p>
-                      {session && session.user_id === review.author_id && (
-                        <>
-                          <form
-                            className="flex justify-end"
-                            onSubmit={(e) => handleReviewDeletion(e, review.id)}
-                          >
-                            <button
-                              title="review delete"
-                              type="submit"
-                              className="btn-small.bg-[#dd3444].hover:bg-[#ca2e3e].text-white.font-semibold.text-center"
-                            >
-                              X
-                            </button>
-                          </form>
-                        </>
-                      )}
-                      <br />
-                    </div>
-                  ))}
-              </div>
             </div>
           </div>
         </div>
