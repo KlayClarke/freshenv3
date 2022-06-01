@@ -1,24 +1,13 @@
-import { useEffect, useState } from "react";
-import mapboxgl from "mapbox-gl";
-import initializeClusterMap from "../../../../map/initializeClusterMap";
 import prisma from "../../../../lib/prisma";
-import { useRouter } from "next/router";
 import SalonCard from "../../../../components/Salons/SalonCard";
-import ReviewSection from "../../../../components/Reviews/ReviewSection";
 import MapboxMap from "../../../../components/Map/MapboxMap";
-import { useSession } from "next-auth/react";
-import { Review } from "@prisma/client";
 import { Salon } from "../../../../atoms/salonsAtom";
 
 type DetailProps = {
   salon: Salon;
-  reviews: Review[];
 };
 
-export default function Detail({ salon, reviews }: DetailProps) {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-
+export default function Detail({ salon }: DetailProps) {
   return (
     <div className="flex items-center justify-center">
       <div className="max-w-[1400px] w-full lg:w-[1400px]">
@@ -46,15 +35,8 @@ export async function getServerSideProps({ query }) {
       id: query.id,
     },
   });
-  const reviews = await prisma.review.findMany({
-    where: {
-      salon_id: salon.id,
-    },
-    include: {
-      author: true,
-    },
-  });
+
   return {
-    props: { salon, reviews },
+    props: { salon },
   };
 }
