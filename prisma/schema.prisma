@@ -41,17 +41,17 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
+  email         String?       @unique
+  emailVerified DateTime?     @map("email_verified")
   image         String?
-  zipCode       String?   @map("zip_code")
+  zipCode       String?       @map("zip_code")
   accounts      Account[]
   sessions      Session[]
   salons        Salon[]
   reviews       Review[]
-  appointments Appointment[]
+  appointments  Appointment[]
 
   @@map("users")
 }
@@ -67,7 +67,7 @@ model VerificationToken {
 }
 
 model Salon {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   type           String
   average_price  Int
@@ -78,8 +78,8 @@ model Salon {
   zip_code       String
   coordinates    Float[]
   reviews        Review[]
-  appointments Appointment[]
-  author         User     @relation(fields: [author_id], references: [id])
+  appointments   Appointment[]
+  author         User          @relation(fields: [author_id], references: [id])
   author_id      String
 
   @@map("salons")
@@ -98,13 +98,13 @@ model Review {
 }
 
 model Appointment {
-    id  String @id @default(auto()) @map("_id") @db.ObjectId
-    date_time DateTime
-    description String
-    author User @relation(fields: [author_id], references: [id])
-    author_id String
-    salon Salon @relation(fields: [salon_id], references: [id])
-    salon_id String
-    
-    @@map("appointments")
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  date_time   DateTime
+  description String
+  author      User     @relation(fields: [author_id], references: [id])
+  author_id   String
+  salon       Salon    @relation(fields: [salon_id], references: [id])
+  salon_id    String
+
+  @@map("appointments")
 }
