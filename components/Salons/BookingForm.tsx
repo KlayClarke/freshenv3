@@ -9,8 +9,6 @@ type BookingFormProps = {
 
 const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
   const [formData, setFormData] = useState({
-    customer_name: "",
-    customer_number: "",
     booking_date: "",
     booking_time: "",
     booking_description: "",
@@ -19,19 +17,11 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const {
-      customer_name,
-      customer_number,
-      booking_date,
-      booking_time,
-      booking_description,
-    } = formData;
+    const { booking_date, booking_time, booking_description } = formData;
     await fetch(
       process.env.NEXT_PUBLIC_SITE_ENDPOINT + `/api/salons/book/${salon.id}`,
       {
         body: JSON.stringify({
-          customer_name,
-          customer_number,
           booking_date,
           booking_time,
           booking_description,
@@ -57,46 +47,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
         onSubmit={(event) => handleSubmit(event)}
         className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4 flex flex-col justify-center items-center"
       >
-        <div className="form-section">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="customer_name"
-          >
-            Your Name
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            name="customer_name"
-            title="customer name"
-            onChange={(e) => {
-              setFormData({ ...formData, customer_name: e.target.value });
-            }}
-            value={formData.customer_name}
-            required
-          />
-        </div>
-        <div className="form-section">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="customer_number"
-          >
-            Your Number
-          </label>
-          <input
-            title="customer number"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            type="text"
-            name="customer_number"
-            onChange={(e) => {
-              setFormData({
-                ...formData,
-                customer_number: e.target.value,
-              });
-            }}
-            value={formData.customer_number}
-            required
-          />
-        </div>
         <div className="form-section">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -137,7 +87,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="booking_description"
           >
-            Booking Description
+            Brief Description
           </label>
           <input
             title="booking description"
