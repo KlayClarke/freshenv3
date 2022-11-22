@@ -26,8 +26,7 @@ export default NextAuth({
   },
   callbacks: {
     session: async ({ session, user }) => {
-      session.user_id = user.id;
-      session.zip_code = user.zipCode;
+      session.user.id = user.id;
       return Promise.resolve(session);
     },
   },

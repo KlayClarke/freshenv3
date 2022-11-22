@@ -3,9 +3,7 @@ import Link from "next/link";
 import { Salon } from "../../atoms/salonsAtom";
 import sanitize from "sanitize-html";
 import unentity from "../../utils/unentity";
-import { User } from "../../atoms/usersAtom";
 import { useSession } from "next-auth/react";
-import { Session } from "@prisma/client";
 
 type SalonCardProps = {
   salon: Salon;
@@ -61,7 +59,7 @@ const SalonCard: React.FC<SalonCardProps> = ({ salon, salonPage }) => {
           </p>
           {status === "authenticated" &&
             session &&
-            session.userId === salon.author_id &&
+            session.user.id === salon.author_id &&
             salonPage && (
               <>
                 <div className="py-2 flex gap-4">
