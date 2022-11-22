@@ -9,21 +9,19 @@ type BookingFormProps = {
 
 const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
   const [formData, setFormData] = useState({
-    booking_date: "",
-    booking_time: "",
+    booking_datetime: "",
     booking_description: "",
   });
   const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const { booking_date, booking_time, booking_description } = formData;
+    const { booking_datetime, booking_description } = formData;
     await fetch(
       process.env.NEXT_PUBLIC_SITE_ENDPOINT + `/api/salons/book/${salon.id}`,
       {
         body: JSON.stringify({
-          booking_date,
-          booking_time,
+          booking_datetime,
           booking_description,
         }),
         headers: {
@@ -50,35 +48,19 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
         <div className="form-section">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="booking_date"
-          >
-            Booking Date
-          </label>
-          <input
-            title="booking date"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            name="booking_date"
-            onChange={(e) => {
-              setFormData({ ...formData, booking_date: e.target.value });
-            }}
-            value={formData.booking_date}
-          />
-        </div>
-        <div className="form-section">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="booking_time"
           >
-            Booking Time
+            Booking Date & Time
           </label>
           <input
             title="booking time"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="booking_time"
             onChange={(e) => {
-              setFormData({ ...formData, booking_time: e.target.value });
+              setFormData({ ...formData, booking_datetime: e.target.value });
             }}
-            value={formData.booking_time}
+            value={formData.booking_datetime}
+            type={"datetime-local"}
             required
           />
         </div>
@@ -91,10 +73,15 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
           </label>
           <input
             title="booking description"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
+            className="shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
             name="booking_description"
             onChange={(e) => {
-              setFormData({ ...formData, booking_description: e.target.value });
+              if (e.target.value.length <= 40) {
+                setFormData({
+                  ...formData,
+                  booking_description: e.target.value,
+                });
+              }
             }}
             value={formData.booking_description}
             required
