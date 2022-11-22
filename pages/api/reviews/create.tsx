@@ -4,7 +4,7 @@ import validator from "validator";
 
 export default async function handler(req, res) {
   const session = await getSession({ req });
-  const { user_id } = session;
+  const { user } = session;
 
   // update salon with new review
 
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
             create: {
               rating,
               body,
-              author_id: user_id,
+              author_id: user.id,
             },
           },
         },
