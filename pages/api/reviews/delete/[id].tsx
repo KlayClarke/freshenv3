@@ -3,7 +3,7 @@ import prisma from "../../../../lib/prisma";
 
 export default async function handler(req, res) {
   const session = await getSession({ req });
-  const { user_id } = session;
+  const { user } = session;
   const { id: review_id } = req.query;
 
   let review = await prisma.review.findUnique({
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     },
   });
 
-  if (req.method === "POST" && session && user_id === review.author_id) {
+  if (req.method === "POST" && session && user.id === review.author_id) {
     try {
       const review = await prisma.review.delete({
         where: {

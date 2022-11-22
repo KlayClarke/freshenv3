@@ -5,7 +5,7 @@ import validator from "validator";
 
 export default async function handler(req, res) {
   const session = await getSession({ req });
-  const { user_id } = session;
+  const { user } = session;
 
   if (req.method === "POST") {
     // Process POST request
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     try {
       await prisma.user.update({
         where: {
-          id: user_id,
+          id: user.id,
         },
         data: {
           salons: {

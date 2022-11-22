@@ -4,7 +4,7 @@ import findLocation from "../../../../map/findLocation";
 
 export default async function handler(req, res) {
   const session = await getSession({ req });
-  const { user_id } = session;
+  const { user } = session;
   const { id } = req.query;
 
   let salon = await prisma.salon.findUnique({
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     },
   });
 
-  if (req.method === "POST" && session && user_id === salon.author_id) {
+  if (req.method === "POST" && session && user.id === salon.author_id) {
     const {
       name,
       type,
