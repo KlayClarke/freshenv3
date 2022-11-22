@@ -25,7 +25,7 @@ const MapboxMap: React.FC<MapboxMapProps> = ({ coordinates, salonPage }) => {
 
     const map = new mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: "mapbox://styles/kclare/class9ipu002715nvipuk0nil",
       center: coordinates,
       zoom: salonPage ? 15 : 4.75,
     });
