@@ -24,11 +24,11 @@ export default function initializeClusterMap(
       "circle-color": [
         "step",
         ["get", "point_count"],
-        "orange",
+        "#ff9f80",
         20,
-        "green",
+        "#ff9f80",
         40,
-        "red",
+        "#ff9f80",
       ],
       "circle-radius": ["step", ["get", "point_count"], 20, 20, 30, 40, 40],
     },
@@ -50,7 +50,7 @@ export default function initializeClusterMap(
     source: "salons",
     filter: ["!", ["has", "point_count"]],
     paint: {
-      "circle-color": "#11b4da",
+      "circle-color": "#ff9f80",
       "circle-radius": 10,
       "circle-stroke-width": 1,
       "circle-stroke-color": "#fff",
