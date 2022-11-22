@@ -9,20 +9,21 @@ type BookingFormProps = {
 
 const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
   const [formData, setFormData] = useState({
-    booking_datetime: "",
-    booking_description: "",
+    datetime: "",
+    description: "",
   });
+
   const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const { booking_datetime, booking_description } = formData;
+    const { datetime, description } = formData;
     await fetch(
       process.env.NEXT_PUBLIC_SITE_ENDPOINT + `/api/salons/book/${salon.id}`,
       {
         body: JSON.stringify({
-          booking_datetime,
-          booking_description,
+          datetime,
+          description,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -48,18 +49,18 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
         <div className="form-section">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="booking_time"
+            htmlFor="booking_datetime"
           >
             Booking Date & Time
           </label>
           <input
-            title="booking time"
+            title="booking date and time"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            name="booking_time"
+            name="datetime"
             onChange={(e) => {
-              setFormData({ ...formData, booking_datetime: e.target.value });
+              setFormData({ ...formData, datetime: e.target.value });
             }}
-            value={formData.booking_datetime}
+            value={formData.datetime}
             type={"datetime-local"}
             required
           />
@@ -67,7 +68,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
         <div className="form-section">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="booking_description"
+            htmlFor="description"
           >
             Brief Description
           </label>
@@ -79,11 +80,11 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
               if (e.target.value.length <= 40) {
                 setFormData({
                   ...formData,
-                  booking_description: e.target.value,
+                  description: e.target.value,
                 });
               }
             }}
-            value={formData.booking_description}
+            value={formData.description}
             required
           />
         </div>
