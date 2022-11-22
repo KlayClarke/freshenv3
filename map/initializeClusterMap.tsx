@@ -50,7 +50,7 @@ export default function initializeClusterMap(
     source: "salons",
     filter: ["!", ["has", "point_count"]],
     paint: {
-      "circle-color": "#ff9f80",
+      "circle-color": "#11b4da",
       "circle-radius": 10,
       "circle-stroke-width": 1,
       "circle-stroke-color": "#fff",
