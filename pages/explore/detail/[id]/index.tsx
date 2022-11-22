@@ -30,7 +30,7 @@ export default function Detail({ salon }: DetailProps) {
         </section>
         {/* microservices */}
         <section className="flex flex-col items-center">
-          {status == "authenticated" && (
+          {status == "authenticated" && session.user.id !== salon.author_id && (
             <>
               <div className="px-10 py-5 flex flex-col justify-center items-center w-full">
                 <Link href={`/explore/detail/${salon.id}/book`}>
