@@ -101,10 +101,10 @@ model Appointment {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   date_time   DateTime
   description String
-  author      User     @relation(fields: [author_id], references: [id])
-  author_id   String
   salon       Salon    @relation(fields: [salon_id], references: [id])
-  salon_id    String
+  salon_id    String   @db.ObjectId
+  author      User     @relation(fields: [author_id], references: [id])
+  author_id   String   @db.ObjectId
 
   @@map("appointments")
 }
