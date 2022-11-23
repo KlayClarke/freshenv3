@@ -1,26 +1,8 @@
 import { getSession } from "next-auth/react";
-import Cors from "cors";
 import { Salon } from "../../../../atoms/salonsAtom";
-import initMiddleware from "../../../../lib/init-middleware";
 import prisma from "../../../../lib/prisma";
-import { NextApiRequest, NextApiResponse } from "next";
 
-// Initialize the cors middleware
-const cors = initMiddleware(
-  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
-  Cors({
-    // Only allow requests with GET, POST and OPTIONS
-    methods: ["GET", "POST", "OPTIONS"],
-  })
-);
-
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  // run cors
-  await cors(req, res);
-
+export default async function handler(req, res) {
   const session = await getSession({ req });
   const { user } = session;
   const { id } = req.query;
@@ -31,7 +13,7 @@ export default async function handler(
     },
   });
 
-  if (req.method === "POST" && session && user.id !== salon.author_id) {
+  if (req.method === "POST" && session) {
     const { datetime, description } = req.body;
 
     try {
