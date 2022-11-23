@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
 import { Salon } from "../../atoms/salonsAtom";
+import dayjs from "dayjs";
 
 type BookingFormProps = {
   salon: Salon;
@@ -9,7 +10,7 @@ type BookingFormProps = {
 
 const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
   const [formData, setFormData] = useState({
-    datetime: "",
+    date_time: "",
     description: "",
   });
 
@@ -17,12 +18,12 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const { datetime, description } = formData;
+    const { date_time, description } = formData;
     await fetch(
       process.env.NEXT_PUBLIC_SITE_ENDPOINT + `/api/salons/book/${salon.id}`,
       {
         body: JSON.stringify({
-          datetime,
+          date_time: dayjs(date_time).toDate(),
           description,
         }),
         headers: {
@@ -49,18 +50,18 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
         <div className="form-section">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="datetime"
+            htmlFor="date_time"
           >
             Booking Date & Time
           </label>
           <input
             title="booking date and time"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            name="datetime"
+            name="date_time"
             onChange={(e) => {
-              setFormData({ ...formData, datetime: e.target.value });
+              setFormData({ ...formData, date_time: e.target.value });
             }}
-            value={formData.datetime}
+            value={formData.date_time}
             type={"datetime-local"}
             required
           />
