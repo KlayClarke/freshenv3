@@ -49,7 +49,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
         <div className="form-section">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="booking_datetime"
+            htmlFor="datetime"
           >
             Booking Date & Time
           </label>
@@ -75,7 +75,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ salon }) => {
           <input
             title="booking description"
             className="shadow appearance-none border rounded w-full py-2 px-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 focus:border-opacity-50"
-            name="booking_description"
+            name="description"
             onChange={(e) => {
               if (e.target.value.length <= 40) {
                 setFormData({
