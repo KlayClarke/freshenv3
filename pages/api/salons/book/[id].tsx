@@ -7,14 +7,8 @@ export default async function handler(req, res) {
   const { user } = session;
   const { id } = req.query;
 
-  let salon: Salon = await prisma.salon.findUnique({
-    where: {
-      id,
-    },
-  });
-
   if (req.method === "POST" && session) {
-    const { datetime, description } = req.body;
+    const { date_time, description } = req.body;
 
     try {
       await prisma.user.update({
@@ -24,14 +18,15 @@ export default async function handler(req, res) {
         data: {
           appointments: {
             create: {
-              datetime,
+              date_time,
               description,
+              salon_id: id,
             },
           },
         },
       });
     } catch (err) {
-      console.log("Failure: ", err);
+      console.log(err);
     }
     res.end();
   }
