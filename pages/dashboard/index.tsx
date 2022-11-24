@@ -1,50 +1,143 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import useSWR from "swr";
-import { fetcher } from "../../utils/fetcher";
+import { Appointment } from "../../atoms/appointmentsAtom";
+import { Salon } from "../../atoms/salonsAtom";
+import prisma from "../../lib/prisma";
 
-export default function Dashboard() {
-  const [shops, setShops] = useState([]);
+type DashboardProps = {
+  shops: Salon[];
+  appts: Appointment[];
+};
+
+export default function Dashboard({ shops, appts }: DashboardProps) {
+  const [fetched, setFetched] = useState(false);
+  const [salons, setSalons] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const { data: session, status } = useSession();
 
-  const { data: salons, error: salons_err } = useSWR(
-    process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/salons/get",
-    fetcher
-  );
-
-  const { data: appts, error: appts_err } = useSWR(
-    process.env.NEXT_PUBLIC_SITE_ENDPOINT + "/api/appointments/get",
-    fetcher
-  );
-
-  //   function getShops(id) {
-  //     s = []
-  //     for (let salon in salons: Salon) {
-
-  //     }
-  //   }
-  function getAppointments(id) {
-    let appointments = [];
-    for (let appt of appts) {
-      if (appt["id"] === id) {
-        console.log(appt);
-      }
-    }
-  }
-
   useEffect(() => {
-    getAppointments(session.user.id);
-  });
+    let res: Salon[] = [];
+    for (let shop of shops) {
+      if (shop.author_id === session.user.id) res.push(shop);
+    }
+    setSalons(res);
+  }, [shops]);
 
   return (
     <div className="flex flex-col items-center p-8 min-h-screen">
-      <div className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4 flex flex-col justify-center items-center">
-        <h3 className="text-bold underline">Your Shops</h3>
+      <div className="bg-white shadow-sm border rounded-lg px-8 pt-8 pb-8 mb-4 flex flex-col justify-center w-full">
+        {salons.length === 0 ? (
+          <>
+            {" "}
+            <h3>
+              You currently have no shops. {""}
+              <a href="/explore/create">
+                <span className="font-bold text-green-500">
+                  Would you like to create one?
+                </span>
+              </a>
+            </h3>{" "}
+          </>
+        ) : (
+          <>
+            <h1 className="">Your Shops</h1>
+            <div className="mx-4">
+              <div className="flex flex-col">
+                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div className="overflow-hidden">
+                      <table className="min-w-full">
+                        <thead className="bg-white border-b">
+                          <tr>
+                            <th
+                              scope="col"
+                              className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                            >
+                              #
+                            </th>
+                            <th
+                              scope="col"
+                              className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                            >
+                              Name
+                            </th>
+                            <th
+                              scope="col"
+                              className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                            >
+                              Address
+                            </th>
+                            <th
+                              scope="col"
+                              className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                            >
+                              Average Price
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {salons.map((salon: Salon, index) => (
+                            <>
+                              <tr className="odd:bg-white even:bg-slate-50">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                  {index + 1}
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  {salon.name}
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  {salon.street_address}, {salon.city},{" "}
+                                  {salon.state} {salon.zip_code}
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  ${salon.average_price}
+                                </td>
+                              </tr>
+                            </>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </div>
-      <div className="bg-white sm:shadow-sm sm:border sm:rounded-lg px-8 pt-6 pb-8 mb-4 flex flex-col justify-center items-center">
-        <h3 className="text-bold underline">Your Appointments</h3>
+      <div className="bg-white shadow-sm border rounded-lg px-8 pt-8 pb-8 mb-4 flex flex-col justify-center w-full">
+        {appointments.length === 0 ? (
+          <>
+            <h3>
+              You currently have no appointments.{" "}
+              <a href="/explore">
+                <span className="font-bold text-blue-500">
+                  Explore our database and find the right shop for you.
+                </span>
+              </a>{" "}
+            </h3>
+          </>
+        ) : (
+          <>
+            <h1 className="underline">Your Appointments</h1>
+          </>
+        )}
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const shops = await prisma.salon.findMany({
+    orderBy: [
+      {
+        name: "asc",
+      },
+    ],
+  });
+
+  //   const appts = await prisma.appointment.findMany();
+  return {
+    props: { shops },
+  };
 }
