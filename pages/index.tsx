@@ -23,7 +23,7 @@ export default function Home({ salon }) {
         <Script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js" />
         {/* hero */}
         <section className="relative">
-          <MapboxMap coordinates={[-75, 43]} />
+          <MapboxMap coordinates={[-98, 39]} />
           <div className="xs:w-[40%] sm:w-[80%] container mx-auto flex flex-col-reverse lg:flex-row items-center mt-10 px-10">
             {/* Content */}
             {status === "unauthenticated" ? (
