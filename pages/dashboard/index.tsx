@@ -33,10 +33,8 @@ export default function Dashboard({ shops, appts }: DashboardProps) {
             <h3>
               You currently have no shops. {""}
               <Link href="/explore/create">
-                <a>
-                  <span className="font-bold text-green-500">
-                    Would you like to create one?
-                  </span>
+                <a className="font-bold text-green-500">
+                  Would you like to create one?
                 </a>
               </Link>
             </h3>{" "}
@@ -114,11 +112,9 @@ export default function Dashboard({ shops, appts }: DashboardProps) {
             <h3>
               You currently have no appointments.{" "}
               <Link href="/explore">
-                <a>
-                  <span className="font-bold text-blue-500">
-                    Explore our database and find the right shop for you.
-                  </span>
-                </a>{" "}
+                <a className="font-bold text-blue-500">
+                  Explore our database and find the right shop for you.
+                </a>
               </Link>
             </h3>
           </>
