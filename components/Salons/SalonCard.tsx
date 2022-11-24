@@ -4,6 +4,7 @@ import { Salon } from "../../atoms/salonsAtom";
 import sanitize from "sanitize-html";
 import unentity from "../../utils/unentity";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 type SalonCardProps = {
   salon: Salon;
@@ -16,7 +17,7 @@ const SalonCard: React.FC<SalonCardProps> = ({ salon, salonPage }) => {
     <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
       <div className={salonPage ? "flex flex-col" : "md:flex"}>
         <div className="md:shrink-0">
-          <img
+          <Image
             className={
               salonPage
                 ? "h-36 sm:h-60 xl:h-80 w-full object-cover"

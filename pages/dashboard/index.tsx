@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Appointment } from "../../atoms/appointmentsAtom";
 import { Salon } from "../../atoms/salonsAtom";
 import prisma from "../../lib/prisma";
+import Link from "next/link";
 
 type DashboardProps = {
   shops: Salon[];
@@ -21,7 +22,7 @@ export default function Dashboard({ shops, appts }: DashboardProps) {
       if (shop.author_id === session.user.id) res.push(shop);
     }
     setSalons(res);
-  }, [shops]);
+  }, [shops, session.user.id]);
 
   return (
     <div className="flex flex-col items-center p-8 min-h-screen">
@@ -31,11 +32,13 @@ export default function Dashboard({ shops, appts }: DashboardProps) {
             {" "}
             <h3>
               You currently have no shops. {""}
-              <a href="/explore/create">
-                <span className="font-bold text-green-500">
-                  Would you like to create one?
-                </span>
-              </a>
+              <Link href="/explore/create">
+                <a>
+                  <span className="font-bold text-green-500">
+                    Would you like to create one?
+                  </span>
+                </a>
+              </Link>
             </h3>{" "}
           </>
         ) : (
@@ -110,11 +113,13 @@ export default function Dashboard({ shops, appts }: DashboardProps) {
           <>
             <h3>
               You currently have no appointments.{" "}
-              <a href="/explore">
-                <span className="font-bold text-blue-500">
-                  Explore our database and find the right shop for you.
-                </span>
-              </a>{" "}
+              <Link href="/explore">
+                <a>
+                  <span className="font-bold text-blue-500">
+                    Explore our database and find the right shop for you.
+                  </span>
+                </a>{" "}
+              </Link>
             </h3>
           </>
         ) : (

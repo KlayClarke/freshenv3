@@ -27,11 +27,11 @@ const MapboxMap: React.FC<MapboxMapProps> = ({ coordinates, salonPage }) => {
       container: "map",
       style: "mapbox://styles/kclare/clast2di4000614o5txi4jbf4",
       center: coordinates,
-      zoom: salonPage ? 15 : 3.5,
+      zoom: salonPage ? 15 : 3,
     });
 
     setMap(map);
-  }, []);
+  }, [coordinates, salonPage]);
 
   useEffect(() => {
     if (pageIsMounted && salons && Map) {

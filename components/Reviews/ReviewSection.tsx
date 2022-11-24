@@ -52,9 +52,6 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ salon, reviews }) => {
     router.push(`/explore/detail/${salon.id}`);
   }
 
-  useEffect(() => {
-    console.log(session);
-  }, []);
   return (
     <div className="relative mt-20 lg:mt-24 px-5">
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-x-24">
