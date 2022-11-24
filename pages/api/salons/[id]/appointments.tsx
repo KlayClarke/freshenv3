@@ -1,4 +1,4 @@
-import { Salon } from "../../../../atoms/salonsAtom";
+import { Appointment } from "../../../../atoms/appointmentsAtom";
 import prisma from "../../../../lib/prisma";
 
 export default async function handler(req, res) {
@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     where: {
       salon_id,
     },
-  })) as Salon;
+  })) as Appointment;
 
   res.json({
     appointments: {
