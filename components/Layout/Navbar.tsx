@@ -50,6 +50,15 @@ export default function Navbar() {
         }
       >
         <div className="text-sm lg:flex-grow">
+          {status == "authenticated" && (
+            <>
+              <Link href="/dashboard">
+                <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
+                  Dashboard
+                </a>
+              </Link>
+            </>
+          )}
           <Link href="/explore">
             <a className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-blue-500 mr-4">
               Explore
