@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import ProtectedRouteAgainstUnauthUsers from "./UnauthProtectedRouteWrapper";
 import ProtectedRouteAgainstAuthUsers from "./AuthProtectedRouteWrapper";
 
-const authRoutes = ["/explore/create"];
+const authRoutes = ["/explore/create", "/dashboard"];
 const unauthRoutes = ["/auth/join", "/auth/login"];
 
 export default function AuthWrapper({ children }) {
