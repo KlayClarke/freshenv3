@@ -41,8 +41,8 @@ export default function Dashboard({ shops, appts }: DashboardProps) {
           </>
         ) : (
           <>
-            <h1 className="">Your Shops</h1>
-            <div className="mx-4">
+            <h1 className="font-bold">Your Shops</h1>
+            <div>
               <div className="flex flex-col">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -84,7 +84,11 @@ export default function Dashboard({ shops, appts }: DashboardProps) {
                                   {index + 1}
                                 </td>
                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                  {salon.name}
+                                  <Link href={`/explore/detail/${salon.id}`}>
+                                    <a className="text-blue-500 hover:underline">
+                                      {salon.name}
+                                    </a>
+                                  </Link>
                                 </td>
                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                   {salon.street_address}, {salon.city},{" "}
@@ -110,7 +114,7 @@ export default function Dashboard({ shops, appts }: DashboardProps) {
         {appointments.length === 0 ? (
           <>
             <h3>
-              You currently have no appointments.{" "}
+              You currently have no booked appointments.{" "}
               <Link href="/explore">
                 <a className="font-bold text-blue-500">
                   Explore our database and find the right shop for you.
@@ -120,7 +124,7 @@ export default function Dashboard({ shops, appts }: DashboardProps) {
           </>
         ) : (
           <>
-            <h1 className="underline">Your Appointments</h1>
+            <h1 className="font-bold">Your Appointments</h1>
           </>
         )}
       </div>
