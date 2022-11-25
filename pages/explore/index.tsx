@@ -7,6 +7,7 @@ import unentity from "../../utils/unentity";
 import SalonCard from "../../components/Salons/SalonCard";
 import { Salon } from "../../atoms/salonsAtom";
 import SortBy from "../../components/Explore/SortBy";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 type ExploreProps = {
   salonsByName: Salon[];
@@ -19,24 +20,24 @@ export default function Explore({
   salonsByType,
   salonsByPrice,
 }: ExploreProps) {
+  const [numElements, setNumElements] = useState(20); // sets initial number of elements to 20 -> will change as user scrolls down
   const [sortBy, setSortBy] = useState("name");
-  const [salons, setSalons] = useState(salonsByName);
+  const [salons, setSalons] = useState(salonsByName.slice(0, numElements));
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
-  // unentity values before displaying them -- turn &amp; back to &, etc.
-
+  // below hook does a bunch of things: (1) handles the sorting of our salons when a user changes sort type, (2) handles infinite scroll data concatenation
   useEffect(() => {
     if (sortBy === "name") {
-      setSalons(salonsByName);
+      setSalons(salonsByName.slice(0, numElements));
     }
     if (sortBy === "type") {
-      setSalons(salonsByType);
+      setSalons(salonsByType.slice(0, numElements));
     }
     if (sortBy === "average_price") {
-      setSalons(salonsByPrice);
+      setSalons(salonsByPrice.slice(0, numElements));
     }
-  }, [sortBy, salonsByName, salonsByType, salonsByPrice]);
+  }, [sortBy, salonsByName, salonsByType, salonsByPrice, numElements]);
 
   return (
     <div className="mt-1 mb-1 flex flex-col justify-center items-center">
@@ -53,11 +54,20 @@ export default function Explore({
             </>
           )}
         </div>
-        <div className="w-[100%] grid lg:grid-cols-2 gap-5 p-10">
-          {salons.map((salon: Salon, index: number) => {
-            return <SalonCard key={index} salon={salon} />;
-          })}
-        </div>
+        <InfiniteScroll
+          dataLength={salons.length}
+          next={() => {
+            setNumElements(numElements + 20);
+          }}
+          hasMore={salons.length === salonsByName.length ? false : true}
+          loader={<h4>Loading...</h4>}
+        >
+          <div className="w-[100%] grid lg:grid-cols-2 gap-5 p-10">
+            {salons.map((salon: Salon, index: number) => {
+              return <SalonCard key={index} salon={salon} />;
+            })}
+          </div>
+        </InfiniteScroll>
       </div>
     </div>
   );
