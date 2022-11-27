@@ -8,6 +8,7 @@ import SalonCard from "../../components/Salons/SalonCard";
 import { Salon } from "../../atoms/salonsAtom";
 import SortBy from "../../components/Explore/SortBy";
 import InfiniteScroll from "react-infinite-scroll-component";
+import ExploreBar from "../../components/Layout/ExploreBar";
 
 type ExploreProps = {
   salonsByName: Salon[];
@@ -40,34 +41,25 @@ export default function Explore({
   }, [sortBy, salonsByName, salonsByType, salonsByPrice, numElements]);
 
   return (
-    <div className="mt-1 mb-1 flex flex-col justify-center items-center">
-      <div className="w-full xl:max-w-[1600px]">
-        <div className="px-5 md:px-10 pt-10 flex flex-col justify-center items-center gap-5 md:flex-row md:justify-between">
-          <SortBy setSortBy={setSortBy} />
-          {status === "authenticated" && (
-            <>
-              <Link href="/explore/create">
-                <a className="btn bg-green-500 hover:bg-green-600 text-white font-semibold border-green-500 min-w-fit w-[60%] text-center md:w-fit">
-                  Create
-                </a>
-              </Link>
-            </>
-          )}
+    <div>
+      <ExploreBar setSortBy={setSortBy} />
+      <div className="mt-1 mb-1 flex flex-col justify-center items-center">
+        <div className="w-full xl:max-w-[1600px]">
+          <InfiniteScroll
+            dataLength={salons.length}
+            next={() => {
+              setNumElements(numElements + 20);
+            }}
+            hasMore={salons.length === salonsByName.length ? false : true}
+            loader={<h4>Loading...</h4>}
+          >
+            <div className="w-[100%] grid lg:grid-cols-2 gap-5 p-10">
+              {salons.map((salon: Salon, index: number) => {
+                return <SalonCard key={index} salon={salon} />;
+              })}
+            </div>
+          </InfiniteScroll>
         </div>
-        <InfiniteScroll
-          dataLength={salons.length}
-          next={() => {
-            setNumElements(numElements + 20);
-          }}
-          hasMore={salons.length === salonsByName.length ? false : true}
-          loader={<h4>Loading...</h4>}
-        >
-          <div className="w-[100%] grid lg:grid-cols-2 gap-5 p-10">
-            {salons.map((salon: Salon, index: number) => {
-              return <SalonCard key={index} salon={salon} />;
-            })}
-          </div>
-        </InfiniteScroll>
       </div>
     </div>
   );
