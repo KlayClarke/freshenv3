@@ -11,7 +11,7 @@ const ExploreBar: React.FC<ExploreBarProps> = ({ setSortBy }) => {
   const { data: session, status } = useSession();
   return (
     <div className="flex items-center justify-between flex-wrap bg-white border-b border-gray-300 py-6 top-[53px] left-0 right-0 sticky">
-      <div className="w-full h-full px-5 md:px-10 flex flex-col justify-center items-center gap-5 md:flex-row md:justify-between">
+      <div className="flex flex-col items-center justify-center w-full h-full px-5 md:px-10 gap-5 md:flex-row md:justify-between">
         <SortBy setSortBy={setSortBy} />
         {status === "authenticated" && (
           <>
