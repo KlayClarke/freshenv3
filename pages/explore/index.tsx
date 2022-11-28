@@ -43,7 +43,7 @@ export default function Explore({
   return (
     <div>
       <ExploreBar setSortBy={setSortBy} />
-      <div className="mt-1 mb-1 flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center mt-1 mb-1">
         <div className="w-full xl:max-w-[1600px]">
           <InfiniteScroll
             dataLength={salons.length}
