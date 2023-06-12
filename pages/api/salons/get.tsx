@@ -1,7 +1,7 @@
 import prisma from "../../../lib/prisma";
 import Cors from "cors";
 import NextCors from "nextjs-cors";
-import { Salon } from "../../../atoms/salonsAtom";
+import { ApiFormattedSalon, Salon } from "../../../atoms/salonsAtom";
 import { NextApiRequest, NextApiResponse } from "next";
 import initMiddleware from "../../../lib/init-middleware";
 
@@ -31,10 +31,10 @@ export default async function handler(
 
   const salons = (await prisma.salon.findMany({})) as Salon[];
 
-  const formattedData: Salon[] = [];
+  const formattedData = [];
 
-  salons.map((salon) => {
-    const formattedSalon = {} as Salon;
+  salons.map((salon: Salon) => {
+    const formattedSalon = {} as ApiFormattedSalon;
 
     formattedSalon.geometry = {
       type: "Point",
@@ -42,7 +42,8 @@ export default async function handler(
     };
     formattedSalon.id = salon.id;
     formattedSalon.name = salon.name;
-    formattedSalon.type = salon.type;
+    formattedSalon.type = "Feature";
+	formattedSalon.salon_type = salon.type;
     formattedSalon.average_price = salon.average_price;
     formattedSalon.image = salon.image;
     formattedSalon.street_address = salon.street_address;
@@ -61,5 +62,29 @@ export default async function handler(
     formattedData.push(formattedSalon);
   });
 
-  res.json({ features: formattedData });
+  // Crafting a JSON format to comply with GeoJSON format -> https://geojson.org/
+	// {
+	// 	type: "FeatureCollection",
+	// 	crs: {
+	// 		type: "name",
+	// 		properties: {
+	// 			name: "urn:ogc:def:crs:OGC:1.3:CRS84"
+	// 		},
+	// 		features: [
+	// 			{
+	// 				salon data
+	// 			}
+	// 		]
+	// 	}
+	// }
+  res.json({
+	type: "FeatureCollection",
+	crs: {
+		type: "name",
+		properties: {
+			name: "urn:ogc:def:crs:OGC:1.3:CRS84"
+		}
+	},
+	features: formattedData
+  });
 }
