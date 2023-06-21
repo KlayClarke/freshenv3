@@ -31,7 +31,7 @@ export default async function handler(
 
   const salons = (await prisma.salon.findMany({})) as Salon[];
 
-  const formattedData = [];
+  let formattedData = [];
 
   salons.map((salon: Salon) => {
     const formattedSalon = {} as ApiFormattedSalon;
@@ -62,6 +62,9 @@ export default async function handler(
     formattedData.push(formattedSalon);
   });
 
+  // Sort data by name / alphanum
+  formattedData = formattedData.sort((a, b) => a.name.localeCompare(b.name))
+  
   // Crafting a JSON format to comply with GeoJSON format -> https://geojson.org/
 	// {
 	// 	type: "FeatureCollection",
